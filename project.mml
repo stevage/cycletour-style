@@ -1,0 +1,627 @@
+{
+  "bounds": [
+    115.1996,
+    -44.168,
+    153.9154,
+    -23.7874
+  ],
+  "center": [
+    145.3461,
+    -37.2496,
+    5
+  ],
+  "format": "png",
+  "interactivity": false,
+  "minzoom": 0,
+  "maxzoom": 17,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "style.mss",
+    "towns.mss",
+    "amenities.mss"
+  ],
+  "Layer": [
+    {
+      "geometry": "polygon",
+      "extent": [
+        -180,
+        -85.051,
+        180,
+        85.051
+      ],
+      "id": "waterpoly",
+      "class": "",
+      "Datasource": {
+        "file": "/usr/share/mapbox/wp/water_polygons.shp"
+      },
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "waterpoly"
+    },
+    {
+      "id": "countries",
+      "name": "countries",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "polygon",
+      "Datasource": {
+        "file": "http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.4.0/cultural/10m-admin-0-countries.zip",
+        "type": "shape"
+      },
+      "status": "off"
+    },
+    {
+      "extent": [
+        112.69808944147681,
+        -43.932385183621264,
+        158.76098717357675,
+        -9.548547407024307
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way from planet_osm_polygon where \"natural\"='beach') b",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17673192.25,-1067894.12",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "beach",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "beach"
+    },
+    {
+      "extent": [
+        112.69808944147681,
+        -43.932385183621264,
+        158.76098717357675,
+        -9.548547407024307
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_polygon\nwhere landuse='recreation' \nor leisure='park' \nor landuse='conservation'\nor leisure='nature_reserve'\nor boundary='protected_area'\nor boundary='national_park'\nor boundary='state_park') c",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17673192.25,-1067894.12",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "green",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "green"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -39.49994995987938,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where waterway is not null) as waterways",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4793540.24,16697922.5,-4028803.36",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "waterways",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "waterways"
+    },
+    {
+      "extent": [
+        141.00003995839717,
+        -39.49994995987938,
+        149.999959944202,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_polygon where \"natural\"='water' or landuse='reservoir' or waterway='riverbank') p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696052.65,-4793540.24,16697919.16,-4028803.36",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "water",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "water"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.932385183621264,
+        158.4121446687892,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,name,highway,surface,cycleway \nfrom planet_osm_line \nwhere highway in ('motorway','trunk','primary','secondary','tertiary','unclassified','residential','service','track','road')) as roads",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17634359.28,-1048379.81",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "id": "roads",
+        "project": "SteveCountryVic",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "port": "5432"
+      },
+      "id": "roads",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "roads"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.932385183621264,
+        158.4121446687892,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where railway in ('rail','preserved')) p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17634359.28,-1048379.81",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "id": "rail",
+        "project": "SteveCountryVic",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "rail",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "rail"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        141.00039998037278,
+        -39.49435999537517,
+        149.99990997911988,
+        -34.00016999582338
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select name,way \nfrom planet_osm_polygon \nwhere railway='station' and \n(operator like 'Public%' or operator like 'PTV%') and \ncoalesce(disused) is null union \nselect name,way \nfrom planet_osm_point \nwhere railway='station' and \ndisused is null and \nlower(name) not like '%closed%' and lower(name) not like '%disused%' and lower(name) not like '%former%' and\n(operator like 'Public%' or operator like 'PTV%')\n) stations",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "15696092.727463,-4792733.82902393,16697913.5979125,-4028824.85244296",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "stations",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "stations"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -39.49994995987938,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,name,highway,surface,cycleway \nfrom planet_osm_line \nwhere highway in ('motorway','trunk','primary','secondary','tertiary','unclassified','residential','service','track','road')) as roads",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4793540.24,16697922.5,-4028803.36",
+        "dbname": "gis_new",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "roads_blah",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "roads_blah"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.932385183621264,
+        158.4121446687892,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,network,route_name,colour,ref\nfrom planet_osm_line\nwhere network like 'PTV%' and route='train') w\n",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17634359.28,-1048379.81",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "id": "trains",
+        "project": "SteveCountryVic",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "trains",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "trains"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.932385183621264,
+        158.4121446687892,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where railway in ('abandoned','disused') and highway is null) d",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17634359.28,-1048379.81",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "id": "oldrail",
+        "project": "SteveCountryVic",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "oldrail",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "oldrail"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.932385183621264,
+        158.4121446687892,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,name,surface,highway\nfrom planet_osm_line\nwhere highway in('cycleway','path'))\np",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17634359.28,-1048379.81",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "bikepathsplain",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "bikepathsplain"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.932385183621264,
+        158.4121446687892,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select route_name,lcn,rcn,ncn,surface,way,  case when (route_name like '% Rail Trail%' or route_name in ('Domino Trail', 'Gippsland Lakes Discovery Trail','Tarra Trail','Anniversary Trail','Riesling Trail','Rattler Trail','Barossa Trail','Fernleigh Track')) and route_name not in ('Waverley Rail Trail','South Morang Rail Trail','Caulfield-Frankston Rail Trail') then 1 else 0 end as rail_trail,\ncoalesce(tags::hstore -> 'state','') as state\n from planet_osm_line\nwhere rcn is not null )\nas pathlabels",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17634359.28,-1048379.81",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "id": "bikepaths",
+        "project": "SteveCountryVic",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "bikepaths",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "bikepaths"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        112.97200438427443,
+        -43.65669999510338,
+        153.88431487857912,
+        -9.869999998639686
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_point \nwhere amenity is not null\nor tourism is not null\nor shop is not null)\np",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12575986.0019529,-5412468.50938641,17130323.5733552,-1104198.12027421",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "amenities",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "amenities"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        112.97200438427443,
+        -43.65669999510338,
+        153.88431487857912,
+        -9.869999998639686
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_point where place like 'city') as places",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12575986.0019529,-5412468.50938641,17130323.5733552,-1104198.12027421",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "places_cities",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "places_cities"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        141.00039998037278,
+        -39.49435999537517,
+        149.99990997911988,
+        -34.00016999582338
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from places where place ='town') p",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "15696092.727463,-4792733.82902393,16697913.5979125,-4028824.85244296",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "places_towns",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "places_towns"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        113.4054868842143,
+        -43.581861495107674,
+        153.62912227861426,
+        -10.190433998596474
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from places where place in ('village','hamlet')) p",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "12624241.053114,-5400960.66591848,17101915.6630729,-1140422.36948328",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "places",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "places"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        113.4054868842143,
+        -43.581861495107674,
+        153.62912227861426,
+        -10.190433998596474
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from places where amenities=0) p",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "12624241.053114,-5400960.66591848,17101915.6630729,-1140422.36948328",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "places_pointless",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "places_pointless"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        112.97200438427443,
+        -43.65669999510338,
+        153.88431487857912,
+        -9.869999998639686
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select name,way \nfrom planet_osm_polygon \nwhere tags::hstore->'railway:historic'='station'\nor tags::hstore->'railway:historic'='station_site'\nor tags::hstore->'historic:railway'='station'\nor tags::hstore->'historic:railway'='station_site'\nor (railway='station' and disused='yes')\nor railway='station' and (lower(name) like '%abandoned%' or lower(name) like '%disused%' or lower(name) like '%closed%' or lower(name) like '%former%') union \nselect name,way \nfrom planet_osm_point \nwhere tags::hstore->'railway:historic'='station'\nor tags::hstore->'railway:historic'='station_site'\nor tags::hstore->'historic:railway'='station'\nor tags::hstore->'historic:railway'='station_site'\nor railway='station' and disused='yes'\nor railway='station' and (lower(name) like '%abandoned%' or lower(name) like '%disused%' or lower(name) like '%closed%' or lower(name) like '%former%')\n) stations",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12575986.0019529,-5412468.50938641,17130323.5733552,-1104198.12027421",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "id": "oldstations",
+        "project": "SteveCountryVic",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "oldstations",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "oldstations"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        146.315081,
+        -38.19846,
+        147.25547,
+        -36.3554695
+      ],
+      "id": "fastact",
+      "class": "cycletour",
+      "Datasource": {
+        "file": "https://dl.dropboxusercontent.com/u/767553/GIS/FASTACT.kml",
+        "id": "fastact",
+        "project": "SteveCountryVic",
+        "srs": ""
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "fastact"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.932385183621264,
+        158.4121446687892,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,name,highway\nfrom planet_osm_line\nwhere highway like '%_link')\np",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17634359.28,-1048379.81",
+        "dbname": "gis_aus",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "roadlinks",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "roadlinks"
+    }
+  ],
+  "scale": 1,
+  "metatile": 2,
+  "name": "",
+  "description": "",
+  "attribution": ""
+}
