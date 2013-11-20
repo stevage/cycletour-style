@@ -71,14 +71,14 @@
 
 #mtbroutes[zoom >= 10] {
   line-width:1.5 ;
-  [zoom = 12] { line-width: 3;}
-  [zoom >= 13] { line-width: 4;}
-  [zoom >= 15] { line-width: 5;}
+  [zoom = 12] { line-width: 4;}
+  [zoom >= 13] { line-width: 5;}
+  [zoom >= 15] { line-width: 7;}
   line-smooth:1;
-  line-color:hsla(340,50%,80%,100%);  
+  line-color:hsla(340,50%,90%,100%);  
   [route_name="Bicentennial National Trail"] {
     line-color:hsla(50,100%,40%,80%);
-    line-width:3;
+    [zoom < 12] { line-width:3; }
     line-dasharray:1,0;
     //image-filters:agg-stack-blur(2,2);
   }
@@ -139,6 +139,7 @@
       text-halo-fill:hsla(0,0,100%,60%);
       text-halo-radius:1;      
   }    
+  [highway="steps"] { line-width: 3; line-dasharray: 1,2;} 
 }
 
 #aawt[zoom >= 10] {

@@ -12,6 +12,7 @@
 
 
 //  [zoom<=11][zoom >=10] { raster-opacity: 0.25; } // since no slope shading
+//  raster-scaling:bilinear;
   raster-scaling:bilinear;
   raster-comp-op:multiply;
 }
@@ -69,11 +70,11 @@
 
 .contour[zoom >=13] {
   line-smooth:1.0;
-  line-width:0.75;
-  line-color:hsla(100,30%,50%,20%);
-  [zoom = 13] { 
-    line-width:0.5;
-    line-color:hsla(100,30%,50%,15%); 
+  line-width:0.5;
+  line-color:hsla(100,30%,50%,15%); 
+  [zoom >= 14] {
+    line-width:0.75;
+    line-color:hsla(100,30%,50%,20%);
   }
   
   [zoom >= 16],
@@ -86,4 +87,11 @@
     l/text-fill:gray;
     l/text-placement:line;
   }
+}
+
+/* For regions with high-res terrain, we first obliterate the
+low-res terrain, so we can use different opacity levels against the
+same background. */
+.extent {
+  polygon-fill: @background;
 }

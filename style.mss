@@ -1,6 +1,7 @@
 @water: hsl(210, 80%,82%); //#b8dee6;
+@background:#f0fff0;
 Map {
-  background-color: #ffffff;
+  background-color: @background;
   //buffer-size:1024;
 }
 
@@ -107,14 +108,23 @@ Map {
     line-smooth:0.6;
   }
 */
+  line-smooth:0.6;
   line-width:0.5;
   [zoom <= 10] { line-width: 0.2; }
   [zoom >= 14] { line-width: 1; }
   
   line-color:brown;
-  line-dasharray:3,2;
-  line-smooth:0.6;
-  [zoom <= 11] { line-dasharray:2,0.5; }
+  line-dasharray:2,0.5; 
+  [zoom >= 12] { line-dasharray:3,2; }
+//  [zoom >= 12][fourwd='yes'] { line-dasharray: 3,1.5,1,1.5;}
+  [zoom >= 12][fourwd='yes']::ticks { 
+  line-color:brown;
+    line-smooth:0.6;
+    line-width:2.5;
+    [zoom >= 14] { line-width: 4;}
+    line-dasharray: 1,79;
+    line-dash-offset:1;
+  }
   [zoom >= 12] {
     text-face-name:'CartoGothic Std Book';
     text-size:11;
@@ -175,14 +185,15 @@ Map {
 
 /* Actual services */
 #trains {
-  ::carpet[zoom >=8] {
+  ::carpet[zoom >=10] {
     line-width:5;
     line-color: hsla(0,0%,100%,40%);
   }
   line-width:2;
   [zoom <=7] { line-width: 1; }
+  [zoom = 8] { line-width: 1.5; }
   line-color:hsl(140,80%,40%);
-  ::dots[zoom >=8] { 
+  ::dots[zoom >=10] { 
     line-width:2.5;
     line-color:hsl(140,80%,20%);
     line-dasharray:4,4;
@@ -190,7 +201,7 @@ Map {
 }
 
 
-#stations {
+#stations[zoom >=10] {
   marker-width:8;
   [zoom <= 12] { marker-width: 6; }
   [zoom <= 10] { marker-width: 6; }
@@ -202,7 +213,7 @@ Map {
   [zoom >= 12] { marker-line-width:1;}
   marker-allow-overlap:true;
   marker-ignore-placement:true;
-  ::label[zoom >= 12] {
+  ::label[zoom >= 13] {
     text-face-name: 'Roboto Condensed Light';
     
     text-name: '[name]';
@@ -338,6 +349,7 @@ but not so generally relevant I guess. */
 #water[zoom >=14][size > 1000000],
 #water[zoom >=12][size > 5000000],
 #water[zoom >=10][size > 30000000]{
+    ::label { 
     text-face-name:'CartoGothic Std Italic';
     text-name:'[name]';
     text-size:11;
@@ -345,7 +357,7 @@ but not so generally relevant I guess. */
     [zoom<=11] { text-size: 10; }
     text-fill:hsla(220,80%,20%,50%);
     text-placement-type:simple;
-    
+    }
 }
 
 @green:hsla(100,50%,40%,10%);
@@ -431,6 +443,11 @@ but not so generally relevant I guess. */
   polygon-fill:hsla(320,40%,80%,30%);
 }
 
+#landuse[aeroway='aerodrome'][zoom >=12] {
+  polygon-fill:hsla(320,20%,80%,30%);
+  line-color:hsla(320,20%,50%,80%);
+}
+
 #waterpoly {
   polygon-fill:@water;
 }
@@ -467,5 +484,3 @@ but not so generally relevant I guess. */
 #dam[zoom >= 11] {
   polygon-fill:hsla(0,0%,50%,70%);
 }
-
-

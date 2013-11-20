@@ -1,6 +1,7 @@
 //@townlabels: hsl(280,90%,20%);
 @townlabels: hsl(60,70%,10%);
-@villagelabels: hsl(280,50%,25%);
+//@villagelabels: hsl(280,50%,25%); //purple
+@villagelabels: hsl(60,70%,10%);
 //@townblobs: hsla(330,80%,60%,0.8);
 //@townblobs: hsla(260,80%,40%,0.7);
 @townblobs: hsla(260,80%,40%,0.0);
@@ -117,10 +118,34 @@
   [zoom <= 5] { marker-width: 1;}*/ 
 }
 
+#suburbs[zoom >=13] {
+  
+  ::label[zoom >= 8] {
+    text-face-name: 'Roboto Condensed Light';
+    text-name: '[name]';
+    text-placement-type:simple;
+    text-placements: "E,NE,SE,N,S,W,SW,NW,10,9,8";
+  
+    text-fill:@villagelabels;
+    text-halo-fill:hsla(300,20%,98%,60%);
+    text-halo-radius:1.5;
+    text-size:10;
+    [zoom >=12] { text-size: 13; text-opacity:0.9;}
+    [zoom >=14] { text-size: 14; text-opacity:1.0;}
+    text-dx: 4;
+    text-dy:5;
+    [zoom >= 14] { 
+      text-placements: "E,NE,SE,N,S,W,SW,NW,14,12,10,9,8";
+      //text-allow-overlap:true;
+    }
+  }
+}
+
 #places_pointless[zoom >= 12] {
   marker-width:2;
   marker-fill:hsla(270,30%,30%,40%);
   marker-allow-overlap:true;
+  marker-line-width:0;
   ::label[zoom >= 13] {
     text-face-name: 'Roboto Condensed Regular';
     text-name: '[name]';
@@ -138,3 +163,20 @@
     text-dy: 4;
   }
 }
+
+#suburbs[zoom >= 14]  ::label[zoom >= 13] {
+    text-face-name: 'Roboto Condensed Regular';
+    text-name: '[name]';
+    text-placement-type:simple;
+    text-placements: "E,NE,SE,S,N,W";
+
+  
+    text-fill:hsla(270,30%,30%,50%);
+    text-halo-fill:white;
+    text-halo-radius:0;
+    text-size:9;
+    [zoom >= 14] { text-size:11; }
+
+    text-dx: 4;
+    text-dy: 4;
+  }

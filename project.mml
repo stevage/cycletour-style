@@ -26,6 +26,60 @@
     {
       "geometry": "raster",
       "extent": [
+        110.00000000000003,
+        -45.000304161760205,
+        154.9997432576921,
+        -4.999999999999995
+      ],
+      "id": "srtm3785hs",
+      "class": "hs",
+      "Datasource": {
+        "file": "/mnt/dem/srtm-3785-hs.tif"
+      },
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "srtm3785hs"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        140.5741745199222,
+        -39.06418415506702,
+        149.75193973849284,
+        -33.86839419632388
+      ],
+      "id": "dtm20mextvg94",
+      "class": "extent",
+      "Datasource": {
+        "file": "/spatial2/vic-dem/dtm20m_ext_vg94.shp"
+      },
+      "srs-name": "custom",
+      "srs": "+init=epsg:3111",
+      "advanced": {},
+      "name": "dtm20mextvg94"
+    },
+    {
+      "geometry": "raster",
+      "extent": [
+        140.16932976122587,
+        -39.18004238393529,
+        150.2229086069416,
+        -33.81423255178963
+      ],
+      "id": "dtm20m3785hscut",
+      "class": "hs",
+      "Datasource": {
+        "file": "/spatial2/vic-dem/dtm20m-3785-hs-cut.tif"
+      },
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "dtm20m3785hscut"
+    },
+    {
+      "geometry": "raster",
+      "extent": [
         140.16932976122587,
         -39.18004238393529,
         150.2229086069416,
@@ -34,12 +88,13 @@
       "id": "dtm20m3785hs",
       "class": "hs",
       "Datasource": {
-        "file": "/spatial2/vic-dem/dtm20m-3785-hs.tif"
+        "file": "/mnt/vic-dem/dtm20m-3785-hs.tif"
       },
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "dtm20m3785hs"
+      "name": "dtm20m3785hs",
+      "status": "off"
     },
     {
       "geometry": "raster",
@@ -52,7 +107,7 @@
       "id": "srtm3785-unscaled",
       "class": "dem",
       "Datasource": {
-        "file": "/home/ubuntu/dem/srtm-3785.tif",
+        "file": "/mnt/dem/srtm-3785.tif",
         "band": "1"
       },
       "srs-name": "900913",
@@ -114,7 +169,7 @@
       "id": "srtm66203785contour",
       "class": "contour",
       "Datasource": {
-        "file": "/home/ubuntu/dem/srtm_66_20-3785-contour.shp"
+        "file": "/mnt/dem/srtm_66_20-3785-contour.shp"
       },
       "srs-name": "autodetect",
       "srs": "",
@@ -132,7 +187,7 @@
       "id": "srtm66193785contour",
       "class": "contour",
       "Datasource": {
-        "file": "/home/ubuntu/dem/srtm_66_19-3785-contour.shp",
+        "file": "/mnt/dem/srtm_66_19-3785-contour.shp",
         "id": "srtm66193785contour",
         "project": "SteveCountryVic",
         "srs": ""
@@ -153,7 +208,7 @@
       "id": "srtm65203785contour",
       "class": "contour",
       "Datasource": {
-        "file": "/home/ubuntu/dem/srtm_65_20-3785-contour.shp"
+        "file": "/mnt/dem/srtm_65_20-3785-contour.shp"
       },
       "srs-name": "autodetect",
       "srs": "",
@@ -171,7 +226,7 @@
       "id": "srtm65193785contour",
       "class": "contour",
       "Datasource": {
-        "file": "/home/ubuntu/dem/srtm_65_19-3785-contour.shp",
+        "file": "/mnt/dem/srtm_65_19-3785-contour.shp",
         "id": "srtm65193785contour",
         "project": "SteveCountryVic",
         "srs": ""
@@ -190,7 +245,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,landuse\nfrom planet_osm_polygon\nwhere landuse='industrial') p",
+        "table": "(select way,name,landuse,aeroway\nfrom planet_osm_polygon\nwhere landuse='industrial' or aeroway='aerodrome') p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -513,7 +568,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle\nfrom planet_osm_line \nwhere highway ='track' ) as roads",
+        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,tags::hstore->'4wd_only' as fourwd\nfrom planet_osm_line \nwhere highway ='track' ) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -682,13 +737,13 @@
       "geometry": "linestring",
       "extent": [
         112.69808944147681,
-        -43.932385183621264,
+        -43.93238518362126,
         158.4121446687892,
         -9.375632475695024
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,surface,name,bicycle,foot,horse,tags::hstore->'mtb',access,highway\nfrom planet_osm_line\nwhere highway in ('footway','path') and not 'yes' in (coalesce(bicycle,tags::hstore->'mtb',''))\n) p",
+        "table": "(select way,surface,name,bicycle,foot,horse,tags::hstore->'mtb',access,highway\nfrom planet_osm_line\nwhere highway in ('footway','path','steps') and not 'yes' in (coalesce(bicycle,tags::hstore->'mtb',''))\n) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -775,7 +830,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,amenity,tourism,shop,name,city_distance,building,\ncase when tags::hstore->'microbrewery'='yes' then 'yes'\nwhen tags::hstore->'craft'='brewery' then 'yes' else 'no' end brewery\n from planet_osm_point\nwhere amenity is not null\nor tourism is not null\nor shop is not null\nor leisure is not null\nor building='hut'\nunion\nselect way,amenity,tourism,shop,name,city_distance,building,\ncase when tags::hstore->'microbrewery'='yes' then 'yes'\nwhen tags::hstore->'craft'='brewery' then 'yes' else 'no' end brewery\nfrom planet_osm_polygon\nwhere amenity is not null\nor tourism is not null\nor shop is not null\norder by brewery asc\n) p\n",
+        "table": "(select way,amenity,tourism,shop,name,city_distance,building,\ncase when tags::hstore->'microbrewery'='yes' then 'yes'\nwhen tags::hstore->'craft'='brewery' then 'yes' else 'no' end brewery\n from planet_osm_point\nwhere amenity is not null\nor tourism is not null\nor shop is not null\nor leisure is not null\nor building='hut'\nunion\nselect way,amenity,tourism,shop,name,city_distance,building,\ncase when tags::hstore->'microbrewery'='yes' then 'yes'\nwhen tags::hstore->'craft'='brewery' then 'yes' else 'no' end brewery\nfrom planet_osm_polygon\nwhere amenity is not null\nor tourism is not null\nor shop is not null\nor building='hut'\norder by brewery asc\n) p\n",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -1197,7 +1252,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select \"natural\", replace(name,'Mount ','Mt ') as name,ele,way\nfrom planet_osm_point\nwhere \"natural\"='peak'\nunion\nselect \"natural\",name,null,way\nfrom planet_osm_polygon\nwhere place='island'\n) p",
+        "table": "(select \"natural\", replace(name,'Mount ','Mt ') as name,ele,way\nfrom planet_osm_point\nwhere \"natural\" in ('peak','saddle')\nunion\nselect \"natural\",name,null,way\nfrom planet_osm_polygon\nwhere place='island'\n) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -1216,6 +1271,33 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "naturals"
+    },
+    {
+      "extent": [
+        112.69808944147681,
+        -43.93238518362126,
+        155.78290051833278,
+        -7.457091051748444
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select name,way\nfrom planet_osm_point\nwhere place='suburb'\nunion\nselect name,way\nfrom planet_osm_polygon\nwhere place='suburb') p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17341673.16,-832473.15",
+        "dbname": "gis",
+        "host": "gis.cycletour.org",
+        "port": "5432",
+        "user": "gis",
+        "password": "gis"
+      },
+      "id": "suburbs",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "suburbs"
     }
   ],
   "scale": 1,
