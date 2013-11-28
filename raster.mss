@@ -1,4 +1,6 @@
-.hs[zoom <= 16] {
+.90m-hs[zoom <= 16],
+.20m-hs[zoom >=11][zoom <= 16],
+{
 //  [zoom=11] { raster-opacity: 0.2; }
   [zoom<=8] { raster-opacity: 0.3; }
   [zoom=9] { raster-opacity: 0.2; }
@@ -17,6 +19,15 @@
   raster-comp-op:multiply;
 }
 
+/* For regions with high-res terrain, we first obliterate the
+low-res terrain, so we can use different opacity levels against the
+same background. */
+.extent[zoom >=11] {
+  polygon-fill: @background;
+}
+
+
+/*
 // currently not used
 .slope[zoom <= 14][zoom >= 10] {
   raster-opacity:0.10;
@@ -27,16 +38,12 @@
   raster-scaling:lanczos;
   raster-colorizer-default-mode: linear;
   raster-colorizer-default-color: transparent;
-/*  raster-colorizer-stops:
-    stop(0, white)
-    stop(20, #bbb)
-    stop(90, #000);*/
   raster-colorizer-stops:
     stop(0, white)
     stop(25, white)
     stop(80, hsl(260,50%,30%));  
 }
-
+*/
 // colour-graded elevation model
 .dem {
   [zoom >= 10] { raster-opacity: 0.2; }
@@ -60,7 +67,7 @@
   stop(140,hsl(100,0%,50%))
   stop(175,white);*/
   raster-colorizer-stops:
-  stop(0,hsl(60,50%,80%))
+  stop(0,hsl(40,50%,80%))
   stop(392,hsl(110,80%,20%))
   stop(785,hsl(120,70%,20%))
   stop(1100,hsl(100,0%,50%))
@@ -89,9 +96,3 @@
   }
 }
 
-/* For regions with high-res terrain, we first obliterate the
-low-res terrain, so we can use different opacity levels against the
-same background. */
-.extent {
-  polygon-fill: @background;
-}

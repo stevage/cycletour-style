@@ -11,7 +11,7 @@ Map {
   [highway='primary']::carpet,
   [highway='secondary']::carpet,
   [highway='tertiary']::carpet*/
-  ::carpet[highway != 'residential'][highway != 'service']
+  ::carpet
   {
     line-width:3; line-color:hsla(0,0%,100%,50%);
     [highway='unclassified'] { 
@@ -19,6 +19,10 @@ Map {
     }
     [highway='trunk'] { line-width: 3.5;}  
     line-smooth:0.45;
+
+    // experimental way of showing bike lanes
+    [cycleway='lane'][zoom >= 14],
+    [cycleway='track'][zoom >= 14]{ line-color:lighten(@bikeroute,20%); }
   }
   line-width:1.2;
   [zoom <= 9] { line-width: 1.0;}
@@ -41,30 +45,19 @@ Map {
   [surface="unpaved"],[surface="dirt"],[surface="gravel"],
   [surface="unsealed"],[surface="sand"] { 
     line-dasharray: 6,1;
-    [highway="unclassified"],[highway="road"],[highway="residential"],
-      [highway="living_street"],[highway="pedestrian"]{
+    [highway="unclassified"]{
       line-color:hsl(30,20%,40%);
     }
   }
-  [highway='residential'] {
-    line-width: 0.6;
-    [zoom <= 12] { line-width:0.3; }
-    [zoom < 11] { line-width:0.2; }
-  }
-  [highway='service'],[highway="pedestrian"] {
-    line-width:0.5;
-  }
 
-  ::label[zoom >= 10][highway != 'residential'][highway != 'service']
-    [highway != 'pedestrian'],
-  ::label[zoom >= 14] {
+  ::label[zoom >= 10]
+  {
     text-face-name:'CartoGothic Std Book';
     text-size:12;
     text-name:'[name]';
     text-placement:line;
     text-allow-overlap:false;//true;
     text-spacing:150;
-    //text-halo-fill:white;
     text-halo-fill:hsla(0,0%,100%,60%);
     text-halo-radius:1.5;
     [zoom <= 12] { 
@@ -76,12 +69,6 @@ Map {
         text-max-char-angle-delta:28;
     }
 //    [highway!='tertiary'] { text-allow-overlap:false; }
-    [highway='residential'],[highway='service'],[highway='pedestrian'] {
-      text-fill:#777;
-      text-size:10;
-      text-allow-overlap:false;
-      [zoom <= 15] { text-halo-radius: 1; text-halo-fill: hsla(0,0%,1.0,20%);}
-    }
     [highway="unclassified"] { 
       text-halo-radius: 1; 
       text-halo-fill: hsla(0,0%,1.0,20%);
@@ -93,6 +80,38 @@ Map {
     line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
   }
 }
+
+#littleroads[zoom >= 11] {
+  line-width:0.6;
+  line-smooth:0.4;
+  [zoom >= 14] { line-smooth: 0.5; }
+
+  line-color:gray;
+  [surface="unpaved"],[surface="dirt"],[surface="gravel"],
+  [surface="unsealed"],[surface="sand"] { 
+    line-dasharray: 6,1;
+    line-color:hsl(30,20%,40%);
+  }
+  [highway='residential'] {
+    [zoom <= 12] { line-width:0.3; }
+    [zoom < 11] { line-width:0.2; }
+  }
+  ::label[zoom >= 14] {
+    text-face-name:'CartoGothic Std Book';
+    text-name:'[name]';
+    text-placement:line;
+    text-allow-overlap:false;//true;
+    text-spacing:150;
+    text-halo-fill:hsla(0,0%,100%,60%);
+    text-halo-radius:1.5;
+    text-fill:#777;
+    text-size:10;
+    [zoom <= 15] { 
+      text-halo-radius: 1; text-halo-fill: hsla(0,0%,1.0,20%);
+    }
+  }
+}
+
 
 #roadlinks[zoom>=13] {
   line-width:0.5;
@@ -173,12 +192,6 @@ Map {
     }
   }
 
-  /*  ::dots { 
-    line-width:2.5;
-    [railway="preserved"] { line-width: 1.0; }
-    line-color:hsl(140,80%,20%);
-    line-dasharray:4,4;
-  }*/
 
  }
 
@@ -243,13 +256,6 @@ but not so generally relevant I guess. */
     line-dasharray:6,2;
  
   }
-  /* kind of silly...*/
-  /*::crossdashes[zoom >=13] {
-    line-width:10;
-    line-color:hsl(140,40%,40%);
-    line-dasharray:0.5,7.5;
- 
-  }*/
   ::label[zoom >= 13] {
     text-face-name:'CartoGothic Std Book';
     text-fill:hsl(140,40%,40%);
@@ -332,7 +338,7 @@ but not so generally relevant I guess. */
     text-fill:darken(@water,20%);
     text-halo-fill:hsla(0,0%,100%,50%);
     text-allow-overlap:true;
-
+    text-dx:10;//kind of meaningless really.
 }
 
 #water { 
@@ -375,13 +381,14 @@ but not so generally relevant I guess. */
     line-color:hsl(100,70%,30%);
     line-smooth:0.5;
   }
-  [zoom >= 11] { 
-    line-width:0.5;
+  [zoom >= 11][is_park=0] { 
+/*    line-width:0.5;
     line-color:hsl(100,70%,40%);
-    line-smooth:0.2;
+    line-smooth:0.2;*/
+    line-width:0;
     // ##questionable! dots for national parks?
-    //polygon-pattern-file:url(https://dl.dropboxusercontent.com/u/767553/greendot3.png);
-    //polygon-pattern-opacity:0.1;
+    polygon-pattern-file:url(https://dl.dropboxusercontent.com/u/767553/greendot3.png);
+    polygon-pattern-opacity:0.1;
     
     //polygon-pattern
 /*    polygon-smooth:0.2;
@@ -396,21 +403,6 @@ but not so generally relevant I guess. */
     line-dasharray:4,6;
     //line-offset:4;//##
     //image-filters:agg-stack-blur(1,1);
-/*    ::l2 {
-      line-offset: -1;
-      line-color:hsla(100,70%,20%,0.8);
-      line-width:-1;
-    }
-    ::l1 {
-      line-offset: 3;
-      line-color:hsla(100,70%,70%,0.6);
-      line-width:3;
-    }
-*/
-    
-    /*    polygon-smooth:0.2;
-    polygon-fill:hsla(100,50%,40%,15%);
-    */
   }
 }
 //#greenlabels[zoom >=16][size > 50000],
@@ -439,7 +431,16 @@ but not so generally relevant I guess. */
   polygon-smooth:0.2;
 }
 
-#landuse[landuse='industrial'][zoom >=12] {
+#landuse[leisure='golf_course'][zoom >=12] {
+  polygon-fill:hsla(100,10%,70%,30%);
+}
+
+
+
+#landuse[landuse='industrial'][zoom >=12],
+#landuse[landuse='quarry'][zoom >=12],
+#landuse[power='generator'][zoom >=12]
+{
   polygon-fill:hsla(320,40%,80%,30%);
 }
 
@@ -453,10 +454,12 @@ but not so generally relevant I guess. */
 }
 
 #beach[zoom >= 11] { polygon-fill:hsla(45,70%,70%,0.3); }
+
 #stateboundaries {
   line-width: 1;
   line-color: #959;
-  [zoom >= 9] { line-dasharray:4,8; }
+  //[zoom >= 9] { line-dasharray:4,8; }
+  [zoom >= 13] { image-filters:agg-stack-blur(2,2); }
 }
 
 /* meh, find a better icon */
@@ -483,4 +486,31 @@ but not so generally relevant I guess. */
 
 #dam[zoom >= 11] {
   polygon-fill:hsla(0,0%,50%,70%);
+}
+
+
+#power[zoom >= 14][zoom <= 15] {
+    line-width:0.5;
+    line-color:gray;
+    line-opacity:0.75;
+    line-dasharray:24,6;
+    line-offset:1;
+}
+
+
+#power[zoom >= 16] {
+  ::left {
+    line-width:0.5;
+    line-color:gray;
+    line-opacity:0.75;
+    line-dasharray:24,6;
+    line-offset:1;
+  }
+  ::right {
+    line-width:0.5;
+    line-color:gray;
+    line-opacity:0.75;
+    line-dasharray:24,6;
+    line-offset:-1;
+  }
 }

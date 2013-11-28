@@ -10,7 +10,7 @@
     -37.2321,
     8
   ],
-  "format": "png",
+  "format": "png8",
   "interactivity": false,
   "minzoom": 0,
   "maxzoom": 18,
@@ -32,7 +32,7 @@
         -4.999999999999995
       ],
       "id": "srtm3785hs",
-      "class": "hs",
+      "class": "90m-hs",
       "Datasource": {
         "file": "/mnt/dem/srtm-3785-hs.tif"
       },
@@ -68,7 +68,7 @@
         -33.81423255178963
       ],
       "id": "dtm20m3785hscut",
-      "class": "hs",
+      "class": "20m-hs",
       "Datasource": {
         "file": "/spatial2/vic-dem/dtm20m-3785-hs-cut.tif"
       },
@@ -245,7 +245,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,landuse,aeroway\nfrom planet_osm_polygon\nwhere landuse='industrial' or aeroway='aerodrome') p",
+        "table": "(select way,name,landuse,aeroway,power,leisure\nfrom planet_osm_polygon\nwhere \nlanduse='industrial' \nor landuse='quarry'\nor aeroway='aerodrome' \nor power='generator'\nor leisure='golf_course') p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -590,12 +590,68 @@
       "extent": [
         112.69808944147681,
         -43.93238518362126,
+        158.2064746658378,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select *\nfrom planet_osm_line\nwhere highway in ('residential','service','pedestrian','living_street') ) p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17611464.2,-1048379.81",
+        "dbname": "gis",
+        "host": "gis.cycletour.org",
+        "port": "5432",
+        "user": "gis",
+        "password": "gis"
+      },
+      "id": "littleroads",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "littleroads"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.93238518362126,
+        158.2064746658378,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way\nfrom planet_osm_line\nwhere power='line') p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17611464.2,-1048379.81",
+        "dbname": "gis",
+        "host": "gis.cycletour.org",
+        "port": "5432",
+        "user": "gis",
+        "password": "gis"
+      },
+      "id": "power",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "power"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.93238518362126,
         158.4121446687892,
         -9.375632475695024
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle\nfrom planet_osm_line \nwhere highway in ('motorway','trunk','primary','secondary','tertiary','unclassified','residential','service','road','pedestrian','living_street')) as roads",
+        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle\nfrom planet_osm_line \nwhere highway in ('motorway','trunk','primary','secondary','tertiary','unclassified','road')) as roads",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -771,7 +827,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,surface,highway,bicycle,tags::hstore->'mtb' mtb,\ncase when bridge is not null then 'yes' else '' end as bridge\nfrom planet_osm_line\nwhere highway = 'cycleway' or\nhighway in ('path', 'bridleway') and 'yes' in (bicycle,tags::hstore->'mtb')\n)\np",
+        "table": "(select way,name,surface,highway,bicycle,tags::hstore->'mtb' mtb,\ncase when bridge is not null then 'yes' else '' end as bridge\nfrom planet_osm_line\nwhere highway = 'cycleway' or\nhighway in ('path', 'bridleway','footway') and 'yes' in (bicycle,tags::hstore->'mtb')\n)\np",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -841,7 +897,7 @@
         "user": "gis",
         "password": "gis",
         "id": "amenities",
-        "project": "SteveCountryVic",
+        "project": "SteveCV2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
       },
       "id": "amenities",

@@ -5,11 +5,11 @@
 //@townblobs: hsla(330,80%,60%,0.8);
 //@townblobs: hsla(260,80%,40%,0.7);
 @townblobs: hsla(260,80%,40%,0.0);
-#placemarkers::marker
-   [zoom >= 10] {
-    [amenities < 5] {  marker-width:2+2*[amenities]; }
+
+#placemarkers::marker[zoom >= 10] {
+    [amenities < 5]  { marker-width:2+2*[amenities]; }
     [amenities >= 5] { marker-width:12; }
-    [amenities < 1] { marker-opacity:0; }
+    [amenities < 1]  { marker-opacity:0; }
     marker-line-width:0;
     marker-line-color:#813;  
     marker-allow-overlap:true;
@@ -20,54 +20,51 @@
 
 }
 
-#places_cities[zoom>5] {
+#places_cities[zoom>=6] {
   text-face-name:"Roboto Condensed Regular";
   text-fill:@townlabels;
   text-dx:5;
   text-name:'[name]';
-  text-halo-radius:2;
+  text-halo-radius:1;
   text-halo-fill:hsla(0,0%,100%,80%);
+  text-size:12;
+  [zoom >= 7] { text-size: 14; }
+  [zoom >= 8] { text-size:16; text-halo-radius:2; }
+  [zoom >= 10] { text-size:28; text-opacity:0.7;}
   [zoom >= 13] { 
-    text-opacity:0.6; text-halo-fill:hsla(0,0%,100%,30%);
-    text-size:28; 
+    text-opacity:0.4; text-halo-fill:hsla(0,0%,100%,30%);
+    text-size:48; 
   }
-  [zoom >= 11][zoom <= 14] { text-size:20; text-opacity:0.8;}
-  [zoom <= 10] { text-size:16;}
-  [zoom <= 7] { text-size:14; text-halo-radius:1 ;}
-  [zoom <= 6] { text-size:12; }
 
   text-placement-type:simple;
   text-allow-overlap:true;
   text-placements: "E,NE,SE,N,S,18,16,14,12,10,8";
 }
 
-#places_towns {
-  ::label[zoom>=7]{
+#places_towns::label[zoom>=7] {
     text-face-name:"Roboto Condensed Light";
     text-fill:@townlabels;
-    [zoom >=13] { text-size: 18; }
-    [zoom >=10] { text-size: 16; }
-    [zoom = 9] { text-size: 14; }
-    [zoom = 8] { text-size: 12; }
-    [zoom <= 7] { text-size:8;  }
-	text-dx:8;
-    text-dy:11;
+
+    text-size:8;
+    [zoom = 7] { text-fill: lighten(@townlabels,15%); }
+    [zoom >= 8] { 
+      text-size: 12; 
+      text-halo-radius:1.5; 
+      text-halo-fill:hsla(60,5%,95%,70%)
+    }
+    [zoom >= 9] { text-size:14; }
+    [zoom >= 10] { text-size:16; }
+    [zoom >= 13] { 
+      text-opacity:0.6; text-halo-fill:hsla(0,0%,100%,30%);
+      text-size:24; 
+    }
+	//text-dx:8; // if no marker for town, no need to offset
+    //text-dy:11;
     text-allow-overlap:false;
 
     text-name:'[name]';
-    text-halo-fill:hsla(60,5%,95%,70%);
-    text-halo-radius:1.5;
-    [zoom = 8] { text-halo-radius: 1.5; }
-    [zoom = 7] { 
-      text-halo-radius: 0;
-      text-fill:lighten(@townlabels,5%);
-    }
     text-placement-type:simple;
     text-placements: "E,NE,SE,N,S,W,SW,NW,18,16,14,12";
-//    text-placements: "E,NE,W,18,16,14,12";
-    //text-dx: 6;
-    
-  }
 }
 
 #places[place = 'village'][amenities >= 1][zoom >=8],

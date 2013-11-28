@@ -8,11 +8,17 @@
   [shop="convenience"],
   [shop="general"],
   [shop="bakery"] ,
+  [amenity="shelter"],
   [tourism="viewpoint"]
     {
     point-allow-overlap:true;
     point-ignore-placement:true;
+    [city_distance < 6000] { 
+      point-allow-overlap:false;
+      point-ignore-placement:false;
+    }
   }
+  
   [amenity="toilets"] {   point-file:url('http://www.sjjb.co.uk/mapicons/png/amenity_toilets.p.12.png');  }
   [amenity="cafe"] {      point-file:url('maki/renders/cafe-18.png');  }
   [shop="bicycle"] {      point-file:url('http://www.sjjb.co.uk/mapicons/png/shopping_bicycle.p.20.png'); }
@@ -20,9 +26,10 @@
   [amenity="fast_food"] { point-file:url('maki/renders/fast-food-18.png'); }
   [shop="supermarket"] {  point-file:url('maki/renders/grocery-18.png'); }
   [shop="convenience"],
-  [shop="general"] {      point-file:url("http://www.sjjb.co.uk/mapicons/png/shopping_convenience.p.16.png"); }
-  [shop="bakery"]  {      point-file:url('icons/shopping_bakery.p.16.png'); }
+  [shop="general"]      { point-file:url("http://www.sjjb.co.uk/mapicons/png/shopping_convenience.p.16.png"); }
+  [shop="bakery"]       { point-file:url('icons/shopping_bakery.p.16.png'); }
   [tourism="viewpoint"] { point-file:url('http://www.sjjb.co.uk/mapicons/png/tourist_view_point.p.12.png'); }
+  [amenity="shelter"]   { point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_shelter2.p.16.png'); }
 }
 
 #amenities[zoom >= 12]::a {
@@ -35,7 +42,8 @@
   }
   [tourism="basic_hut"],
   [tourism="alpine_hut"],
-  [tourism="wilderness_hut"]   { 
+  [tourism="wilderness_hut"],
+  [building="hut"]{ 
     point-allow-overlap:true;
     point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_alpinehut.p.16.png'); 
     [zoom <= 13] {
@@ -68,11 +76,11 @@
   [amenity="bar"],
   [tourism="picnic_site"]
     {
-    // this seemed to make an extra blob
-//    [city_distance > 6000] { point-allow-overlap:true; }
-//    point-ignore-placement:true;
 
-    [zoom >= 15] {
+    // Little blue captions
+    [zoom >= 15],
+    [tourism="wilderness_hut"],
+    [tourism="alpine_hut"],[building="hut"] {
       text-face-name:'Roboto Condensed Light';
       text-size:10;
       text-name:'[name]';
@@ -109,6 +117,10 @@
   [amenity="pub"],[amenity="bar"] {
     point-file:url('maki/renders/beer-18.png');
     point-allow-overlap:true;
+    [city_distance < 6000] { 
+      point-file:url('maki/renders/beer-12.png');
+      point-allow-overlap:false;
+    }
     [brewery="yes"] {
 //    point-file:url('http://www.sjjb.co.uk/mapicons/png/food_biergarten.p.24.png');
     point-file:url('http://www.sjjb.co.uk/mapicons/png/food_biergarten.glow.32.png');
@@ -135,3 +147,4 @@
       text-placement-type:simple;
       text-placements:E,NE,SE,N,S,W,10,9,8;
     }
+
