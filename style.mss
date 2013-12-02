@@ -329,7 +329,7 @@ but not so generally relevant I guess. */
 {
     //line-color:red;
     text-face-name:'CartoGothic Std Book';
-    text-size:13;
+    text-size:12;
     [waterway="stream"],[waterway="drain"] {
       text-size:11;
     }
@@ -359,7 +359,9 @@ but not so generally relevant I guess. */
     text-face-name:'CartoGothic Std Italic';
     text-name:'[name]';
     text-size:11;
-    text-wrap-width:50;
+    text-wrap-width:20;
+    text-wrap-before:true;
+
     [zoom<=11] { text-size: 10; }
     text-fill:hsla(220,80%,20%,50%);
     text-placement-type:simple;

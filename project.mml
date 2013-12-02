@@ -324,7 +324,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,coalesce(leisure,'') as leisure, coalesce(landuse,'') as landuse, coalesce(boundary,'') as boundary,st_area(way) size,\ncase when leisure is not null then 1 else 0 end as is_park\n from planet_osm_polygon\nwhere landuse='recreation' \nor leisure in('park','conservation','nature_reserve', 'pitch')\nor boundary in('protected_area', 'national_park', 'state_park')) c",
+        "table": "(select way,name,coalesce(leisure,'') as leisure, coalesce(landuse,'') as landuse, coalesce(boundary,'') as boundary,st_area(way) size,\ncase when coalesce(leisure, '') in ('park','recreation','golf_course','pitch') then 1 else 0 end as is_park\n from planet_osm_polygon\nwhere landuse='recreation' \nor leisure in('park','conservation','nature_reserve', 'pitch')\nor boundary in('protected_area', 'national_park', 'state_park')) c",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -982,7 +982,10 @@
         "host": "gis.cycletour.org",
         "port": "5432",
         "user": "gis",
-        "password": "gis"
+        "password": "gis",
+        "id": "places_pointless",
+        "project": "SteveCV2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
       },
       "id": "places_pointless",
       "class": "",

@@ -58,8 +58,8 @@
       text-opacity:0.6; text-halo-fill:hsla(0,0%,100%,30%);
       text-size:24; 
     }
-	//text-dx:8; // if no marker for town, no need to offset
-    //text-dy:11;
+	text-dx:1; // if no marker for town, no need to offset?
+    text-dy:1;
     text-allow-overlap:false;
 
     text-name:'[name]';
@@ -139,7 +139,7 @@
 }
 
 #places_pointless[zoom >= 12] {
-  marker-width:2;
+  marker-width:4;
   marker-fill:hsla(270,30%,30%,40%);
   marker-allow-overlap:true;
   marker-line-width:0;
