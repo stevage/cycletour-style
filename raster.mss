@@ -2,8 +2,8 @@
 .20m-hs[zoom >=11][zoom <= 16],
 {
 //  [zoom=11] { raster-opacity: 0.2; }
-  [zoom<=8] { raster-opacity: 0.3; }
-  [zoom=9] { raster-opacity: 0.2; }
+  [zoom<=8] { raster-opacity: 0.25; }
+  [zoom=9] { raster-opacity: 0.18; }
   [zoom=10] { raster-opacity: 0.18; }
   [zoom=11] { raster-opacity: 0.14; }
   [zoom=12]  { raster-opacity:0.16;}

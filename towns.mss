@@ -47,12 +47,16 @@
 
     text-size:8;
     [zoom = 7] { text-fill: lighten(@townlabels,15%); }
-    [zoom >= 8] { 
+    [zoom = 8] { 
       text-size: 12; 
+      text-halo-radius:1.5; 
+      text-halo-fill:hsla(60,5%,90%,50%)
+    }
+    [zoom >= 9] { 
+      text-size:14; 
       text-halo-radius:1.5; 
       text-halo-fill:hsla(60,5%,95%,70%)
     }
-    [zoom >= 9] { text-size:14; }
     [zoom >= 10] { text-size:16; }
     [zoom >= 13] { 
       text-opacity:0.6; text-halo-fill:hsla(0,0%,100%,30%);

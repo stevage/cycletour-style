@@ -1,5 +1,7 @@
 @water: hsl(210, 80%,82%); //#b8dee6;
+//@water: hsl(210, 80%,62%); //#b8dee6;
 @background:#f0fff0;
+
 Map {
   background-color: @background;
   //buffer-size:1024;
@@ -311,7 +313,8 @@ but not so generally relevant I guess. */
   }
 }
 
-#waterways[waterway="stream"],#waterways[waterway="drain"] {
+#waterways[waterway="stream"],#waterways[waterway="drain"],
+#waterways[waterway="canal"]{
   [zoom >= 8] {
     line-width:0.5;
     line-color:hsla(220, 0.8, 80%,0.5);
@@ -325,6 +328,7 @@ but not so generally relevant I guess. */
 // currently labels on massively oversimplified ways
 #waterwaylabels[waterway="river"][zoom >= 12],
 #waterwaylabels[waterway="stream"][zoom >= 14],
+#waterwaylabels[waterway="canal"][zoom >= 14],
 #waterwaylabels[waterway="drain"][zoom >= 15]
 {
     //line-color:red;
@@ -378,19 +382,19 @@ but not so generally relevant I guess. */
     polygon-smooth:0.5;
   
   }
-  [zoom >=8] { 
+  [zoom >=9][is_park=1] { 
     line-width:0.5;
     line-color:hsl(100,70%,30%);
     line-smooth:0.5;
   }
-  [zoom >= 11][is_park=0] { 
+  [zoom >= 8][is_park=0] { 
 /*    line-width:0.5;
     line-color:hsl(100,70%,40%);
     line-smooth:0.2;*/
     line-width:0;
     // ##questionable! dots for national parks?
-    polygon-pattern-file:url(https://dl.dropboxusercontent.com/u/767553/greendot3.png);
-    polygon-pattern-opacity:0.1;
+//    polygon-pattern-file:url(https://dl.dropboxusercontent.com/u/767553/greendot3.png);
+ //   polygon-pattern-opacity:0.1;
     
     //polygon-pattern
 /*    polygon-smooth:0.2;
@@ -445,10 +449,30 @@ but not so generally relevant I guess. */
 {
   polygon-fill:hsla(320,40%,80%,30%);
 }
+#landuse[power='generator'][zoom >=13]::labels{
+    text-face-name:'CartoGothic Std Book';
+    text-name:'[name]';
+    text-size:11;
+    text-wrap-width:50;
+    text-wrap-before:true;
+  
+    text-fill:hsla(0,0%,0%,70%);
+    text-placement-type:simple;
+}
+
 
 #landuse[aeroway='aerodrome'][zoom >=12] {
   polygon-fill:hsla(320,20%,80%,30%);
   line-color:hsla(320,20%,50%,80%);
+  [zoom>=13] { 
+    text-face-name:'CartoGothic Std Book';
+    text-name:'[name]';
+    text-size:11;
+    text-wrap-width:50;
+  
+    text-fill:hsla(0,0%,0%,70%);
+    text-placement-type:simple;
+  }
 }
 
 #waterpoly {
@@ -485,12 +509,13 @@ but not so generally relevant I guess. */
     text-placement-type:simple;
   }
 }
-
+// dam walls
 #dam[zoom >= 11] {
   polygon-fill:hsla(0,0%,50%,70%);
 }
 
 
+// high voltage power lines
 #power[zoom >= 14][zoom <= 15] {
     line-width:0.5;
     line-color:gray;
@@ -498,8 +523,6 @@ but not so generally relevant I guess. */
     line-dasharray:24,6;
     line-offset:1;
 }
-
-
 #power[zoom >= 16] {
   ::left {
     line-width:0.5;
@@ -514,5 +537,27 @@ but not so generally relevant I guess. */
     line-opacity:0.75;
     line-dasharray:24,6;
     line-offset:-1;
+  }
+}
+
+
+#skilifts[zoom >= 12] {
+  line-width:0.5;
+  line-color:#888;
+  [zoom >= 15] {
+  line-width:1;
+  line-color:#888;
+  }
+  
+  ::label[zoom >= 15] {
+    text-face-name:'CartoGothic Std Book';
+    text-size:10;
+    text-name:'[name]';
+    text-placement:line;
+    text-fill:#888;
+    text-halo-fill:hsla(0,0%,100%,50%);
+    text-halo-radius:1;
+    text-allow-overlap:true;
+    text-dy:-6;
   }
 }

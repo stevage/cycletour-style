@@ -239,32 +239,6 @@
     {
       "extent": [
         112.69808944147681,
-        -43.93238518362126,
-        158.76098717357675,
-        -9.548547407024307
-      ],
-      "Datasource": {
-        "type": "postgis",
-        "table": "(select way,name,landuse,aeroway,power,leisure\nfrom planet_osm_polygon\nwhere \nlanduse='industrial' \nor landuse='quarry'\nor aeroway='aerodrome' \nor power='generator'\nor leisure='golf_course') p",
-        "key_field": "",
-        "geometry_field": "",
-        "extent_cache": "auto",
-        "extent": "12545493.93,-5454984.59,17673192.25,-1067894.12",
-        "dbname": "gis",
-        "host": "gis.cycletour.org",
-        "user": "gis",
-        "password": "gis"
-      },
-      "id": "landuse",
-      "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "landuse"
-    },
-    {
-      "extent": [
-        112.69808944147681,
         -43.932385183621264,
         158.76098717357675,
         -9.548547407024307
@@ -398,6 +372,32 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "water"
+    },
+    {
+      "extent": [
+        112.69808944147681,
+        -43.93238518362126,
+        158.76098717357675,
+        -9.548547407024307
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,name,landuse,aeroway,power,leisure\nfrom planet_osm_polygon\nwhere \nlanduse='industrial' \nor landuse='quarry'\nor aeroway='aerodrome' \nor power='generator'\nor leisure='golf_course') p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17673192.25,-1067894.12",
+        "dbname": "gis",
+        "host": "gis.cycletour.org",
+        "user": "gis",
+        "password": "gis"
+      },
+      "id": "landuse",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "landuse"
     },
     {
       "extent": [
@@ -788,6 +788,34 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "stations"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.93238518362126,
+        158.2064746658378,
+        -9.36218982779777
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select *\nfrom planet_osm_line\nwhere aerialway is not null) p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17611464.2,-1046863.15",
+        "dbname": "gis",
+        "host": "gis.cycletour.org",
+        "port": "5432",
+        "user": "gis",
+        "password": "gis"
+      },
+      "id": "skilifts",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "skilifts"
     },
     {
       "geometry": "linestring",
@@ -1311,7 +1339,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select \"natural\", replace(name,'Mount ','Mt ') as name,ele,way\nfrom planet_osm_point\nwhere \"natural\" in ('peak','saddle')\nunion\nselect \"natural\",name,null,way\nfrom planet_osm_polygon\nwhere place='island'\n) p",
+        "table": "(select \"natural\", \nreplace(name,'Mount ','Mt ') as name,\nele,\ntags::hstore->'mountain_pass' as mountain_pass,\nway\nfrom planet_osm_point\nwhere \"natural\" in ('peak','saddle') or (tags::hstore->'mountain_pass') is not null\nunion\nselect \"natural\",name,null,null as mountain_pass,way\nfrom planet_osm_polygon\nwhere place='island'\n) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -1360,7 +1388,7 @@
     }
   ],
   "scale": 1,
-  "metatile": 1,
+  "metatile": 4,
   "name": "Steve CycleTour2",
   "description": "Map optimised for cycle touring: roads shown at low zoom levels, bike paths prominent, amenities like bakeries and pubs shown. Database on gis.cycletour.org",
   "attribution": ""

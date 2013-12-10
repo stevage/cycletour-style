@@ -27,11 +27,8 @@
   line-color:@bikeroute;
   [zoom >= 14] { 
     line-width:3; 
-    ::inner {
-      line-color:lighten(@bikeroute,10%);
-      line-smooth: 0.6;
-      line-width:1.0;
-    }
+     line-color:lighten(@bikeroute,10%);
+    line-smooth: 0.6;     line-width:1.0;
   }
   
   ::label[zoom >= 11],
