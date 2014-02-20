@@ -64,6 +64,7 @@
 #amenities[zoom >= 13][city_distance>6000.0],/*[inner_city=0]::a,*/
 #amenities[zoom >= 16]{
   [tourism="hotel"],
+  [tourism="guest_house"],
   [tourism="basic_hut"],
   [tourism="alpine_hut"],
   [building="hut"],
@@ -76,6 +77,7 @@
   [amenity="bar"],
   [tourism="picnic_site"]
     {
+    
 
     // Little blue captions
     [zoom >= 15],
@@ -100,6 +102,7 @@
     }
   }
   [tourism="hotel"]       { point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_hotel2.p.20.png'); }
+  [tourism="guest_house"] { point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_bed_and_breakfast2.p.20.png'); }
   [tourism="basic_hut"],
   [tourism="alpine_hut"],
   [building="hut"],

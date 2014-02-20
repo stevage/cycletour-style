@@ -44,31 +44,37 @@
 #places_towns::label[zoom>=7] {
     text-face-name:"Roboto Condensed Light";
     text-fill:@townlabels;
+    text-name:'[name]';
+    text-placement-type:simple;
+    text-placements: "E,NE,SE,N,S,W,SW,NW,8";
 
     text-size:8;
     [zoom = 7] { text-fill: lighten(@townlabels,15%); }
     [zoom = 8] { 
       text-size: 12; 
       text-halo-radius:1.5; 
-      text-halo-fill:hsla(60,5%,90%,50%)
+      text-halo-fill:hsla(60,5%,90%,50%);
+    text-placements: "E,NE,SE,N,S,W,SW,NW,12,10,8";
     }
     [zoom >= 9] { 
       text-size:14; 
       text-halo-radius:1.5; 
-      text-halo-fill:hsla(60,5%,95%,70%)
+      text-halo-fill:hsla(60,5%,95%,70%);
+      text-placements: "E,NE,SE,N,S,W,SW,NW,14,12,10,8";
     }
-    [zoom >= 10] { text-size:16; }
+    [zoom >= 10] { 
+      text-size:16; 
+      text-placements: "E,NE,SE,N,S,W,SW,NW,16,14,12,10";
+    }
     [zoom >= 13] { 
       text-opacity:0.6; text-halo-fill:hsla(0,0%,100%,30%);
       text-size:24; 
+      text-placements: "E,NE,SE,N,S,W,SW,NW,18,16,14,12";
     }
 	text-dx:1; // if no marker for town, no need to offset?
     text-dy:1;
     text-allow-overlap:false;
 
-    text-name:'[name]';
-    text-placement-type:simple;
-    text-placements: "E,NE,SE,N,S,W,SW,NW,18,16,14,12";
 }
 
 #places[place = 'village'][amenities >= 1][zoom >=8],

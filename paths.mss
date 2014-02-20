@@ -149,3 +149,11 @@
   //line-smooth:0.5;
   image-filters:agg-stack-blur(2,2);
 }
+
+#pedestrian[zoom >= 16] { 
+  line-color: lighten(@bikeroute,10%);
+  line-opacity:50%;
+  polygon-fill: lighten(@bikeroute,50%);
+  polygon-opacity:5%;
+
+}

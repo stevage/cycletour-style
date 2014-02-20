@@ -365,10 +365,13 @@ but not so generally relevant I guess. */
     text-size:11;
     text-wrap-width:20;
     text-wrap-before:true;
+    text-halo-fill:@water;
+    text-halo-radius:1.5;
 
     [zoom<=11] { text-size: 10; }
     text-fill:hsla(220,80%,20%,50%);
     text-placement-type:simple;
+    text-placement:interior;
     }
 }
 
@@ -458,6 +461,7 @@ but not so generally relevant I guess. */
   
     text-fill:hsla(0,0%,0%,70%);
     text-placement-type:simple;
+    text-placement:interior;
 }
 
 
@@ -472,6 +476,7 @@ but not so generally relevant I guess. */
   
     text-fill:hsla(0,0%,0%,70%);
     text-placement-type:simple;
+    text-placement:interior;
   }
 }
 
@@ -507,6 +512,7 @@ but not so generally relevant I guess. */
   
     text-fill:hsla(0,0%,0%,70%);
     text-placement-type:simple;
+    text-placement:interior;
   }
 }
 // dam walls

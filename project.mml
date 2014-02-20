@@ -322,10 +322,10 @@
     {
       "geometry": "linestring",
       "extent": [
-        141.0000099546667,
-        -39.49994995987938,
-        149.99998994793248,
-        -34.00000993379165
+        112.69808944147681,
+        -43.93238518362126,
+        158.2064746658378,
+        -9.36218982779777
       ],
       "Datasource": {
         "type": "postgis",
@@ -333,7 +333,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "15696049.31,-4793540.24,16697922.5,-4028803.36",
+        "extent": "12545493.93,-5454984.59,17611464.2,-1046863.15",
         "dbname": "gis",
         "host": "gis.cycletour.org",
         "port": "5432",
@@ -372,6 +372,33 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "water"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        113.4054868842143,
+        -43.64605339510397,
+        153.62912227861426,
+        -10.190433998596474
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from places) p",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "12624241.053114,-5410830.51772842,17101915.6630729,-1140422.36948328",
+        "dbname": "gis",
+        "host": "gis.cycletour.org",
+        "user": "gis",
+        "password": "gis"
+      },
+      "id": "placemarkers",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "placemarkers"
     },
     {
       "extent": [
@@ -735,31 +762,31 @@
       "name": "trains"
     },
     {
-      "geometry": "point",
       "extent": [
-        113.4054868842143,
-        -43.64605339510397,
-        153.62912227861426,
-        -10.190433998596474
+        112.69808944147681,
+        -43.93238518362126,
+        155.78290051833278,
+        -7.457091051748444
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select * from places) p",
+        "table": "(select *\nfrom planet_osm_polygon\nwhere highway='pedestrian') p",
         "key_field": "",
-        "geometry_field": "way",
+        "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "12624241.053114,-5410830.51772842,17101915.6630729,-1140422.36948328",
+        "extent": "12545493.93,-5454984.59,17341673.16,-832473.15",
         "dbname": "gis",
         "host": "gis.cycletour.org",
+        "port": "5432",
         "user": "gis",
         "password": "gis"
       },
-      "id": "placemarkers",
+      "id": "pedestrian",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "placemarkers"
+      "name": "pedestrian"
     },
     {
       "geometry": "point",
