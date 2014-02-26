@@ -27,7 +27,7 @@
   [shop="supermarket"] {  point-file:url('maki/renders/grocery-18.png'); }
   [shop="convenience"],
   [shop="general"]      { point-file:url("http://www.sjjb.co.uk/mapicons/png/shopping_convenience.p.16.png"); }
-  [shop="bakery"]       { point-file:url('icons/shopping_bakery.p.16.png'); }
+  [shop="bakery"]       { point-file:url('http://www.sjjb.co.uk/mapicons/png/shopping_bakery.p.16.png'); }
   [tourism="viewpoint"] { point-file:url('http://www.sjjb.co.uk/mapicons/png/tourist_view_point.p.12.png'); }
   [amenity="shelter"]   { point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_shelter2.p.16.png'); }
 }
