@@ -20,11 +20,11 @@
   }
   
   [amenity="toilets"] {   point-file:url('http://www.sjjb.co.uk/mapicons/png/amenity_toilets.p.12.png');  }
-  [amenity="cafe"] {      point-file:url('maki/renders/cafe-18.png');  }
+  [amenity="cafe"] {      point-file:url('maki/cafe-18.png');  }
   [shop="bicycle"] {      point-file:url('http://www.sjjb.co.uk/mapicons/png/shopping_bicycle.p.20.png'); }
-  [amenity="restaurant"] {point-file:url('maki/renders/restaurant-18.png'); }
-  [amenity="fast_food"] { point-file:url('maki/renders/fast-food-18.png'); }
-  [shop="supermarket"] {  point-file:url('maki/renders/grocery-18.png'); }
+  [amenity="restaurant"] {point-file:url('maki/restaurant-18.png'); }
+  [amenity="fast_food"] { point-file:url('maki/fast-food-18.png'); }
+  [shop="supermarket"] {  point-file:url('maki/grocery-18.png'); }
   [shop="convenience"],
   [shop="general"]      { point-file:url("http://www.sjjb.co.uk/mapicons/png/shopping_convenience.p.16.png"); }
   [shop="bakery"]       { point-file:url('http://www.sjjb.co.uk/mapicons/png/shopping_bakery.p.16.png'); }
@@ -56,7 +56,7 @@
   
   }
   [tourism="camp_site"] {   
-    point-file:url('maki/renders/campsite-12.png'); 
+    point-file:url('maki/campsite-12.png'); 
 
   }
 
@@ -118,10 +118,10 @@
     
   }
   [amenity="pub"],[amenity="bar"] {
-    point-file:url('maki/renders/beer-18.png');
+    point-file:url('maki/beer-18.png');
     point-allow-overlap:true;
     [city_distance < 6000] { 
-      point-file:url('maki/renders/beer-12.png');
+      point-file:url('maki/beer-12.png');
       point-allow-overlap:false;
     }
     [brewery="yes"] {
