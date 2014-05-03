@@ -61,7 +61,8 @@
   }
 
 }
-#amenities[zoom >= 13][city_distance>6000.0],/*[inner_city=0]::a,*/
+#amenities[zoom >= 13][city_distance>6000.0],
+#amenities[zoom >= 13][brewery="yes"],
 #amenities[zoom >= 16]{
   [tourism="hotel"],
   [tourism="guest_house"],
@@ -73,12 +74,9 @@
   [tourism="camp_site"],
   [tourism="winery"],
   [amenity="winery"],
-  [amenity="pub"],
-  [amenity="bar"],
-  [tourism="picnic_site"]
-    {
-    
-
+  [amenity="pub"][brewery!="yes"],
+  [amenity="bar"][brewery!="yes"],
+  [tourism="picnic_site"] {
     // Little blue captions
     [zoom >= 15],
     [tourism="wilderness_hut"],
@@ -90,14 +88,6 @@
       [city_distance > 6000] { text-allow-overlap:true; }
       text-fill: hsl(220,90%,50%);
       text-wrap-width:50;
-      [brewery="yes"] {
-        text-halo-fill:white;
-        text-halo-radius:1.5;
-        text-fill:hsla(40,60%,20%,90%);
-        text-size:11;
-        text-face-name:'Roboto Condensed Bold';
-        text-horizontal-alignment:middle;
-      }
 
     }
   }
@@ -117,17 +107,30 @@
     point-allow-overlap:false; // does nothing?
     
   }
-  [amenity="pub"],[amenity="bar"] {
+  [amenity="pub"],[amenity="bar"],[brewery="yes"] {
     point-file:url('maki/beer-18.png');
     point-allow-overlap:true;
     [city_distance < 6000] { 
       point-file:url('maki/beer-12.png');
       point-allow-overlap:false;
     }
-    [brewery="yes"] {
+    [brewery="yes"][zoom >= 14] {
 //    point-file:url('http://www.sjjb.co.uk/mapicons/png/food_biergarten.p.24.png');
-    point-file:url('http://www.sjjb.co.uk/mapicons/png/food_biergarten.glow.32.png');
+      point-file:url('http://www.sjjb.co.uk/mapicons/png/food_biergarten.glow.32.png');
       point-ignore-placement:false;
+      point-allow-overlap:true;
+      text-name:'[name]';
+      text-halo-fill:white;
+      text-wrap-width:50;
+      text-halo-radius:1.5;
+      text-fill:hsla(40,60%,20%,90%);
+      text-size:11;
+      text-face-name:'Roboto Condensed Bold';
+      text-horizontal-alignment:middle;
+      text-dy:4;
+      text-line-spacing:-4;
+      text-allow-overlap:true;
+      
     }
   }
   

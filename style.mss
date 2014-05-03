@@ -180,8 +180,7 @@ Map {
       line-color:hsl(140,80%,20%);
       line-dasharray:4,4;
     }
-
-    ::label[zoom >= 10] {
+    ::label[zoom >= 14] {
       text-face-name:'CartoGothic Std Book';
       text-fill:hsl(140,70%,30%);
       text-size:11;
@@ -192,6 +191,18 @@ Map {
       text-halo-fill:hsla(0,0%,100%,60%);
       text-halo-radius:2;
     }
+
+  }
+  ::label[zoom >= 14][railway!="preserved"] {
+    text-face-name:'CartoGothic Std Italic';
+    text-fill:hsla(140,70%,30%,80%);
+
+    text-size:11; 
+    text-name:'[name]';
+    text-placement:line;
+    text-allow-overlap:true;
+    text-halo-fill:hsla(0,0%,100%,40%);
+    text-halo-radius:1;
   }
 
 
@@ -239,8 +250,25 @@ Map {
     text-halo-fill:white;
     text-halo-radius:1;
     text-size:11;
-    text-dx: 8;
-    [name='Southern Cross'] {
+    text-dx: 6;
+    /* Major stations and termini */
+    [name='Southern Cross'], 
+    [name='Bairnsdale'],
+    [name='Albury'],
+    [name='Wodonga'],
+    [name='Shepparton'],
+    [name='Seymour'],
+    [name='Wangaratta'],
+    [name='Bendigo'],
+    [name='Swan Hill'],
+    [name='Warrnambool'],
+    [name='Ballarat'],
+    [name='Ararat'],
+    [name='Echuca'],
+    [name='Ballarat'],
+    [name='Geelong']
+      
+      {
       text-face-name:"Roboto Condensed Bold";
       text-size: 13;
       text-allow-overlap:true;
@@ -344,6 +372,14 @@ but not so generally relevant I guess. */
     text-allow-overlap:true;
     text-dx:10;//kind of meaningless really.
 }
+
+#waterways[man_made='pipeline'][zoom >= 14]{
+  line-width:2;
+  line-color:hsla(220, 0.8, 80%,0.8);
+  line-smooth:0.8;
+  line-dasharray:4,2;
+}
+
 
 #water { 
   [zoom >= 9] {
@@ -565,5 +601,19 @@ but not so generally relevant I guess. */
     text-halo-radius:1;
     text-allow-overlap:true;
     text-dy:-6;
+  }
+}
+
+@ferry: hsla(240, 60%, 50%, 80%);
+#ferry[zoom >= 11] {
+  line-width:1;
+  line-color: @ferry;
+  line-dasharray:4;
+  [zoom >= 14] {
+    text-face-name:'CartoGothic Std Book';
+    text-size:10;
+    text-name:'[name]';
+    text-fill: @ferry;
+    text-placement:line;
   }
 }

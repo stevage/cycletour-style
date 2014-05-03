@@ -26,8 +26,9 @@
   [zoom <= 9] { line-width:1; }
   line-color:@bikeroute;
   [zoom >= 14] { 
-    line-width:3; 
-     line-color:lighten(@bikeroute,10%);
+    line-width:3;
+    //line-width: 0; // stop faking bike paths when we zoom in
+    line-color:lighten(@bikeroute,10%);
     line-smooth: 0.6;     line-width:1.0;
   }
   
