@@ -6,7 +6,20 @@ Map {
   background-color: @background;
   //buffer-size:1024;
 }
+@roadsize: 1.0;
+//@minorroad: 0.45;
+@minorroad: 0.6;
+@littleroad:0.4;
+@roadzoom10: 1.2;
+@roadzoom11: 1.4;
+@roadzoom12: 1.6;
+@roadzoom13: 1.8;
+@roadzoom14: 2;
+@roadzoom15: 4;
+@roadzoom16: 8;
 
+@bigroad: gray;
+@bigroad_inner: #999; 
 #roads[zoom >= 9]
  {
 /*  [highway='trunk']::carpet,
@@ -26,21 +39,37 @@ Map {
     [cycleway='lane'][zoom >= 14],
     [cycleway='track'][zoom >= 14]{ line-color:lighten(@bikeroute,20%); }
   }
-  line-width:1.2;
-  [zoom <= 9] { line-width: 1.0;}
-  [zoom >= 14] { line-width: 1.6; }
+  line-color:@bigroad;
+  line-width: @roadsize;
+  [zoom >= 10] { line-width: @roadsize * @roadzoom10; }
+  [zoom >= 14] { line-width: @roadsize * @roadzoom14; }
+  [zoom >= 15] { 
+    line-width: @roadsize * @roadzoom15; 
+    ::inside {
+      line-width: @roadsize * @roadzoom15 - 2;
+      line-color: @bigroad_inner;
+    }
+  }
+  [zoom >= 16] { 
+    line-width: @roadsize * @roadzoom16; 
+    ::inside {
+      line-width: @roadsize * @roadzoom16 - 2;
+      line-color: @bigroad_inner;
+    }
+  }
   line-smooth:0.4;
   [zoom >= 14] { line-smooth: 0.5; }
 
-  line-color:gray;
   [highway='motorway'],[highway='trunk'] { line-color: black; }
   [highway='primary'] { line-color:hsl(260,20%,30%); }
   [highway='secondary'] { line-color:hsl(260,20%,45%); }
 
   [highway="unclassified"],[highway="road"] { 
-    line-width: 0.9; 
-    [zoom < 9] { line-width: 0.4; }
-    [zoom >= 14] { line-width: 1.6; }
+    line-width: @minorroad; 
+    [zoom >= 10] { line-width: @minorroad * @roadzoom10; }
+    [zoom >= 12] { line-width: @minorroad * @roadzoom12; }
+    [zoom >= 14] { line-width: @minorroad * @roadzoom14; }
+    [zoom >= 15] { line-width: @minorroad * @roadzoom15; }
 //    line-color: hsl(260,80%,60%); /* An interesting idea, highlight the quiet roads more */
     line-color: hsl(260,20%,60%); /* Purpleish */
   }
@@ -84,7 +113,14 @@ Map {
 }
 
 #littleroads[zoom >= 11] {
-  line-width:0.6;
+  line-width: @littleroad;
+  [zoom >= 10] { line-width: @littleroad * @roadzoom10; }
+  [zoom = 12] { line-width: @littleroad * @roadzoom12; }
+  [zoom = 13] { line-width: @littleroad * @roadzoom13; }
+  [zoom = 14] { line-width: @littleroad * @roadzoom14; }
+  [zoom = 15] { line-width: @littleroad * @roadzoom15; }
+  [zoom >= 16] { line-width: @littleroad * @roadzoom16; }
+
   line-smooth:0.4;
   [zoom >= 14] { line-smooth: 0.5; }
 
@@ -94,10 +130,10 @@ Map {
     line-dasharray: 6,1;
     line-color:hsl(30,20%,40%);
   }
-  [highway='residential'] {
+  /*  [highway='residential'] {
     [zoom <= 12] { line-width:0.3; }
     [zoom < 11] { line-width:0.2; }
-  }
+  }*/
   ::label[zoom >= 14] {
     text-face-name:'CartoGothic Std Book';
     text-name:'[name]';
@@ -121,7 +157,7 @@ Map {
 }
 
 
-
+@track: 0.3;
 #tracks[zoom >= 9]
 {
 /*  ::carpet {
@@ -130,9 +166,11 @@ Map {
   }
 */
   line-smooth:0.6;
-  line-width:0.5;
-  [zoom <= 10] { line-width: 0.2; }
-  [zoom >= 14] { line-width: 1; }
+  line-width:@track;
+  [zoom >= 10] { line-width: @track * @roadzoom10; }
+  [zoom >= 12] { line-width: @track * @roadzoom12; }
+  [zoom >= 14] { line-width: @track * @roadzoom14; }
+  [zoom >= 15] { line-width: @track * @roadzoom15 * 1.5; }
   
   line-color:brown;
   line-dasharray:2,0.5; 
@@ -154,6 +192,7 @@ Map {
     text-name:'[name]';
     text-placement:line;
     text-allow-overlap:false;//true;
+    text-dy:-6;
     text-spacing:140;
     text-halo-fill:hsla(0,0%,100%,40%);
     text-halo-radius:1;
@@ -165,6 +204,17 @@ Map {
 
 
 #rail[zoom >= 8] {
+  ::bridge[zoom >= 14][bridge="yes"] {
+    carpet/line-color:white;
+    carpet/line-width:6;
+    
+    sides/line-color:hsl(60,80%,20%);
+    sides/line-width:5;
+
+    innercarpet/line-color:white;
+    innercarpet/line-width:3;
+    
+  }
   line-width:1;
   line-color:hsl(140,80%,40%);
   [railway="preserved"][zoom >=8]{ 
@@ -204,6 +254,17 @@ Map {
     text-halo-fill:hsla(0,0%,100%,40%);
     text-halo-radius:1;
   }
+  /*::bridge1[zoom >= 14][bridge="yes"] {
+    line-color:hsl(60,80%,30%);
+    line-width:1;
+    line-offset:3;
+    
+  }
+  ::bridge2[zoom >= 14][bridge="yes"] {
+    line-color:hsl(60,80%,30%);
+    line-width:1;
+    line-offset:-3;    
+  }*/
 
 
  }
@@ -214,8 +275,10 @@ Map {
   ::carpet[zoom >=10] {
     line-width:5;
     line-color: hsla(0,0%,100%,40%);
+    line-rasterizer:fast;
   }
   line-width:2;
+  line-rasterizer:fast;
   [zoom <=7] { line-width: 1; }
   [zoom = 8] { line-width: 1.5; }
   line-color:hsl(140,80%,40%);
@@ -223,6 +286,7 @@ Map {
     line-width:2.5;
     line-color:hsl(140,80%,20%);
     line-dasharray:4,4;
+    line-rasterizer:fast;
   }
 }
 
@@ -240,15 +304,15 @@ Map {
   marker-allow-overlap:true;
   marker-ignore-placement:true;
   ::label[zoom >= 13] {
-    text-face-name: 'Roboto Condensed Light';
+    text-face-name: 'Roboto Condensed Regular';
     
     text-name: '[name]';
     text-placement-type:simple;
     text-placements: "E,NE,SE,S,N,W,11,10,9";
   
-    text-fill:hsla(100,40%,30%,100%);
-    text-halo-fill:white;
-    text-halo-radius:1;
+    text-fill:hsla(100,40%,40%,100%);
+    text-halo-fill:hsla(0,0,100%,60%);
+    text-halo-radius:2;
     text-size:11;
     text-dx: 6;
     /* Major stations and termini */
@@ -266,11 +330,12 @@ Map {
     [name='Ararat'],
     [name='Echuca'],
     [name='Ballarat'],
-    [name='Geelong']
+    [name='Geelong'],
+    [name='Lilydale']
       
       {
       text-face-name:"Roboto Condensed Bold";
-      text-size: 13;
+      text-size: 14;
       text-allow-overlap:true;
     }
     
@@ -280,6 +345,17 @@ Map {
 /* Old rail lines, interesting to rail buffs and rail trail nerds,
 but not so generally relevant I guess. */
 #oldrail[zoom >= 10] {
+  ::bridge[zoom >= 14][bridge="yes"] {
+    carpet/line-color:white;
+    carpet/line-width:6;
+    
+    sides/line-color:hsl(60,80%,20%);
+    sides/line-width:5;
+
+    innercarpet/line-color:white;
+    innercarpet/line-width:3;
+    
+  }
   ::greendashes {
     line-width:0.5;
     line-color:hsl(140,40%,40%);
@@ -330,9 +406,10 @@ but not so generally relevant I guess. */
 #waterways[waterway="river"] {
   line-width:0.5; 
   line-color:hsla(220, 0.8, 80%,0.6);
+  line-rasterizer:fast;
   [zoom >= 8] { 
     line-width:0.7;
-    line-smooth:0.8;
+    [zoom >= 10] { line-smooth:0.8; }
     line-color:hsla(220, 0.8, 60%,0.6);
   }
   [zoom >= 14] {
@@ -343,10 +420,11 @@ but not so generally relevant I guess. */
 
 #waterways[waterway="stream"],#waterways[waterway="drain"],
 #waterways[waterway="canal"]{
-  [zoom >= 8] {
+  [zoom >= 9] {
     line-width:0.5;
     line-color:hsla(220, 0.8, 80%,0.5);
     line-smooth:0.8;
+    line-rasterizer:fast;
   }
   [zoom >= 13][zoom < 15] { line-width: 1; }
   [zoom = 15] { line-width: 1.75; }
@@ -378,6 +456,7 @@ but not so generally relevant I guess. */
   line-color:hsla(220, 0.8, 80%,0.8);
   line-smooth:0.8;
   line-dasharray:4,2;
+  line-rasterizer:fast;
 }
 
 
@@ -396,18 +475,18 @@ but not so generally relevant I guess. */
 #water[zoom >=12][size > 5000000],
 #water[zoom >=10][size > 30000000]{
     ::label { 
-    text-face-name:'CartoGothic Std Italic';
-    text-name:'[name]';
-    text-size:11;
-    text-wrap-width:20;
-    text-wrap-before:true;
-    text-halo-fill:@water;
-    text-halo-radius:1.5;
-
-    [zoom<=11] { text-size: 10; }
-    text-fill:hsla(220,80%,20%,50%);
-    text-placement-type:simple;
-    text-placement:interior;
+      text-face-name:'CartoGothic Std Italic';
+      text-name:'[name]';
+      text-size:11;
+      text-wrap-width:20;
+      text-wrap-before:true;
+      text-halo-fill:@water;
+      text-halo-radius:1.5;
+  
+      [zoom<=11] { text-size: 10; }
+      text-fill:hsla(220,80%,20%,50%);
+      text-placement-type:simple;
+      text-placement:interior;
     }
 }
 
@@ -589,6 +668,7 @@ but not so generally relevant I guess. */
   [zoom >= 15] {
   line-width:1;
   line-color:#888;
+    line-dasharray: 4,8;
   }
   
   ::label[zoom >= 15] {

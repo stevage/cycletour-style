@@ -1,17 +1,38 @@
+@pathzoom10: 1.5;
+@pathzoom11: 2;
+@pathzoom12: 2.5;
+@pathzoom13: 3;
+@pathzoom14: 3.5;
+@pathzoom15: 4;
+@pathzoom16: 8;
 
 @bikeroute: hsla(20,80%,40%,1.0);
+
+@bikepath:1.25;
 #bikeroutes[mtb=0] {
   // a white carpet around the path makes a huge difference in prominence
-  ::carpet[state=''][zoom>=9] { 
+  ::carpet[state=''][zoom>=9] {
+    line-width: @bikepath + 2;
+    [zoom = 10] { line-width: @mtbroute * @pathzoom10 + 2}
+    [zoom = 11] { line-width: @mtbroute * @pathzoom11 + 2}
+    [zoom = 12] { line-width: @bikepath * @pathzoom12 + 2}
+    [zoom = 13] { line-width: @bikepath * @pathzoom13 + 2}
+    [zoom = 14] { line-width: @bikepath * @pathzoom14 + 2}
+    [zoom = 15] { line-width: @bikepath * @pathzoom15 + 2}
+    [zoom >= 16] { line-width: @bikepath * @pathzoom16 + 2}
+
     line-width:4; line-smooth: 0.6; line-color: white; 
+    line-rasterizer:fast;
     [zoom=9] { line-width:3; line-color: hsla(0,0%,100%,50%);}
   }
   ::glow[rail_trail=1] {
       line-width:6; line-smooth:0.6;
       line-color:hsla(60,80%,60%,0.5);
+      line-rasterizer:fast;
   }
   ::extraglow[rail_trail=1] {
     line-width:8; line-smooth:0.6;
+    line-rasterizer:fast;
     [zoom >= 12] { line-width: 8; }
     line-color:hsla(60,80%,60%,0.7);//0.4
     image-filters: agg-stack-blur(2,2);
@@ -22,14 +43,21 @@
     }
   }
   // main bike route line - reddish
-  line-width:2; line-smooth:0.6;
-  [zoom <= 9] { line-width:1; }
+  line-width: @bikepath;
+  [zoom >= 10] { line-width:@bikepath * @pathzoom10}
+  [zoom = 11] { line-width: @bikepath * @pathzoom11}
+  [zoom = 12] { line-width: @bikepath * @pathzoom12}
+  [zoom = 13] { line-width: @bikepath * @pathzoom13}
+  [zoom = 14] { line-width: @bikepath * @pathzoom14}
+  [zoom = 15] { line-width: @bikepath * @pathzoom15}
+  [zoom >= 16] { line-width: @bikepath * @pathzoom16}
+
+  line-smooth:0.6;
   line-color:@bikeroute;
+  line-rasterizer:fast;
   [zoom >= 14] { 
-    line-width:3;
-    //line-width: 0; // stop faking bike paths when we zoom in
     line-color:lighten(@bikeroute,10%);
-    line-smooth: 0.6;     line-width:1.0;
+    line-smooth: 0.6;
   }
   
   ::label[zoom >= 11],
@@ -44,6 +72,7 @@
     text-fill:hsla(10,80%,20%,90%);
     text-halo-fill:hsla(0,0,100%,80%);
     text-halo-radius:2;
+    text-halo-rasterizer:fast;
     [zoom=10] { text-halo-radius:1; text-size:10;}
     
     [state="construction"],[state="proposed"] {
@@ -51,6 +80,7 @@
       text-size:10;
       text-halo-radius:1;
       text-halo-fill:hsla(0,0,100%,50%);
+
     }
   }
   
@@ -66,12 +96,14 @@
   }
   
 }
-
+@mtbroute: 1.5;
 #mtbroutes[zoom >= 10] {
-  line-width:1.5 ;
-  [zoom = 12] { line-width: 4;}
-  [zoom >= 13] { line-width: 5;}
-  [zoom >= 15] { line-width: 7;}
+  line-width:@mtbroute ;
+  [zoom = 12] { line-width: @mtbroute * @pathzoom12}
+  [zoom = 13] { line-width: @mtbroute * @pathzoom13}
+  [zoom = 14] { line-width: @mtbroute * @pathzoom14}
+  [zoom = 15] { line-width: @mtbroute * @pathzoom15}
+  [zoom >= 16] { line-width: @mtbroute * @pathzoom16}
   line-smooth:1;
   line-color:hsla(340,50%,90%,100%);  
   [route_name=~"Bicentennial National Trail.*"] {
@@ -85,20 +117,26 @@
   text-face-name:'Roboto Condensed Light';
   text-size:10;
   text-name:'[route_name]';
+  [zoom = 15] { text-size: 12;}
+  [zoom >= 16] { text-size: 14; }
   text-placement:line;
   text-allow-overlap:true;
   text-spacing:140;
   text-max-char-angle-delta:40;
   text-fill:hsla(40,80%,30%,100%);
-  text-halo-fill:hsla(0,0,100%,50%);
+  text-halo-fill:hsla(340,50%,95%,70%);
   text-halo-radius:1.5;
 }
 
-
+@bikepathplain: 0.75;
 #bikepathsplain[zoom >=10]
 {
-  line-width:1.5;
-  [zoom < 13] { line-width: 0.5; }
+  line-width:@bikepathplain;
+  [zoom >= 10] { line-width: @bikepathplain * @pathzoom10; }
+  [zoom = 13] { line-width: @bikepathplain * @pathzoom13; }
+  [zoom = 14] { line-width: @bikepathplain * @pathzoom14; }
+  [zoom = 15] { line-width: @bikepathplain * @pathzoom15; }
+  [zoom >= 16] { line-width: @bikepathplain * @pathzoom16; }
   [bridge="yes"][zoom >=13]::bridge {
     b1/line-color:#555;
     b1/line-width:1.0;
@@ -112,20 +150,23 @@
   line-smooth:0.8;
   [mtb="yes"] { line-dasharray:2,1; }
 }
-
+@walkingpath: 0.5;
 #walkingpaths[zoom >= 12] {
-  line-width:1;
-  
   line-dasharray:1,2;
   line-color:hsl(110,90%,20%);
-  [zoom = 12] { 
-    line-width: 0.5; line-dasharray:1,1;   
+
+  line-width:@walkingpath;
+  [zoom = 13] { line-width: @walkingpath * @pathzoom13; }
+  [zoom >= 14] { line-width:  @walkingpath * @pathzoom14; }
+  [zoom >= 15] { line-width:  @walkingpath * @pathzoom15; }
+  [zoom >= 16] { line-width:  @walkingpath * @pathzoom16; }
+  
+  [zoom >= 12] { 
+    line-dasharray:1,1;   
     line-color:hsl(110,90%,30%); 
   }
-  [zoom = 13] { line-width: 0.7; }
-  [zoom >= 14] { line-width: 1; line-dasharray: 2,1.5;}
+  [zoom >= 14] { line-dasharray: 2,1.5;}
   [zoom >= 15] {
-      line-width: 1.2;
       text-face-name:'Roboto Condensed Regular';
       text-size:10;
       text-name:'[name]';
@@ -149,6 +190,18 @@
   line-dasharray:1,0;
   //line-smooth:0.5;
   image-filters:agg-stack-blur(2,2);
+  [zoom >= 14]::label {
+      text-face-name:'Roboto Condensed Regular';
+      text-size:1;
+      text-name:"'AAWT'";
+      text-placement:line;
+      text-allow-overlap:true;
+      text-spacing:150;
+      text-vertical-alignment:top;
+      text-fill:hsla(100,80%,20%,100%);
+      text-halo-fill:hsla(0,0,100%,60%);
+      text-halo-radius:1;      
+  }    
 }
 
 #pedestrian[zoom >= 16] { 

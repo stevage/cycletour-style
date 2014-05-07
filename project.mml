@@ -220,7 +220,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "education",
       "class": "",
@@ -246,8 +245,7 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "port": "5432",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "green",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -278,7 +276,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "waterways",
       "class": "",
@@ -304,7 +301,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "water",
       "class": "",
@@ -331,14 +327,14 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "placemarkers",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "placemarkers"
+      "name": "placemarkers",
+      "status": "off"
     },
     {
       "extent": [
@@ -357,7 +353,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "landuse",
       "class": "",
@@ -384,7 +379,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "stateboundaries",
       "class": "",
@@ -427,8 +421,7 @@
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
         "host": "gis.researchmaps.net",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "military",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -458,8 +451,7 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "port": "5432",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "oldrail",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -489,7 +481,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "mtbroutes",
       "class": "",
@@ -497,6 +488,32 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "mtbroutes"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        50.16924689301642,
+        -54.77242729472166,
+        179.9977666749446,
+        24.789112296764717
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select *\nfrom planet_osm_point\nwhere aeroway='helipad') p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
+        "host": "gis.researchmaps.net",
+        "user": "gis",
+        "dbname": "gis"
+      },
+      "id": "landmarks",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "landmarks"
     },
     {
       "geometry": "linestring",
@@ -516,7 +533,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "aawt",
       "class": "",
@@ -543,7 +559,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "tracks",
       "class": "",
@@ -571,7 +586,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "littleroads",
       "class": "",
@@ -599,7 +613,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "power",
       "class": "",
@@ -625,8 +638,7 @@
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
         "host": "gis.researchmaps.net",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "roads",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
@@ -657,8 +669,7 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "port": "5432",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "rail",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -688,8 +699,7 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "port": "5432",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "trains",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -719,7 +729,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "pedestrian",
       "class": "",
@@ -747,7 +756,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "skilifts",
       "class": "",
@@ -775,7 +783,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "walkingpaths",
       "class": "",
@@ -803,7 +810,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "bikepathsplain",
       "class": "",
@@ -830,8 +836,7 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "port": "5432",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "bikepaths",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -861,8 +866,7 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "port": "5432",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "amenities",
         "project": "SteveCV2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -893,7 +897,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "places_cities",
       "class": "",
@@ -921,7 +924,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "places_towns",
       "class": "",
@@ -948,8 +950,7 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "port": "5432",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "places_pointless",
         "project": "SteveCV2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -979,7 +980,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "waterwaylabels",
       "class": "",
@@ -1006,7 +1006,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "ferry",
       "class": "",
@@ -1034,7 +1033,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "stations",
       "class": "",
@@ -1061,8 +1059,7 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "port": "5432",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "places",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -1093,7 +1090,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "roadlinks",
       "class": "",
@@ -1119,7 +1115,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "buildings",
       "class": "",
@@ -1144,8 +1139,7 @@
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
         "host": "gis.researchmaps.net",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "greenlabels",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -1175,7 +1169,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "oldstations",
       "class": "",
@@ -1203,7 +1196,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "mtbroutelabels",
       "class": "",
@@ -1230,7 +1222,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "dam",
       "class": "",
@@ -1257,7 +1248,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "barriers",
       "class": "",
@@ -1284,7 +1274,6 @@
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
-        
       },
       "id": "randompois",
       "class": "",
@@ -1310,8 +1299,7 @@
         "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
         "dbname": "gis",
         "host": "gis.researchmaps.net",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "fords",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -1340,8 +1328,7 @@
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
         "host": "gis.researchmaps.net",
-        "user": "gis"
-        ,
+        "user": "gis",
         "id": "naturals",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
@@ -1371,7 +1358,6 @@
         "host": "gis.researchmaps.net",
         "port": "5432",
         "user": "gis"
-        
       },
       "id": "suburbs",
       "class": "",
@@ -1383,7 +1369,7 @@
   ],
   "scale": 1,
   "metatile": 3,
-  "name": "Steve CycleTour2",
+  "name": "cycletour.org",
   "description": "Map optimised for cycle touring: roads shown at low zoom levels, bike paths prominent, amenities like bakeries and pubs shown. Database on gis.cycletour.org",
   "attribution": ""
 }

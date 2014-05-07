@@ -6,20 +6,6 @@
 //@townblobs: hsla(260,80%,40%,0.7);
 @townblobs: hsla(260,80%,40%,0.0);
 
-#placemarkers::marker[zoom >= 10] {
-    [amenities < 5]  { marker-width:2+2*[amenities]; }
-    [amenities >= 5] { marker-width:12; }
-    [amenities < 1]  { marker-opacity:0; }
-    marker-line-width:0;
-    marker-line-color:#813;  
-    marker-allow-overlap:true;
-    marker-ignore-placement:true;
-    marker-fill:@townblobs;
-    [zoom > 8] { marker-line-width:0; }
-    [amenities < 1] { marker-fill-opacity:0; }
-
-}
-
 #places_cities[zoom>=6] {
   text-face-name:"Roboto Condensed Regular";
   text-fill:@townlabels;
@@ -91,6 +77,7 @@
     text-halo-fill:hsla(300,20%,98%,60%);
     text-halo-radius:1.5;
     text-size:10;
+    text-halo-rasterizer:full;
     [zoom <= 8] { text-halo-radius:0.5; }
     [zoom <= 9] { text-opacity: 0.8; }
     [zoom >=10] { text-size: 11; text-opacity:0.9;}
