@@ -1,37 +1,71 @@
 @water: hsl(210, 80%,82%); //#b8dee6;
 //@water: hsl(210, 80%,62%); //#b8dee6;
+//@background:#f0fff0;
 @background:#f0fff0;
 
 Map {
-  background-color: @background;
+  //background-color: @background;
+  background-color:lighten(@water,10%);
+  
   //buffer-size:1024;
 }
+
+#waterpoly {
+  polygon-fill:@water;
+}
+#landpolygons { polygon-fill: @background; }
+#coastline::deepsea {
+    line-color: hsl(180,40%,40%);
+    line-width: 20;
+    line-join: round;
+    image-filters: agg-stack-blur(80,80);
+  }
+#coastline::shore {
+    line-color: hsl(200,80%,70%);
+    line-width: 5;
+    line-join: round;
+    image-filters: agg-stack-blur(5,5);
+}
+
+
 @roadsize: 1.0;
 //@minorroad: 0.45;
-@minorroad: 0.6;
 @littleroad:0.4;
 @roadzoom10: 1.2;
 @roadzoom11: 1.4;
-@roadzoom12: 1.6;
-@roadzoom13: 1.8;
-@roadzoom14: 2;
-@roadzoom15: 4;
+@roadzoom12: 2.5;
+@roadzoom13: 3;
+@roadzoom14: 4;
+@roadzoom15: 5;
 @roadzoom16: 8;
 
 @bigroad: gray;
+@minorroad: hsl(260,20%,60%);
 @bigroad_inner: #999; 
+@bridgegap: 4;
+@carpetgap:2;
+@carpet:hsla(0,0%,100%,50%);
 #roads[zoom >= 9]
  {
-/*  [highway='trunk']::carpet,
-  [highway='primary']::carpet,
-  [highway='secondary']::carpet,
-  [highway='tertiary']::carpet*/
+  [bridge="yes"][zoom >= 14]::bridge {
+    line-color:@bigroad;
+    line-width: @roadsize;
+    line-cap:butt;
+    [zoom = 14] { line-width: @roadsize * @roadzoom14+@bridgegap; }
+    [zoom = 15] { line-width: @roadsize * @roadzoom15+@bridgegap; }
+    [zoom >= 16] { line-width: @roadsize * @roadzoom16+@bridgegap; }
+  }
   ::carpet
   {
-    line-width:3; line-color:hsla(0,0%,100%,50%);
-    [highway='unclassified'] { 
-      line-width: 1.2;
-    }
+    line-width:@roadsize + @carpetgap; 
+    line-color:@carpet;
+    [zoom = 10] { line-width: @roadsize * @roadzoom10+@carpetgap; }
+    [zoom = 11] { line-width: @roadsize * @roadzoom11+@carpetgap; }
+    [zoom = 12] { line-width: @roadsize * @roadzoom12+@carpetgap; }
+    [zoom = 13] { line-width: @roadsize * @roadzoom13+@carpetgap; }
+    [zoom = 14] { line-width: @roadsize * @roadzoom14+@carpetgap; }
+    [zoom = 15] { line-width: @roadsize * @roadzoom15+@carpetgap; }
+    [zoom >= 16] { line-width: @roadsize * @roadzoom16+@carpetgap; }
     [highway='trunk'] { line-width: 3.5;}  
     line-smooth:0.45;
 
@@ -39,15 +73,35 @@ Map {
     [cycleway='lane'][zoom >= 14],
     [cycleway='track'][zoom >= 14]{ line-color:lighten(@bikeroute,20%); }
   }
+  
+  
   line-color:@bigroad;
+  [highway='motorway'],[highway='trunk'] { line-color: black; }
+  [highway='primary'] { line-color:hsl(260,20%,30%); }
+  [highway='secondary'] { line-color:hsl(260,20%,45%); }
   line-width: @roadsize;
-  [zoom >= 10] { line-width: @roadsize * @roadzoom10; }
-  [zoom >= 14] { line-width: @roadsize * @roadzoom14; }
-  [zoom >= 15] { 
+  line-cap:square;
+  [unsealed="yes"] { 
+    line-dasharray: 6,1;
+    line-cap:butt;
+  }
+  [zoom = 10] { line-width: @roadsize * @roadzoom10; }
+  [zoom = 11] { line-width: @roadsize * @roadzoom11; }
+  [zoom = 12] { line-width: @roadsize * @roadzoom12; }
+  [zoom = 13] { line-width: @roadsize * @roadzoom13; }
+  [zoom = 14] { line-width: @roadsize * @roadzoom14; }
+  [zoom = 15] { 
     line-width: @roadsize * @roadzoom15; 
     ::inside {
       line-width: @roadsize * @roadzoom15 - 2;
       line-color: @bigroad_inner;
+      line-smooth:0.45;
+      line-cap:round;
+      line-join:round;
+      [unsealed="yes"] { 
+        line-dasharray: 6,1;
+        line-cap:butt;
+      }
     }
   }
   [zoom >= 16] { 
@@ -55,33 +109,15 @@ Map {
     ::inside {
       line-width: @roadsize * @roadzoom16 - 2;
       line-color: @bigroad_inner;
+      line-smooth:0.45;
+      [unsealed="yes"] { 
+         line-dasharray: 6,1;
+       }
     }
   }
   line-smooth:0.4;
   [zoom >= 14] { line-smooth: 0.5; }
-
-  [highway='motorway'],[highway='trunk'] { line-color: black; }
-  [highway='primary'] { line-color:hsl(260,20%,30%); }
-  [highway='secondary'] { line-color:hsl(260,20%,45%); }
-
-  [highway="unclassified"],[highway="road"] { 
-    line-width: @minorroad; 
-    [zoom >= 10] { line-width: @minorroad * @roadzoom10; }
-    [zoom >= 12] { line-width: @minorroad * @roadzoom12; }
-    [zoom >= 14] { line-width: @minorroad * @roadzoom14; }
-    [zoom >= 15] { line-width: @minorroad * @roadzoom15; }
-//    line-color: hsl(260,80%,60%); /* An interesting idea, highlight the quiet roads more */
-    line-color: hsl(260,20%,60%); /* Purpleish */
-  }
-  [surface="unpaved"],[surface="dirt"],[surface="gravel"],
-  [surface="unsealed"],[surface="sand"] { 
-    line-dasharray: 6,1;
-    [highway="unclassified"]{
-      line-color:hsl(30,20%,40%);
-    }
-  }
-
-  ::label[zoom >= 10]
+ ::label[zoom >= 10]
   {
     text-face-name:'CartoGothic Std Book';
     text-size:12;
@@ -99,26 +135,114 @@ Map {
         text-size: 12;
         text-max-char-angle-delta:28;
     }
-//    [highway!='tertiary'] { text-allow-overlap:false; }
-    [highway="unclassified"] { 
-      text-halo-radius: 1; 
-      text-halo-fill: hsla(0,0%,1.0,20%);
-      text-size: 10;
-      text-fill:hsl(0,0%,20%);
+  }
+  [access='private'],[access='no'],[bicycle='no'] { 
+    line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
+  }
+}
+@minorroad_s: 0.8;
+@mcarpetgap:1;
+#minorroads[zoom >= 9] {
+  [bridge="yes"][zoom >= 14]::bridge {
+    line-color:@bigroad;
+    line-width: @roadsize;
+    line-cap:butt;
+    [zoom = 14] { line-width: @minorroad_s * @roadzoom14+@bridgegap; }
+    [zoom = 15] { line-width: @minorroad_s * @roadzoom15+@bridgegap; }
+    [zoom >= 16] { line-width: @minorroad_s * @roadzoom16+@bridgegap; }
+  }
+  ::carpet {
+    line-smooth:0.45;
+    line-width:@minorroad_s + @carpetgap; 
+    line-color:@carpet;
+    [zoom = 10] { line-width: @minorroad_s * @roadzoom10+@mcarpetgap; }
+    [zoom = 11] { line-width: @minorroad_s * @roadzoom11+@mcarpetgap; }
+    [zoom = 12] { line-width: @minorroad_s * @roadzoom12+@mcarpetgap; }
+    [zoom = 13] { line-width: @minorroad_s * @roadzoom13+@mcarpetgap; }
+    [zoom = 14] { line-width: @minorroad_s * @roadzoom14+@mcarpetgap; }
+    [zoom = 15] { line-width: @minorroad_s * @roadzoom15+@mcarpetgap; }
+    [zoom >= 16] { line-width: 0; /*@minorroad_s * @roadzoom16; */}
+
+    // experimental way of showing bike lanes
+    [cycleway='lane'][zoom >= 14],
+    [cycleway='track'][zoom >= 14]{ line-color:lighten(@bikeroute,20%); }
+  }
+  
+  // main road layer
+  line-color:@minorroad;
+  line-width: @minorroad_s;
+  line-cap:butt;
+  line-smooth:0.4;
+  [zoom >= 14] { line-smooth: 0.5; }
+  [unsealed="yes"] { 
+    line-dasharray: 6,1;
+  }
+  [zoom = 10] { line-width: @minorroad_s * @roadzoom10; }
+  [zoom = 11] { line-width: @minorroad_s * @roadzoom11; }
+  [zoom = 12] { line-width: @minorroad_s * @roadzoom12; }
+  [zoom = 13] { line-width: @minorroad_s * @roadzoom13; }
+  [zoom = 14] { line-width: @minorroad_s * @roadzoom14; }
+  [zoom = 15] { 
+    line-width: @minorroad_s * @roadzoom15;
+    line-cap: butt;
+    ::inside {
+      line-width: @minorroad_s * @roadzoom15 - 2;
+      line-color: lighten(@minorroad,20%);
+      line-smooth:0.45;
+      line-cap:square;
+      [unsealed="yes"] { 
+        line-dasharray: 5,2;
+        line-dash-offset:1;
+      }
     }
+  }
+  [zoom >= 16] { 
+    line-width: @minorroad_s * @roadzoom16; 
+    line-cap:butt;
+    [unsealed="yes"] { 
+      line-dasharray: 4,3;
+    }
+    ::inside {
+      line-width: @minorroad_s * @roadzoom16 - 2;
+      line-color: lighten(@minorroad, 20%);
+      line-smooth:0.45;
+      line-cap:butt;
+      [unsealed="yes"] { 
+         line-dasharray: 5,2;
+        line-dash-offset:-1;
+       }
+    }
+  }
+
+  ::label[zoom >= 10]
+  {
+    text-face-name:'Roboto Condensed Light';
+    text-name:'[name]';
+    text-placement:line;
+    text-allow-overlap:false;//true;
+    text-spacing:150;
+    text-halo-radius: 1; 
+    text-halo-fill: hsla(0,0%,1.0,50%);
+    text-size: 10;
+    text-fill:hsl(0,0%,20%);
+    [zoom <= 11] { text-fill:hsl(0,0%,50%); }
+    [zoom = 12] { text-fill:hsl(0,0%,40%); }
+    [zoom = 13] { text-fill:hsl(0,0%,20%); }
+
   }
   [access='private'],[access='no'],[bicycle='no'] { 
     line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
   }
 }
 
+/* Residential, service etc, which disappear on low zooms. */
 #littleroads[zoom >= 11] {
   line-width: @littleroad;
   [zoom >= 10] { line-width: @littleroad * @roadzoom10; }
   [zoom = 12] { line-width: @littleroad * @roadzoom12; }
   [zoom = 13] { line-width: @littleroad * @roadzoom13; }
-  [zoom = 14] { line-width: @littleroad * @roadzoom14; }
-  [zoom = 15] { line-width: @littleroad * @roadzoom15; }
+  [zoom = 14] { line-width: @littleroad * @roadzoom14 * 0.75; }
+  [zoom = 15] { line-width: @littleroad * @roadzoom15 * 0.75; }
   [zoom >= 16] { line-width: @littleroad * @roadzoom16; }
 
   line-smooth:0.4;
@@ -135,17 +259,26 @@ Map {
     [zoom < 11] { line-width:0.2; }
   }*/
   ::label[zoom >= 14] {
-    text-face-name:'CartoGothic Std Book';
+    //text-face-name:'CartoGothic Std Book';
+    text-face-name:'DejaVu Sans Condensed';
     text-name:'[name]';
     text-placement:line;
     text-allow-overlap:false;//true;
     text-spacing:150;
-    text-halo-fill:hsla(0,0%,100%,60%);
-    text-halo-radius:1.5;
-    text-fill:#777;
-    text-size:10;
-    [zoom <= 15] { 
-      text-halo-radius: 1; text-halo-fill: hsla(0,0%,1.0,20%);
+    //text-fill:#777;
+    
+    text-fill: #555;
+    text-size:9;
+    text-halo-radius: 1; text-halo-fill: hsla(0,0%,1.0,50%);
+    [zoom >= 15] { 
+      text-size: 10; 
+      text-halo-radius: 1; 
+      text-halo-fill: hsla(0,0%,1.0,80%);
+      text-fill: #333;
+   }
+    [zoom >= 16] { 
+      text-halo-radius:1.5;
+      text-size:11;
     }
   }
 }
@@ -167,17 +300,26 @@ Map {
 */
   line-smooth:0.6;
   line-width:@track;
-  [zoom >= 10] { line-width: @track * @roadzoom10; }
-  [zoom >= 12] { line-width: @track * @roadzoom12; }
-  [zoom >= 14] { line-width: @track * @roadzoom14; }
-  [zoom >= 15] { line-width: @track * @roadzoom15 * 1.5; }
+  [zoom = 10] { line-width: @track * @roadzoom10; }
+  [zoom = 11] { line-width: @track * @roadzoom11; }
+  [zoom = 12] { line-width: @track * @roadzoom12; }
+  [zoom = 13] { line-width: @track * @roadzoom13; }
+  [zoom = 14] { line-width: @track * @roadzoom14 * 1.25; }
+  [zoom = 15] { line-width: @track * @roadzoom15 * 1.5; }
+  [zoom >= 16] { line-width: @track * @roadzoom16 * 1.5; }
   
   line-color:brown;
   line-dasharray:2,0.5; 
   [zoom >= 12] { line-dasharray:3,2; }
-//  [zoom >= 12][fourwd='yes'] { line-dasharray: 3,1.5,1,1.5;}
+  [zoom >= 14] { line-dasharray:4,2; }
+  [zoom >= 15] { line-dasharray:5,2; }
+  [surface="sand"] {
+    [zoom >= 12] { line-dasharray:3,6; }
+    [zoom >= 14] { line-dasharray:4,8; }
+    [zoom >= 15] { line-dasharray:4,10; }
+  }
   [zoom >= 12][fourwd='yes']::ticks { 
-  line-color:brown;
+	line-color:brown;
     line-smooth:0.6;
     line-width:2.5;
     [zoom >= 14] { line-width: 4;}
@@ -595,9 +737,6 @@ but not so generally relevant I guess. */
   }
 }
 
-#waterpoly {
-  polygon-fill:@water;
-}
 
 #beach[zoom >= 11] { polygon-fill:hsla(45,70%,70%,0.3); }
 
@@ -660,8 +799,6 @@ but not so generally relevant I guess. */
     line-offset:-1;
   }
 }
-
-
 #skilifts[zoom >= 12] {
   line-width:0.5;
   line-color:#888;
@@ -697,3 +834,4 @@ but not so generally relevant I guess. */
     text-placement:line;
   }
 }
+

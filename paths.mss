@@ -4,7 +4,7 @@
 @pathzoom13: 3;
 @pathzoom14: 3.5;
 @pathzoom15: 4;
-@pathzoom16: 8;
+@pathzoom16: 5;
 
 @bikeroute: hsla(20,80%,40%,1.0);
 
@@ -25,6 +25,7 @@
     line-rasterizer:fast;
     [zoom=9] { line-width:3; line-color: hsla(0,0%,100%,50%);}
   }
+  // Rail trails are super prominent at low zooms with a yellow highlight.
   ::glow[rail_trail=1] {
       line-width:6; line-smooth:0.6;
       line-color:hsla(60,80%,60%,0.5);
@@ -34,6 +35,8 @@
     line-width:8; line-smooth:0.6;
     line-rasterizer:fast;
     [zoom >= 12] { line-width: 8; }
+    [zoom >= 14] { line-width: 12; }
+    [zoom >= 15] { line-width: 14; }
     line-color:hsla(60,80%,60%,0.7);//0.4
     image-filters: agg-stack-blur(2,2);
     [state="proposed"],[state="construction"] {
@@ -158,7 +161,7 @@
   line-width:@walkingpath;
   [zoom = 13] { line-width: @walkingpath * @pathzoom13; }
   [zoom >= 14] { line-width:  @walkingpath * @pathzoom14; }
-  [zoom >= 15] { line-width:  @walkingpath * @pathzoom15; }
+  [zoom >= 15] { line-width:  @walkingpath * @pathzoom15; line-smooth: 1;}
   [zoom >= 16] { line-width:  @walkingpath * @pathzoom16; }
   
   [zoom >= 12] { 

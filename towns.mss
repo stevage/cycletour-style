@@ -33,34 +33,36 @@
     text-name:'[name]';
     text-placement-type:simple;
     text-placements: "E,NE,SE,N,S,W,SW,NW,8";
+	text-dx:2;
+    text-dy:2;
 
     text-size:8;
+    text-placements: "E,NE,SE,N,S,W,SW,NW,18,16,14,12";
     [zoom = 7] { text-fill: lighten(@townlabels,15%); }
     [zoom = 8] { 
       text-size: 12; 
       text-halo-radius:1.5; 
       text-halo-fill:hsla(60,5%,90%,50%);
-    text-placements: "E,NE,SE,N,S,W,SW,NW,12,10,8";
+      //text-placements: "E,NE,SE,N,S,W,SW,NW,12,10,8";
     }
     [zoom >= 9] { 
       text-size:14; 
       text-halo-radius:1.5; 
       text-halo-fill:hsla(60,5%,95%,70%);
-      text-placements: "E,NE,SE,N,S,W,SW,NW,14,12,10,8";
+      //text-placements: "E,NE,SE,N,S,W,SW,NW,14,12,10,8";
     }
     [zoom >= 10] { 
       text-size:16; 
-      text-placements: "E,NE,SE,N,S,W,SW,NW,16,14,12,10";
+      //text-placements: "E,NE,SE,N,S,W,SW,NW,16,14,12,10";
     }
+    [zoom >= 10] { text-size:16; }
+    [zoom >= 11] { text-size:18; }
+    [zoom >= 12] { text-size:20; }
     [zoom >= 13] { 
       text-opacity:0.6; text-halo-fill:hsla(0,0%,100%,30%);
       text-size:24; 
-      text-placements: "E,NE,SE,N,S,W,SW,NW,18,16,14,12";
     }
-	text-dx:1; // if no marker for town, no need to offset?
-    text-dy:1;
     text-allow-overlap:false;
-
 }
 
 #places[place = 'village'][amenities >= 1][zoom >=8],
@@ -77,12 +79,15 @@
     text-halo-fill:hsla(300,20%,98%,60%);
     text-halo-radius:1.5;
     text-size:10;
+    
     text-halo-rasterizer:full;
     [zoom <= 8] { text-halo-radius:0.5; }
     [zoom <= 9] { text-opacity: 0.8; }
     [zoom >=10] { text-size: 11; text-opacity:0.9;}
-    [zoom >=12] { text-size: 13; text-opacity:0.9;}
-    [zoom >=14] { text-size: 14; text-opacity:1.0;}
+    [zoom >=11] { text-size: 12; text-opacity:0.9;}
+    [zoom >=12] { text-size: 14; text-opacity:0.9;}
+    [zoom >=14] { text-size: 16; text-opacity:1.0;}
+    [zoom >=15] { text-size: 20; text-opacity:1.0;}
     text-dx: 4;
     text-dy:5;
     [zoom >= 14] { 

@@ -24,6 +24,44 @@
   ],
   "Layer": [
     {
+      "geometry": "linestring",
+      "extent": [
+        -180,
+        -78.65862520000002,
+        180,
+        83.6664731
+      ],
+      "id": "coastline",
+      "class": "",
+      "Datasource": {
+        "file": "/usr/share/mapbox/coastlines-split-3857/lines.shp"
+      },
+      "layer": null,
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "coastline"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -180,
+        -85.051,
+        180,
+        83.6664731
+      ],
+      "id": "landpolygons",
+      "class": "",
+      "Datasource": {
+        "file": "/usr/share/mapbox/land-polygons-split-4326/land_polygons.shp"
+      },
+      "layer": null,
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "landpolygons"
+    },
+    {
       "geometry": "raster",
       "extent": [
         110.00000000000003,
@@ -237,7 +275,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,coalesce(leisure,'') as leisure, coalesce(landuse,'') as landuse, coalesce(boundary,'') as boundary,st_area(way) size,\ncase when coalesce(leisure, '') in ('park','recreation','golf_course','pitch') then 1 else 0 end as is_park\n from planet_osm_polygon\nwhere landuse='recreation' \nor leisure in('park','conservation','nature_reserve', 'pitch')\nor boundary in('protected_area', 'national_park', 'state_park')) c",
+        "table": "(select way,name,coalesce(leisure,'') as leisure, coalesce(landuse,'') as landuse, coalesce(boundary,'') as boundary,st_area(way) size,\ncase when coalesce(leisure, '') in ('park','recreation','golf_course','pitch') then 1 else 0 end as is_park\n from planet_osm_polygon\nwhere name not like '%Marine%' and (landuse='recreation' \nor leisure in('park','conservation','nature_reserve', 'pitch')\nor boundary in('protected_area', 'national_park', 'state_park'))) c",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -293,7 +331,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,way_area as size\nfrom planet_osm_polygon\nwhere \"natural\"='water' or landuse='reservoir' or waterway='riverbank') p",
+        "table": "(select way,name,way_area as size\nfrom planet_osm_polygon\nwhere name not like '%Marine%' and (\"natural\"='water' or landuse='reservoir' or waterway='riverbank')) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -385,7 +423,8 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "stateboundaries"
+      "name": "stateboundaries",
+      "status": "off"
     },
     {
       "geometry": "polygon",
@@ -403,7 +442,8 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "waterpoly"
+      "name": "waterpoly",
+      "status": "off"
     },
     {
       "extent": [
@@ -551,6 +591,33 @@
       ],
       "Datasource": {
         "type": "postgis",
+        "table": "(select way\nfrom planet_osm_line\nwhere power='line') p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "dbname": "gis",
+        "host": "gis.researchmaps.net",
+        "port": "5432",
+        "user": "gis"
+      },
+      "id": "power",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "power"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        49.87826534628294,
+        -55.94929545595491,
+        179.9999999749438,
+        31.466431033464257
+      ],
+      "Datasource": {
+        "type": "postgis",
         "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,tags::hstore->'4wd_only' as fourwd\nfrom planet_osm_line \nwhere highway ='track' ) p",
         "key_field": "",
         "geometry_field": "",
@@ -604,22 +671,21 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way\nfrom planet_osm_line\nwhere power='line') p",
+        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,bridge,\ncase when surface in ('gravel','unpaved','sand','unsealed','dirt') then 'yes' else' no' end unsealed\nfrom planet_osm_line \nwhere highway in ('unclassified','road')) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
-        "dbname": "gis",
         "host": "gis.researchmaps.net",
-        "port": "5432",
-        "user": "gis"
+        "user": "gis",
+        "dbname": "gis"
       },
-      "id": "power",
+      "id": "minorroads",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "power"
+      "name": "minorroads"
     },
     {
       "geometry": "linestring",
@@ -631,7 +697,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle\nfrom planet_osm_line \nwhere highway in ('motorway','trunk','primary','secondary','tertiary','unclassified','road')) as roads",
+        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,bridge,\ncase when surface in ('gravel','unpaved','sand','unsealed','dirt') then 'yes' else' no' end unsealed\nfrom planet_osm_line \nwhere highway in ('motorway','trunk','primary','secondary','tertiary')) as roads",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -1266,7 +1332,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,man_made,power\nfrom planet_osm_point\nwhere man_made is not null and man_made not in ('tower','monitoring_station')\nunion select way,name,man_made,power\nfrom planet_osm_polygon\nwhere power='generator') p",
+        "table": "(select way,name,man_made,power,historic\nfrom planet_osm_point\nwhere (man_made is not null and man_made not in ('tower','monitoring_station'))\nor historic is not null\nunion select way,name,man_made,power,historic\nfrom planet_osm_polygon\nwhere power is not null) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -1365,6 +1431,31 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "suburbs"
+    },
+    {
+      "extent": [
+        49.87826534628294,
+        -55.32281745483311,
+        179.95302599075885,
+        27.399969324086747
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select *\nfrom planet_osm_polygon\nwhere power is not null) p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "5552423.1,-7424772.16,20032279.22,3173532.12",
+        "host": "gis.researchmaps.net",
+        "user": "gis",
+        "dbname": "gis"
+      },
+      "id": "powerstations",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "powerstations"
     }
   ],
   "scale": 1,

@@ -79,20 +79,40 @@ same background. */
   line-smooth:1.0;
   line-width:0.5;
   line-color:hsla(100,30%,50%,15%); 
+  [elev =~ ".*00"] { line-color:hsla(100,30%,45%,50%); }
   [zoom >= 14] {
     line-width:0.75;
     line-color:hsla(100,30%,50%,20%);
   }
-  
-  [zoom >= 16],
-  [elev =~ ".*00"] {
-    l/text-face-name:'Roboto Condensed Light';
-    l/text-size:8;
-    l/text-name:'[elev]';
-    [elev =~ ".*00"] { line-color:hsla(100,30%,45%,50%); }
-    [zoom >= 16] { l/text-size: 10; }
-    l/text-fill:gray;
-    l/text-placement:line;
-  }
+}
+.contour[zoom >= 16]::label,
+.contour[zoom >= 13][elev =~ ".*00"]::label {
+    text-face-name:'Roboto Condensed Light';
+    text-size:10;
+    text-spacing:200;
+    
+    text-name:'[elev]';   
+    [elev =~ "100"] {  text-name:'"1oo"'; }
+    [elev =~ "200"] {  text-name:'"2oo"'; }
+    [elev =~ "300"] {  text-name:'"3oo"'; }
+    [elev =~ "400"] {  text-name:'"4oo"'; }
+    [elev =~ "500"] {  text-name:'"5oo"'; }
+    [elev =~ "600"] {  text-name:'"6oo"'; }
+    [elev =~ "700"] {  text-name:'"7oo"'; }
+    [elev =~ "800"] {  text-name:'"8oo"'; }
+    [elev =~ "900"] {  text-name:'"9oo"'; }
+    [elev =~ "1000"] {  text-name:'"10oo"'; }
+    [elev =~ "1100"] {  text-name:'"11oo"'; }
+    [elev =~ "1200"] {  text-name:'"12oo"'; }
+    [elev =~ "1300"] {  text-name:'"13oo"'; }
+    [elev =~ "1400"] {  text-name:'"14oo"'; }
+    [elev =~ "1500"] {  text-name:'"15oo"'; }
+    [zoom >= 16][elev =~ ".*00"] { 
+      text-size: 12; 
+      text-spacing: 400;
+      text-face-name:'Roboto Condensed Regular';
+    }
+    text-fill:gray;
+    text-placement:line;
 }
 
