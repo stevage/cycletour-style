@@ -230,9 +230,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "beach",
       "class": "",
@@ -256,8 +257,9 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "education",
       "class": "",
@@ -281,12 +283,13 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis",
+        "user": "ubuntu",
         "id": "green",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "green",
       "class": "",
@@ -311,9 +314,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "waterways",
       "class": "",
@@ -337,8 +341,9 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "water",
       "class": "",
@@ -363,8 +368,9 @@
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7265206.30423533,20022056.3931797,1719230.12852158",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "placemarkers",
       "class": "",
@@ -389,8 +395,9 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "landuse",
       "class": "",
@@ -414,9 +421,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "stateboundaries",
       "class": "",
@@ -460,11 +468,12 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
         "id": "military",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "military",
       "class": "",
@@ -489,12 +498,13 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis",
+        "user": "ubuntu",
         "id": "oldrail",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "oldrail",
       "class": "",
@@ -519,8 +529,9 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "mtbroutes",
       "class": "",
@@ -544,9 +555,10 @@
         "geometry_field": "",
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
-        "host": "gis.researchmaps.net",
-        "user": "gis",
-        "dbname": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "dbname": "gis",
+        "password": "ubuntu"
       },
       "id": "landmarks",
       "class": "",
@@ -571,8 +583,9 @@
         "extent_cache": "auto",
         "extent": "12545493.93,-5454984.59,17611464.2,-1048379.81",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "aawt",
       "class": "",
@@ -597,9 +610,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "power",
       "class": "",
@@ -624,8 +638,9 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "tracks",
       "class": "",
@@ -650,9 +665,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "littleroads",
       "class": "",
@@ -676,9 +692,10 @@
         "geometry_field": "",
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
-        "host": "gis.researchmaps.net",
-        "user": "gis",
-        "dbname": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "dbname": "gis",
+        "password": "ubuntu"
       },
       "id": "minorroads",
       "class": "",
@@ -703,12 +720,13 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
         "id": "roads",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "port": "5432"
+        "port": "5432",
+        "password": "ubuntu"
       },
       "id": "roads",
       "class": "",
@@ -733,12 +751,13 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis",
+        "user": "ubuntu",
         "id": "rail",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "rail",
       "class": "",
@@ -763,12 +782,13 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis",
+        "user": "ubuntu",
         "id": "trains",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "trains",
       "class": "",
@@ -792,9 +812,10 @@
         "extent_cache": "auto",
         "extent": "12545493.93,-5454984.59,17341673.16,-832473.15",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "pedestrian",
       "class": "",
@@ -819,9 +840,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "skilifts",
       "class": "",
@@ -846,9 +868,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "walkingpaths",
       "class": "",
@@ -873,9 +896,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "bikepathsplain",
       "class": "",
@@ -900,12 +924,13 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis",
+        "user": "ubuntu",
         "id": "bikepaths",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "bikeroutes",
       "class": "",
@@ -930,12 +955,13 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis",
+        "user": "ubuntu",
         "id": "amenities",
         "project": "SteveCV2",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "amenities",
       "class": "",
@@ -960,9 +986,10 @@
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "places_cities",
       "class": "",
@@ -987,9 +1014,10 @@
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7265206.30423533,20022056.3931797,1719230.12852158",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "places_towns",
       "class": "",
@@ -1014,12 +1042,13 @@
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7265206.30423533,20022056.3931797,1719230.12852158",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis",
+        "user": "ubuntu",
         "id": "places_pointless",
         "project": "SteveCV2",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "places_pointless",
       "class": "",
@@ -1044,8 +1073,9 @@
         "extent_cache": "auto",
         "extent": "5753806.46,-7290433.77,20010977.77,1713741.13",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "waterwaylabels",
       "class": "",
@@ -1070,8 +1100,9 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "ferry",
       "class": "",
@@ -1096,9 +1127,10 @@
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "stations",
       "class": "",
@@ -1123,12 +1155,13 @@
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7265206.30423533,20022056.3931797,1719230.12852158",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis",
+        "user": "ubuntu",
         "id": "places",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "places",
       "class": "",
@@ -1153,9 +1186,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "roadlinks",
       "class": "",
@@ -1179,8 +1213,9 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "buildings",
       "class": "",
@@ -1204,11 +1239,12 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
         "id": "greenlabels",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "greenlabels",
       "class": "",
@@ -1233,8 +1269,9 @@
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "oldstations",
       "class": "",
@@ -1259,9 +1296,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "mtbroutelabels",
       "class": "",
@@ -1285,9 +1323,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "dam",
       "class": "",
@@ -1312,8 +1351,9 @@
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "barriers",
       "class": "",
@@ -1338,8 +1378,9 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "randompois",
       "class": "",
@@ -1364,11 +1405,12 @@
         "extent_cache": "auto",
         "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
         "id": "fords",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "fords",
       "class": "",
@@ -1393,11 +1435,12 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
         "id": "naturals",
         "project": "SteveCountryVic",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "password": "ubuntu"
       },
       "id": "naturals",
       "class": "",
@@ -1421,9 +1464,10 @@
         "extent_cache": "auto",
         "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
         "dbname": "gis",
-        "host": "gis.researchmaps.net",
+        "host": "localhost",
         "port": "5432",
-        "user": "gis"
+        "user": "ubuntu",
+        "password": "ubuntu"
       },
       "id": "suburbs",
       "class": "",
@@ -1446,9 +1490,10 @@
         "geometry_field": "",
         "extent_cache": "auto",
         "extent": "5552423.1,-7424772.16,20032279.22,3173532.12",
-        "host": "gis.researchmaps.net",
-        "user": "gis",
-        "dbname": "gis"
+        "host": "localhost",
+        "user": "ubuntu",
+        "dbname": "gis",
+        "password": "ubuntu"
       },
       "id": "powerstations",
       "class": "",
