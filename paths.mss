@@ -75,7 +75,7 @@
     text-fill:hsla(10,80%,20%,90%);
     text-halo-fill:hsla(0,0,100%,80%);
     text-halo-radius:2;
-    text-halo-rasterizer:fast;
+    //text-halo-rasterizer:fast;
     [zoom=10] { text-halo-radius:1; text-size:10;}
     
     [state="construction"],[state="proposed"] {
@@ -154,6 +154,7 @@
   [mtb="yes"] { line-dasharray:2,1; }
 }
 @walkingpath: 0.5;
+#walkingpaths[zoom < 12] { line-width: 0; }
 #walkingpaths[zoom >= 12] {
   line-dasharray:1,2;
   line-color:hsl(110,90%,20%);

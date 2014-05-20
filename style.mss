@@ -13,7 +13,7 @@ Map {
 #waterpoly {
   polygon-fill:@water;
 }
-#landpolygons { polygon-fill: @background; }
+#landpolygons { polygon-fill: @background; line-width: 0;}
 #coastline::deepsea {
     line-color: hsl(180,40%,40%);
     line-width: 20;
@@ -45,7 +45,7 @@ Map {
 @bridgegap: 4;
 @carpetgap:2;
 @carpet:hsla(0,0%,100%,50%);
-#roads[zoom >= 9]
+#roads[zoom >= 6]
  {
   [bridge="yes"][zoom >= 14]::bridge {
     line-color:@bigroad;
@@ -142,7 +142,7 @@ Map {
 }
 @minorroad_s: 0.8;
 @mcarpetgap:1;
-#minorroads[zoom >= 9] {
+#minorroads[zoom >= 6] {
   [bridge="yes"][zoom >= 14]::bridge {
     line-color:@bigroad;
     line-width: @roadsize;
@@ -562,7 +562,8 @@ but not so generally relevant I guess. */
 
 #waterways[waterway="stream"],#waterways[waterway="drain"],
 #waterways[waterway="canal"]{
-  [zoom >= 9] {
+  line-width:0;
+  [zoom >= 3] {
     line-width:0.5;
     line-color:hsla(220, 0.8, 80%,0.5);
     line-smooth:0.8;
@@ -574,12 +575,18 @@ but not so generally relevant I guess. */
 }
 // TODO properly separate rivers etc.
 // currently labels on massively oversimplified ways
+#waterwaylabels[zoom < 12] {
+  line-color:hsla(0,0,0,0);
+  line-width: 0;
+}  
 #waterwaylabels[waterway="river"][zoom >= 12],
 #waterwaylabels[waterway="stream"][zoom >= 14],
 #waterwaylabels[waterway="canal"][zoom >= 14],
 #waterwaylabels[waterway="drain"][zoom >= 15]
 {
     //line-color:red;
+    line-color:hsla(0,0,0,0);
+  line-width: 0;
     text-face-name:'CartoGothic Std Book';
     text-size:12;
     [waterway="stream"],[waterway="drain"] {
@@ -776,6 +783,9 @@ but not so generally relevant I guess. */
 
 
 // high voltage power lines
+#power[zoom <= 13] {
+    line-width:0;
+  }
 #power[zoom >= 14][zoom <= 15] {
     line-width:0.5;
     line-color:gray;

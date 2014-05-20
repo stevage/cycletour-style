@@ -80,7 +80,7 @@
     text-halo-radius:1.5;
     text-size:10;
     
-    text-halo-rasterizer:full;
+    //text-halo-rasterizer:full;
     [zoom <= 8] { text-halo-radius:0.5; }
     [zoom <= 9] { text-opacity: 0.8; }
     [zoom >=10] { text-size: 11; text-opacity:0.9;}
