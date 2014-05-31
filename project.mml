@@ -1,14 +1,14 @@
 {
   "bounds": [
-    141.2042,
-    -39.0294,
-    149.7955,
-    -35.0768
+    -12.085,
+    49.778,
+    2.417,
+    60.4547
   ],
   "center": [
-    145.0659,
-    -37.2321,
-    8
+    -2.6697,
+    53.4098,
+    7
   ],
   "format": "png8",
   "interactivity": false,
@@ -26,10 +26,10 @@
     {
       "geometry": "linestring",
       "extent": [
-        -180,
-        -78.65862520000002,
-        180,
-        83.6664731
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "id": "coastline",
       "class": "",
@@ -39,16 +39,18 @@
       "layer": null,
       "srs-name": "autodetect",
       "srs": "",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "coastline"
     },
     {
       "geometry": "polygon",
       "extent": [
-        -180,
-        -85.051,
-        180,
-        83.6664731
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "id": "landpolygons",
       "class": "",
@@ -58,16 +60,18 @@
       "layer": null,
       "srs-name": "autodetect",
       "srs": "",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "landpolygons"
     },
     {
       "geometry": "raster",
       "extent": [
-        110.00000000000003,
-        -45.000304161760205,
-        154.9997432576921,
-        -4.999999999999995
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "id": "srtm3785hs",
       "class": "90m-hs",
@@ -76,52 +80,18 @@
       },
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "srtm3785hs"
     },
     {
-      "geometry": "polygon",
-      "extent": [
-        140.5741745199222,
-        -39.06418415506702,
-        149.75193973849284,
-        -33.86839419632388
-      ],
-      "id": "dtm20mextvg94",
-      "class": "extent",
-      "Datasource": {
-        "file": "/mnt/dem/vic/dtm20m_ext_vg94.shp"
-      },
-      "srs-name": "custom",
-      "srs": "+init=epsg:3111",
-      "advanced": {},
-      "name": "dtm20mextvg94"
-    },
-    {
       "geometry": "raster",
       "extent": [
-        140.16932976122587,
-        -39.18004238393529,
-        150.2229086069416,
-        -33.81423255178963
-      ],
-      "id": "dtm20m3785hscut",
-      "class": "20m-hs",
-      "Datasource": {
-        "file": "/mnt/dem/vic/dtm20m-3785-hs-cut.tif"
-      },
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "dtm20m3785hscut"
-    },
-    {
-      "geometry": "raster",
-      "extent": [
-        150.00000000000003,
-        -10.000246504323362,
-        154.9998496028001,
-        -4.999999999999995
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "id": "srtm3785-unscaled",
       "class": "dem",
@@ -132,95 +102,18 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {
-        "band": "1"
+        "band": "1",
+        "cursor_size": "100000"
       },
       "name": "srtm3785-unscaled",
       "layer": null
     },
     {
-      "geometry": "linestring",
       "extent": [
-        144.99958393868292,
-        -40.000217761147645,
-        150.0000684028188,
-        -34.99958326070026
-      ],
-      "id": "srtm66203785contour",
-      "class": "contour",
-      "Datasource": {
-        "file": "/mnt/dem/srtm_66_20-3785-contour.shp"
-      },
-      "srs-name": "autodetect",
-      "srs": "",
-      "advanced": {},
-      "name": "srtm66203785contour"
-    },
-    {
-      "geometry": "linestring",
-      "extent": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "id": "srtm66193785contour",
-      "class": "contour",
-      "Datasource": {
-        "file": "/mnt/dem/srtm_66_19-3785-contour.shp",
-        "id": "srtm66193785contour",
-        "project": "SteveCountryVic",
-        "srs": ""
-      },
-      "srs-name": "autodetect",
-      "srs": "",
-      "advanced": {},
-      "name": "srtm66193785contour"
-    },
-    {
-      "geometry": "linestring",
-      "extent": [
-        139.999583817611,
-        -40.000217761147645,
-        145.0000682817469,
-        -34.99958326070026
-      ],
-      "id": "srtm65203785contour",
-      "class": "contour",
-      "Datasource": {
-        "file": "/mnt/dem/srtm_65_20-3785-contour.shp"
-      },
-      "srs-name": "autodetect",
-      "srs": "",
-      "advanced": {},
-      "name": "srtm65203785contour"
-    },
-    {
-      "geometry": "linestring",
-      "extent": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "id": "srtm65193785contour",
-      "class": "contour",
-      "Datasource": {
-        "file": "/mnt/dem/srtm_65_19-3785-contour.shp",
-        "id": "srtm65193785contour",
-        "project": "SteveCountryVic",
-        "srs": ""
-      },
-      "srs-name": "autodetect",
-      "srs": "",
-      "advanced": {},
-      "name": "srtm65193785contour"
-    },
-    {
-      "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -239,15 +132,17 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "beach"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -265,15 +160,17 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "education"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -9.023424674708407,
+        48.872166654376635,
+        2.091911653031664,
+        61.0609999683058
       ],
       "Datasource": {
         "type": "postgis",
@@ -281,7 +178,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
+        "extent": "-1004483.04,6253198.52,232870.54,8639843.17",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -296,15 +193,16 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "green"
+      "name": "green",
+      "geometry": "polygon"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -312,7 +210,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "extent": "-2805917.19,4232093.15,1110493.98,9704487.75",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -323,15 +221,17 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "waterways"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -9.023424674708407,
+        48.872166654376635,
+        2.091911653031664,
+        61.0609999683058
       ],
       "Datasource": {
         "type": "postgis",
@@ -339,7 +239,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
+        "extent": "-1004483.04,6253198.52,232870.54,8639843.17",
         "dbname": "gis",
         "host": "localhost",
         "user": "ubuntu",
@@ -350,15 +250,16 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "water"
+      "name": "water",
+      "geometry": "polygon"
     },
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.498860094724236,
-        179.86119277496303,
-        15.260412397925982
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -376,16 +277,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "placemarkers",
       "status": "off"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -9.023424674708407,
+        48.872166654376635,
+        2.091911653031664,
+        61.0609999683058
       ],
       "Datasource": {
         "type": "postgis",
@@ -393,7 +296,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
+        "extent": "-1004483.04,6253198.52,232870.54,8639843.17",
         "dbname": "gis",
         "host": "localhost",
         "user": "ubuntu",
@@ -404,14 +307,15 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "landuse"
+      "name": "landuse",
+      "geometry": "polygon"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -430,17 +334,19 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "stateboundaries",
       "status": "off"
     },
     {
       "geometry": "polygon",
       "extent": [
-        -180,
-        -85.051,
-        180,
-        85.051
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "id": "waterpoly",
       "class": "",
@@ -449,16 +355,18 @@
       },
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "waterpoly",
       "status": "off"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -479,16 +387,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "military"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -510,16 +420,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "oldrail"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -537,16 +449,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "mtbroutes"
     },
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.77242729472166,
-        179.9977666749446,
-        24.789112296764717
+        -8.646922398796336,
+        48.72154289486238,
+        9.975737198611323,
+        61.09164999477308
       ],
       "Datasource": {
         "type": "postgis",
@@ -554,7 +468,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
+        "extent": "-962570.99836296,6227744.45198257,1110493.98523693,8646897.83212924",
         "host": "localhost",
         "user": "ubuntu",
         "dbname": "gis",
@@ -570,10 +484,10 @@
     {
       "geometry": "linestring",
       "extent": [
-        112.69808944147681,
-        -43.93238518362126,
-        158.2064746658378,
-        -9.375632475695024
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -591,16 +505,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "aawt"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -619,16 +535,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "power"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -25.20598297750699,
+        35.500399947157355,
+        9.97573715156718,
+        65.36241699249229
       ],
       "Datasource": {
         "type": "postgis",
@@ -636,7 +554,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "extent": "-2805917.19,4232093.15,1110493.98,9704487.75",
         "dbname": "gis",
         "host": "localhost",
         "user": "ubuntu",
@@ -652,10 +570,10 @@
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -674,16 +592,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "littleroads"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -691,7 +611,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "extent": "-2805917.19,4232093.15,1110493.98,9704487.75",
         "host": "localhost",
         "user": "ubuntu",
         "dbname": "gis",
@@ -701,16 +621,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "minorroads"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -718,7 +640,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "extent": "-2805917.19,4232093.15,1110493.98,9704487.75",
         "dbname": "gis",
         "host": "localhost",
         "user": "ubuntu",
@@ -732,16 +654,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "roads"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -749,7 +673,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "extent": "-2805917.19,4232093.15,1110493.98,9704487.75",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -763,16 +687,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "rail"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -780,7 +706,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "extent": "-2805917.19,4232093.15,1110493.98,9704487.75",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -794,15 +720,17 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "trains"
     },
     {
       "extent": [
-        112.69808944147681,
-        -43.93238518362126,
-        155.78290051833278,
-        -7.457091051748444
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -821,16 +749,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "pedestrian"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -849,16 +779,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "skilifts"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -25.20598297750699,
+        35.500399947157355,
+        9.97573715156718,
+        65.36241699249229
       ],
       "Datasource": {
         "type": "postgis",
@@ -866,7 +798,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "extent": "-2805917.19,4232093.15,1110493.98,9704487.75",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -883,10 +815,10 @@
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -894,7 +826,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "extent": "-2805917.19,4232093.15,1110493.98,9704487.75",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -905,16 +837,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "bikepathsplain"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -922,7 +856,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "extent": "-2805917.19,4232093.15,1110493.98,9704487.75",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -936,16 +870,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "bikeroutes"
     },
     {
       "geometry": "point",
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -9.023424674708407,
+        48.872166654376635,
+        2.091911653031664,
+        61.0609999683058
       ],
       "Datasource": {
         "type": "postgis",
@@ -953,7 +889,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
+        "extent": "-1004483.04,6253198.52,232870.54,8639843.17",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -961,22 +897,25 @@
         "id": "amenities",
         "project": "SteveCV2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "password": "ubuntu"
+        "password": "ubuntu",
+        "cursor_size": "100000"
       },
       "id": "amenities",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "amenities"
     },
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.77242729472166,
-        179.9977666749446,
-        24.789112296764717
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -984,7 +923,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
+        "extent": "-962570.99836296,6227744.45198257,1110493.98523693,8646897.83212924",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -995,16 +934,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "places_cities"
     },
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.498860094724236,
-        179.86119277496303,
-        15.260412397925982
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1012,27 +953,30 @@
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "auto",
-        "extent": "5584815.01761261,-7265206.30423533,20022056.3931797,1719230.12852158",
+        "extent": "-962570.99836296,6300085.49374933,195228.093160501,8590385.54789235",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
         "user": "ubuntu",
-        "password": "ubuntu"
+        "password": "ubuntu",
+        "cursor_size": "100000"
       },
       "id": "places_towns",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "places_towns"
     },
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.498860094724236,
-        179.86119277496303,
-        15.260412397925982
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1040,7 +984,7 @@
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "auto",
-        "extent": "5584815.01761261,-7265206.30423533,20022056.3931797,1719230.12852158",
+        "extent": "-962570.99836296,6300085.49374933,195228.093160501,8590385.54789235",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -1048,22 +992,25 @@
         "id": "places_pointless",
         "project": "SteveCV2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "password": "ubuntu"
+        "password": "ubuntu",
+        "cursor_size": "100000"
       },
       "id": "places_pointless",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "places_pointless"
     },
     {
       "geometry": "linestring",
       "extent": [
-        51.68732284883638,
-        -54.63025216343219,
-        179.76167180966976,
-        15.212837145151616
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1081,16 +1028,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "waterwaylabels"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1108,16 +1057,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "ferry"
     },
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.77242729472166,
-        179.9977666749446,
-        24.789112296764717
+        -8.646922398796336,
+        48.72154289486238,
+        9.975737198611323,
+        61.09164999477308
       ],
       "Datasource": {
         "type": "postgis",
@@ -1125,7 +1076,7 @@
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "auto",
-        "extent": "5584815.01761261,-7317823.57245253,20037259.7301813,2849863.9668471",
+        "extent": "-962570.99836296,6227744.45198257,1110493.98523693,8646897.83212924",
         "dbname": "gis",
         "host": "localhost",
         "port": "5432",
@@ -1142,10 +1093,10 @@
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.498860094724236,
-        179.86119277496303,
-        15.260412397925982
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1167,16 +1118,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "places"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1195,15 +1148,17 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "roadlinks"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -9.023424674708407,
+        48.872166654376635,
+        2.091911653031664,
+        61.0609999683058
       ],
       "Datasource": {
         "type": "postgis",
@@ -1211,7 +1166,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
+        "extent": "-1004483.04,6253198.52,232870.54,8639843.17",
         "dbname": "gis",
         "host": "localhost",
         "user": "ubuntu",
@@ -1222,14 +1177,15 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "buildings"
+      "name": "buildings",
+      "geometry": "polygon"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1250,16 +1206,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "greenlabels"
     },
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.77242729472166,
-        179.9977666749446,
-        24.789112296764717
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1277,16 +1235,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "oldstations"
     },
     {
       "geometry": "linestring",
       "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1305,15 +1265,17 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "mtbroutelabels"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1332,16 +1294,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "dam"
     },
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.77242729472166,
-        179.9977666749446,
-        24.789112296764717
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1359,16 +1323,18 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "barriers"
     },
     {
       "geometry": "point",
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -9.023424674708407,
+        48.872166654376635,
+        2.091911653031664,
+        61.0609999683058
       ],
       "Datasource": {
         "type": "postgis",
@@ -1376,26 +1342,29 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
+        "extent": "-1004483.04,6253198.52,232870.54,8639843.17",
         "dbname": "gis",
         "host": "localhost",
         "user": "ubuntu",
-        "password": "ubuntu"
+        "password": "ubuntu",
+        "cursor_size": "100000"
       },
       "id": "randompois",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "randompois"
     },
     {
       "geometry": "point",
       "extent": [
-        50.16924689301642,
-        -54.77242729472166,
-        179.9977666749446,
-        24.789112296764717
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1416,11 +1385,13 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "fords"
     },
     {
-      "geometry": "point",
+      "geometry": "polygon",
       "extent": [
         49.87826534628294,
         -56.4883809499562,
@@ -1440,21 +1411,24 @@
         "id": "naturals",
         "project": "SteveCountryVic",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "password": "ubuntu"
+        "password": "ubuntu",
+        "cursor_size": "100000"
       },
       "id": "naturals",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "naturals"
     },
     {
       "extent": [
-        49.87826534628294,
-        -56.4883809499562,
-        179.95302599075885,
-        27.399969324086747
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1473,15 +1447,17 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
+      "advanced": {
+        "cursor_size": "100000"
+      },
       "name": "suburbs"
     },
     {
       "extent": [
-        49.87826534628294,
-        -55.32281745483311,
-        179.95302599075885,
-        27.399969324086747
+        -12.085,
+        49.778,
+        2.417,
+        60.4547
       ],
       "Datasource": {
         "type": "postgis",
@@ -1489,7 +1465,7 @@
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7424772.16,20032279.22,3173532.12",
+        "extent": "-1004483.04,6253198.52,232870.54,8639843.17",
         "host": "localhost",
         "user": "ubuntu",
         "dbname": "gis",
@@ -1499,8 +1475,11 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "powerstations"
+      "advanced": {
+        "cursor_size": "100000"
+      },
+      "name": "powerstations",
+      "geometry": "polygon"
     }
   ],
   "scale": 1,

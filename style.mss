@@ -299,10 +299,10 @@ Map {
   }
 */
   line-smooth:0.6;
-  line-width:@track;
-  [zoom = 10] { line-width: @track * @roadzoom10; }
-  [zoom = 11] { line-width: @track * @roadzoom11; }
-  [zoom = 12] { line-width: @track * @roadzoom12; }
+  line-width:@track * 0.5;
+  [zoom = 10] { line-width: @track * @roadzoom10 * 0.5; }
+  [zoom = 11] { line-width: @track * @roadzoom11 * 0.5; }
+  [zoom = 12] { line-width: @track * @roadzoom12 * 0.75; }
   [zoom = 13] { line-width: @track * @roadzoom13; }
   [zoom = 14] { line-width: @track * @roadzoom14 * 1.25; }
   [zoom = 15] { line-width: @track * @roadzoom15 * 1.5; }
