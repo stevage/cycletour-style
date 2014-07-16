@@ -147,12 +147,15 @@ Map {
     line-color:@bigroad;
     line-width: @roadsize;
     line-cap:butt;
+    line-smooth:0.3;
+    [zoom >= 15] { line-smooth: 0.5; }
     [zoom = 14] { line-width: @minorroad_s * @roadzoom14+@bridgegap; }
     [zoom = 15] { line-width: @minorroad_s * @roadzoom15+@bridgegap; }
     [zoom >= 16] { line-width: @minorroad_s * @roadzoom16+@bridgegap; }
   }
   ::carpet {
-    line-smooth:0.45;
+    line-smooth:0.3;
+    [zoom >= 15] { line-smooth: 0.5; }
     line-width:@minorroad_s + @carpetgap; 
     line-color:@carpet;
     [zoom = 10] { line-width: @minorroad_s * @roadzoom10+@mcarpetgap; }
@@ -172,8 +175,8 @@ Map {
   line-color:@minorroad;
   line-width: @minorroad_s;
   line-cap:butt;
-  line-smooth:0.4;
-  [zoom >= 14] { line-smooth: 0.5; }
+  line-smooth:0.3;
+  [zoom >= 15] { line-smooth: 0.5; }
   [unsealed="yes"] { 
     line-dasharray: 6,1;
   }
@@ -245,8 +248,8 @@ Map {
   [zoom = 15] { line-width: @littleroad * @roadzoom15 * 0.75; }
   [zoom >= 16] { line-width: @littleroad * @roadzoom16; }
 
-  line-smooth:0.4;
-  [zoom >= 14] { line-smooth: 0.5; }
+  line-smooth:0.3;
+  [zoom >= 15] { line-smooth: 0.5; }
 
   line-color:gray;
   [surface="unpaved"],[surface="dirt"],[surface="gravel"],
@@ -283,9 +286,12 @@ Map {
   }
 }
 
-
+@link: 0.5; 
 #roadlinks[zoom>=13] {
-  line-width:0.5;
+  [zoom = 13] { line-width: @link * @roadzoom13; }
+  [zoom = 14] { line-width: @link * @roadzoom14; }
+  [zoom = 15] { line-width: @link * @roadzoom15; }
+  [zoom >= 16] { line-width: @link * @roadzoom16; }
   line-color:#999;
 }
 

@@ -109,7 +109,8 @@
   [zoom >= 16] { line-width: @mtbroute * @pathzoom16}
   line-smooth:1;
   line-color:hsla(340,50%,90%,100%);  
-  [route_name=~"Bicentennial National Trail.*"] {
+  [route_name=~"Bicentennial National Trail.*"],
+  [route_name=~"Mawson Trail.*"]  {
     line-color:hsla(50,100%,40%,80%);
     [zoom < 12] { line-width:3; }
     line-dasharray:1,0;

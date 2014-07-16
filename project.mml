@@ -697,6 +697,33 @@
       ],
       "Datasource": {
         "type": "postgis",
+        "table": "(select way,name,highway\nfrom planet_osm_line\nwhere highway like '%_link')\np",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "dbname": "gis",
+        "host": "gis.researchmaps.net",
+        "port": "5432",
+        "user": "gis"
+      },
+      "id": "roadlinks",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "roadlinks"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        49.87826534628294,
+        -55.94929545595491,
+        179.9999999749438,
+        31.466431033464257
+      ],
+      "Datasource": {
+        "type": "postgis",
         "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,bridge,\ncase when surface in ('gravel','unpaved','sand','unsealed','dirt') then 'yes' else' no' end unsealed\nfrom planet_osm_line \nwhere highway in ('motorway','trunk','primary','secondary','tertiary')) as roads",
         "key_field": "",
         "geometry_field": "",
@@ -1136,33 +1163,6 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "places"
-    },
-    {
-      "geometry": "linestring",
-      "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
-      ],
-      "Datasource": {
-        "type": "postgis",
-        "table": "(select way,name,highway\nfrom planet_osm_line\nwhere highway like '%_link')\np",
-        "key_field": "",
-        "geometry_field": "",
-        "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
-        "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "port": "5432",
-        "user": "gis"
-      },
-      "id": "roadlinks",
-      "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "roadlinks"
     },
     {
       "extent": [
