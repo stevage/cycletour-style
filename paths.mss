@@ -100,7 +100,11 @@
   
 }
 @mtbroute: 1.5;
-#mtbroutes[zoom >= 10] {
+#mtbroutes[zoom >= 10],
+#mtbroutes[route_name="Mawson Trail"],
+#mtbroutes[route_name="Kidman Trail"]
+
+{
   line-width:@mtbroute ;
   [zoom = 12] { line-width: @mtbroute * @pathzoom12}
   [zoom = 13] { line-width: @mtbroute * @pathzoom13}
@@ -110,7 +114,8 @@
   line-smooth:1;
   line-color:hsla(340,50%,90%,100%);  
   [route_name=~"Bicentennial National Trail.*"],
-  [route_name=~"Mawson Trail.*"]  {
+  [route_name="Mawson Trail"],
+  [route_name="Kidman Trail"] {
     line-color:hsla(50,100%,40%,80%);
     [zoom < 12] { line-width:3; }
     line-dasharray:1,0;
@@ -185,7 +190,7 @@
   [highway="steps"] { line-width: 3; line-dasharray: 1,2;} 
 }
 
-#aawt[zoom >= 10] {
+#walkingroutes[zoom >= 9] {
 //  line-width:1;
 //  line-color:#168;
   
@@ -193,11 +198,14 @@
   line-width:3;
   line-dasharray:1,0;
   //line-smooth:0.5;
-  image-filters:agg-stack-blur(2,2);
+  //image-filters:agg-stack-blur(2,2);
   [zoom >= 14]::label {
       text-face-name:'Roboto Condensed Regular';
       text-size:1;
-      text-name:"'AAWT'";
+      text-name:[name];
+      [name="Austalian Alps Walking Track"] {
+        text-name:"'AAWT'";
+      }
       text-placement:line;
       text-allow-overlap:true;
       text-spacing:150;

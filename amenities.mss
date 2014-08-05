@@ -1,7 +1,7 @@
 // amenities useful in towns
 #amenities[zoom >= 15]::a {
   [shop=~"bicycle|supermarket|convenience|general|bakery"],
-  [amenity=~"cafe|toilets|restaurant|fast_food|shelter"],
+  [amenity=~"cafe|toilets|restaurant|fast_food|shelter|drinking_water"],
   [tourism=~"viewpoint|attraction"]
     {
     point-allow-overlap:true;
@@ -24,6 +24,8 @@
   [shop="bakery"]       { point-file:url('http://www.sjjb.co.uk/mapicons/png/shopping_bakery.p.16.png'); }
   [tourism="viewpoint"] { point-file:url('http://www.sjjb.co.uk/mapicons/png/tourist_view_point.p.12.png'); }
   [tourism="attraction"] { point-file:url('maki/star-18.png'); }
+  [amenity="drinking_water"] {point-file:url('http://www.sjjb.co.uk/mapicons/png/food_drinkingtap.p.24.png'); } 
+  //[amenity="drinking_water"] { point-file:url('maki/grocery-18.png'); } 
 }
 
 /* Camping accomodation */

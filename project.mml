@@ -565,7 +565,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select name,route,way\nfrom planet_osm_line\nwhere route_name='Australian Alps Walking Track') p",
+        "table": "(select name,route,way\nfrom planet_osm_line\nwhere route in ('hiking','foot') and network='nwn') p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -574,12 +574,12 @@
         "host": "gis.researchmaps.net",
         "user": "gis"
       },
-      "id": "aawt",
+      "id": "walkingroutes",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "aawt"
+      "name": "walkingroutes"
     },
     {
       "geometry": "linestring",
