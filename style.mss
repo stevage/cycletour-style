@@ -242,8 +242,8 @@ Map {
 #littleroads[zoom >= 11] {
   line-width: @littleroad;
   [zoom >= 10] { line-width: @littleroad * @roadzoom10; }
-  [zoom = 12] { line-width: @littleroad * @roadzoom12; }
-  [zoom = 13] { line-width: @littleroad * @roadzoom13; }
+  [zoom = 12] { line-width: @littleroad * @roadzoom12*0.75; }
+  [zoom = 13] { line-width: @littleroad * @roadzoom13*0.75; }
   [zoom = 14] { line-width: @littleroad * @roadzoom14 * 0.75; }
   [zoom = 15] { line-width: @littleroad * @roadzoom15 * 0.75; }
   [zoom >= 16] { line-width: @littleroad * @roadzoom16; }
@@ -447,10 +447,12 @@ Map {
   [zoom<=7] { marker-width:2; }
   marker-fill:hsla(100,70%,40%,80%);
   marker-line-color:hsla(100,70%,20%,100%);
-  marker-line-width:0;
+  marker-line-width:1;
   [zoom >= 12] { marker-line-width:1;}
-  marker-allow-overlap:true;
-  marker-ignore-placement:true;
+  [zoom >= 12] { 
+    marker-allow-overlap:true; 
+    marker-ignore-placement:true;
+  }
   ::label[zoom >= 13] {
     text-face-name: 'Roboto Condensed Regular';
     
@@ -564,6 +566,9 @@ but not so generally relevant I guess. */
     line-smooth:1.0;
     line-width: 2.5;
   }
+  [zoom = 15] { line-width: 4; }
+  [zoom >= 16] { line-width: 6; }
+    
 }
 
 #waterways[waterway="stream"],#waterways[waterway="drain"],
@@ -597,6 +602,8 @@ but not so generally relevant I guess. */
     text-halo-fill:hsla(0,0%,100%,50%);
     text-allow-overlap:true;
     text-dx:10;//kind of meaningless really.
+    text-halo-radius:1;
+  text-halo-fill:hsla(240,40%,90%,50%);
 }
 
 #waterways[man_made='pipeline'][zoom >= 14]{
@@ -668,15 +675,36 @@ but not so generally relevant I guess. */
     */
   }
   [leisure ='pitch'] { line-width: 0; } // gets applied to too much?
-  [zoom >= 13][is_park=0] { 
+  [zoom >= 13][is_park=0]
+   { 
     line-width:2;
     line-color:hsla(100,70%,40%,0.4);
     line-smooth:0.2;
     line-dasharray:4,6;
+    // draw a text label around the perimeter of state parks etc.
+    text-name:[name];
+    text-placement:line;
+    text-dy:-4;
+    text-face-name:'CartoGothic Std Book';
+    text-size:10;
+    text-fill:hsla(100,60%,30%, 0.8);
     //line-offset:4;//##
     //image-filters:agg-stack-blur(1,1);
   }
 }
+
+#green[zoom >=15][is_park=1]::parklabel {
+    text-face-name:'CartoGothic Std Italic';
+    text-name:'[name]';
+    text-size:11;
+    text-wrap-width:50;
+    [zoom<=11] { text-size: 10; }
+    text-fill:hsla(100,20%,20%,60%);
+    text-placement-type:simple;
+    text-halo-radius:3;
+    text-halo-fill:@green;//hsla(100,20%,80%,70%); //@green
+}
+
 //#greenlabels[zoom >=16][size > 50000],
 #greenlabels[zoom >=15][size > 100000],
 #greenlabels[zoom >=14][size > 1000000],
@@ -715,6 +743,20 @@ but not so generally relevant I guess. */
 {
   polygon-fill:hsla(320,40%,80%,30%);
 }
+
+#landuse[zoom >= 15] {
+    text-face-name:'CartoGothic Std Italic';
+    text-name:'[name]';
+    text-size:11;
+    text-wrap-width:50;
+    [zoom<=11] { text-size: 10; }
+    text-fill:hsla(100,20%,20%,20%);
+    text-placement-type:simple;
+    //text-halo-radius:3;
+    //text-halo-fill:@green;//hsla(100,20%,80%,70%); //@green
+}
+
+
 #landuse[power='generator'][zoom >=13]::labels{
     text-face-name:'CartoGothic Std Book';
     text-name:'[name]';

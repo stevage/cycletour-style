@@ -140,6 +140,44 @@
     {
       "geometry": "linestring",
       "extent": [
+        135.00000000000006,
+        -35.00005601821626,
+        140.00026201098137,
+        -30.000000000000018
+      ],
+      "id": "srtm64193785contour",
+      "class": "contour",
+      "Datasource": {
+        "file": "/mnt/dem/srtm_64_19-3785-contour.shp"
+      },
+      "layer": null,
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "srtm64193785contour"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        135.00000000000006,
+        -29.99979775114504,
+        139.99990379474812,
+        -25.00000000000002
+      ],
+      "id": "srtm64183785contour",
+      "class": "contour",
+      "Datasource": {
+        "file": "/mnt/dem/srtm_64_18-3785-contour.shp"
+      },
+      "layer": null,
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "srtm64183785contour"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
         144.99958393868292,
         -40.000217761147645,
         150.0000684028188,
@@ -325,17 +363,17 @@
     {
       "extent": [
         49.87826534628294,
-        -56.4883809499562,
+        -55.32281745483311,
         179.95302599075885,
         27.399969324086747
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,way_area as size\nfrom planet_osm_polygon\nwhere name not like '%Marine%' and (\"natural\"='water' or landuse='reservoir' or waterway='riverbank')) p",
+        "table": "(select way,name,way_area as size\nfrom planet_osm_polygon\nwhere coalesce(name,'') not like '%Marine%' and (\"natural\"='water' or landuse='reservoir' or waterway='riverbank')) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
-        "extent": "5552423.1,-7656259.22,20032279.22,3173532.12",
+        "extent": "5552423.1,-7424772.16,20032279.22,3173532.12",
         "dbname": "gis",
         "host": "gis.researchmaps.net",
         "user": "gis"
@@ -345,7 +383,8 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "water"
+      "name": "water",
+      "geometry": "polygon"
     },
     {
       "geometry": "point",
@@ -1332,7 +1371,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,man_made,power,historic\nfrom planet_osm_point\nwhere (man_made is not null and man_made not in ('tower','monitoring_station'))\nor historic is not null\nunion select way,name,man_made,power,historic\nfrom planet_osm_polygon\nwhere power is not null) p",
+        "table": "(select way,name,man_made,power,coalesce(\"generator:source\",power_source,'') as power_source,historic\nfrom planet_osm_point\nwhere (man_made is not null and man_made not in ('tower','monitoring_station'))\nor historic is not null\nor power is not null\nunion \nselect way,name,man_made,power,coalesce(\"generator:source\",power_source) as power_source,historic\nfrom planet_osm_polygon\nwhere power is not null) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -1459,7 +1498,7 @@
     }
   ],
   "scale": 1,
-  "metatile": 3,
+  "metatile": 8,
   "name": "cycletour.org",
   "description": "Map optimised for cycle touring: roads shown at low zoom levels, bike paths prominent, amenities like bakeries and pubs shown. Database on gis.cycletour.org",
   "attribution": ""

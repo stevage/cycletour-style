@@ -1,61 +1,69 @@
 // amenities useful in towns
-#amenities[zoom >= 15]::a {
+#amenities[zoom >= 15]::a,
+#amenities[zoom >=14][tourism="viewpoint"]::a,
+#amenities[zoom >=14][tourism="attraction"]::a,
+{
   [shop=~"bicycle|supermarket|convenience|general|bakery"],
-  [amenity=~"cafe|toilets|restaurant|fast_food|shelter|drinking_water"],
+  [amenity=~"cafe|toilets|restaurant|fast_food|drinking_water"],
   [tourism=~"viewpoint|attraction"]
     {
-    point-allow-overlap:true;
-    point-ignore-placement:true;
+    marker-allow-overlap:true;
+    marker-ignore-placement:true;
     [city_distance < 6000] { 
-      point-allow-overlap:false;
-      point-ignore-placement:false;
+      
+      marker-allow-overlap:false;
+      marker-ignore-placement:false;
     }
   }
   
-  /*[amenity="shelter"]   { point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_shelter2.p.16.png'); }*/
-  [amenity="toilets"]   { point-file:url('http://www.sjjb.co.uk/mapicons/png/amenity_toilets.p.12.png');  }
-  [amenity="cafe"]      { point-file:url('maki/cafe-18.png');  }
-  [shop="bicycle"]      { point-file:url('http://www.sjjb.co.uk/mapicons/png/shopping_bicycle.p.20.png'); }
-  [amenity="restaurant"]{ point-file:url('maki/restaurant-18.png'); }
-  [amenity="fast_food"] { point-file:url('maki/fast-food-18.png'); }
-  [shop="supermarket"]  { point-file:url('maki/grocery-18.png'); }
+  /*[amenity="shelter"]   { marker-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_shelter2.p.16.png'); }*/
+  [amenity="toilets"]   { marker-file:url('http://www.sjjb.co.uk/mapicons/png/amenity_toilets.p.12.png');  }
+  [amenity="cafe"]      { marker-file:url('maki/cafe-18.png');  }
+  [shop="bicycle"]      { marker-file:url('http://www.sjjb.co.uk/mapicons/png/shopping_bicycle.p.20.png'); }
+  [amenity="restaurant"]{ marker-file:url('maki/restaurant-18.png'); }
+  [amenity="fast_food"] { marker-file:url('maki/fast-food-18.png'); }
+  [shop="supermarket"]  { marker-file:url('maki/grocery-18.png'); }
   [shop="convenience"],
-  [shop="general"]      { point-file:url("http://www.sjjb.co.uk/mapicons/png/shopping_convenience.p.16.png"); }
-  [shop="bakery"]       { point-file:url('http://www.sjjb.co.uk/mapicons/png/shopping_bakery.p.16.png'); }
-  [tourism="viewpoint"] { point-file:url('http://www.sjjb.co.uk/mapicons/png/tourist_view_point.p.12.png'); }
-  [tourism="attraction"] { point-file:url('maki/star-18.png'); }
-  [amenity="drinking_water"] {point-file:url('http://www.sjjb.co.uk/mapicons/png/food_drinkingtap.p.24.png'); } 
-  //[amenity="drinking_water"] { point-file:url('maki/grocery-18.png'); } 
+  [shop="general"]      { marker-file:url("http://www.sjjb.co.uk/mapicons/png/shopping_convenience.p.16.png"); }
+  [shop="bakery"]       { marker-file:url('http://www.sjjb.co.uk/mapicons/png/shopping_bakery.p.16.png'); }
+  [tourism="viewpoint"] { marker-file:url('http://www.sjjb.co.uk/mapicons/png/tourist_view_point.p.12.png'); }
+  [tourism="attraction"] { 
+    marker-file:url('maki/star-18.png'); 
+    [zoom <= 14] { marker-file:url('maki/star-12.png'); }
+  }
+  //Freepik/Flaticon/CC-BY 3.0
+  [amenity="drinking_water"] {marker-width:16;marker-file:url('water19.png'); } 
+  //[amenity="drinking_water"] { marker-file:url('maki/grocery-18.png'); } 
 }
 
 /* Camping accomodation */
-#amenities[zoom >= 12]::a {
+#amenities[zoom >= 12] {
   [tourism="caravan_site"] {
-    point-allow-overlap:true;point-ignore-placement:true;
-    point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_caravan_park.p.20.png'); 
-    [zoom <= 13] { point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_caravan_park.p.12.png'); }
+    marker-allow-overlap:true;marker-ignore-placement:true;
+    marker-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_caravan_park.p.20.png'); 
+    [zoom <= 13] { marker-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_caravan_park.p.12.png'); }
   }
   
-  [tourism="basic_hut"], [tourism="alpine_hut"], [tourism="wilderness_hut"],
+  [tourism="basic_hut"], [tourism="alpine_hut"], [tourism="wilderness_hut"],[amenity="shelter"],
   [building="hut"]{ 
-    point-allow-overlap:true;point-ignore-placement:true;
-    point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_alpinehut.p.16.png'); 
+    marker-allow-overlap:true;marker-ignore-placement:true;
+    marker-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_alpinehut.p.16.png'); 
     [zoom <= 13] {
-      point-file:url('http://www.sjjb.co.uk/mapicons/png/accommodation_alpinehut.p.12.png'); 
+      marker-width:12;
     }
   }
   [tourism="camp_site"] {   
-    point-allow-overlap:true;point-ignore-placement:true;
-    point-file:url('maki/campsite-18.png'); 
+    marker-allow-overlap:true;marker-ignore-placement:true;
+    marker-file:url('maki/campsite-18.png'); 
     [zoom <= 13] {
-      point-file:url('maki/campsite-12.png'); 
+      marker-file:url('maki/campsite-12.png'); 
     }
   }
 }
 
 //Labels
 #amenities[zoom >= 13][city_distance>6000.0],
-#amenities[zoom >= 13][brewery="yes"],
+#amenities[zoom >= 12][brewery="yes"],
 #amenities[zoom >= 16]{
 [tourism=~"hotel|guest_house|basic_hut|alpine_hut|wilderness_hut|caravan_site|camp_site|winery|viewpoint|picnic_site|attraction"],
 [amenity="winery"][brewery != "yes"],
@@ -79,46 +87,50 @@
   }
   [tourism="winery"],[shop="winery"],[shop="wine"],
   [amenity="winery"]      { 
-    point-file:url('http://www.millerwinery.com/sites/default/files/content-images/grape.png'); 
-    point-allow-overlap:true;
-    point-opacity:0.8;
+    marker-file:url('http://www.millerwinery.com/sites/default/files/content-images/grape.png'); 
+    marker-allow-overlap:true;
+    marker-opacity:0.8;
   }
   [tourism="picnic_site"] { 
-    point-file:url('http://www.sjjb.co.uk/mapicons/png/tourist_picnic.p.16.png'); 
-    point-allow-overlap:true; 
+    marker-file:url('http://www.sjjb.co.uk/mapicons/png/tourist_picnic.p.16.png'); 
+    marker-allow-overlap:true; 
   }
   [amenity="pub"], [amenity="bar"],[brewery="yes"] {
-    point-file:url('maki/beer-18.png');
-    point-allow-overlap:true;
-    [city_distance < 6000] { 
-      point-file:url('maki/beer-12.png');
-      point-allow-overlap:false;
+    marker-file:url('maki/beer-18.png');
+    [zoom >= 15] {
+      marker-file:url('maki/beer-24.png');
     }
-    [brewery="yes"][zoom >= 14] {
-//    point-file:url('http://www.sjjb.co.uk/mapicons/png/food_biergarten.p.24.png');
-      point-file:url('http://www.sjjb.co.uk/mapicons/png/food_biergarten.glow.32.png');
-      point-ignore-placement:false;
-      point-allow-overlap:true;
-      text-name:'[name]';
-      text-halo-fill:white;
-      text-wrap-width:50;
-      text-halo-radius:1.5;
-      text-fill:hsla(40,60%,20%,90%);
-      text-size:11;
-      text-face-name:'Roboto Condensed Bold';
-      text-horizontal-alignment:middle;
-      text-dy:4;
-      text-line-spacing:-4;
-      text-allow-overlap:true;
-      
+    marker-allow-overlap:true;
+    [city_distance < 6000] { 
+      marker-file:url('maki/beer-12.png');
+      marker-allow-overlap:false;
+    }
+    [brewery="yes"][zoom >= 12] {
+//    marker-file:url('http://www.sjjb.co.uk/mapicons/png/food_biergarten.p.24.png');
+      marker-file:url('http://www.sjjb.co.uk/mapicons/png/food_biergarten.glow.32.png');
+      marker-ignore-placement:false;
+      marker-allow-overlap:true;
+      [zoom >= 14] { 
+        text-name:'[name]';
+        text-halo-fill:white;
+        text-wrap-width:50;
+        text-halo-radius:1.5;
+        text-fill:hsla(40,60%,20%,90%);
+        text-size:11;
+        text-face-name:'Roboto Condensed Bold';
+        text-horizontal-alignment:middle;
+        text-dy:4;
+        text-line-spacing:-4;
+        text-allow-overlap:true;
+      }
     }
   }
 }
 
 #barriers[zoom>=14][barrier="gate"] {
-  point-file:url('http://www.sjjb.co.uk/mapicons/png/barrier_gate.p.12.png');
-  point-ignore-placement:true;
-  point-opacity:0.7;
+  marker-file:url('http://www.sjjb.co.uk/mapicons/png/barrier_gate.p.12.png');
+  marker-ignore-placement:true;
+  marker-opacity:0.7;
 }
 
 // Geographic features like mountain peaks, plus towers etc.
@@ -136,13 +148,20 @@
       [zoom >= 15] { text-size: 13; text-fill: hsl(220,00%,30%);}
     }
 
-/*
-#powerstations[zoom >= 14] {
-  polygon-fill: gray;
-  [zoom = 14] { polygon-opacity: 0.3; }
-  polygon-opacity:0.5;
+// <div>Icon made by <a href="http://yanlu.de" title="Yannick">Yannick</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+#randompois[zoom >= 13][power_source="wind"] {
+  marker-file:url('wind-turbine.png');
+  marker-width:12;
+  [zoom = 13] { marker-width: 8; marker-opacity:0.5;}
+  [zoom = 14] { marker-width: 12; marker-opacity:0.8;}
+  [zoom = 15] { marker-width: 16; marker-opacity:0.8;}
+  [zoom >= 16] { marker-width: 24; marker-opacity:0.8;}
+  marker-allow-overlap:true;
+//  polygon-fill: gray;
+//  [zoom = 14] { polygon-opacity: 0.3; }
+//  polygon-opacity:0.5;
 }
-*/
+
 
 
 #landmarks[aeroway='helipad'][zoom >= 13] {
