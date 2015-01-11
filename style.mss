@@ -9,11 +9,12 @@ Map {
   
   //buffer-size:1024;
 }
-
 #waterpoly {
   polygon-fill:@water;
 }
-#landpolygons { polygon-fill: @background; }
+#landpolygons[zoom >= 10] { polygon-fill: @background; }
+#landpolygon-lowzoom[zoom < 10] { polygon-fill: @background; }
+
 #coastline::deepsea {
     line-color: hsl(180,40%,40%);
     line-width: 20;
@@ -26,6 +27,8 @@ Map {
     line-join: round;
     image-filters: agg-stack-blur(5,5);
 }
+
+
 
 
 @roadsize: 1.0;
@@ -45,6 +48,8 @@ Map {
 @bridgegap: 4;
 @carpetgap:2;
 @carpet:hsla(0,0%,100%,50%);
+@bikelane: hsla(20,80%,40%,1.0);
+
 #roads[zoom >= 9]
  {
   [bridge="yes"][zoom >= 14]::bridge {
@@ -71,7 +76,7 @@ Map {
 
     // experimental way of showing bike lanes
     [cycleway='lane'][zoom >= 14],
-    [cycleway='track'][zoom >= 14]{ line-color:lighten(@bikeroute,20%); }
+    [cycleway='track'][zoom >= 14]{ line-color:lighten(@bikelane,20%); }
   }
   
   
@@ -140,6 +145,7 @@ Map {
     line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
   }
 }
+
 @minorroad_s: 0.8;
 @mcarpetgap:1;
 #minorroads[zoom >= 9] {
@@ -164,11 +170,13 @@ Map {
     [zoom = 13] { line-width: @minorroad_s * @roadzoom13+@mcarpetgap; }
     [zoom = 14] { line-width: @minorroad_s * @roadzoom14+@mcarpetgap; }
     [zoom = 15] { line-width: @minorroad_s * @roadzoom15+@mcarpetgap; }
-    [zoom >= 16] { line-width: 0; /*@minorroad_s * @roadzoom16; */}
+    [zoom >= 16] { line-width: 0; }
 
     // experimental way of showing bike lanes
     [cycleway='lane'][zoom >= 14],
-    [cycleway='track'][zoom >= 14]{ line-color:lighten(@bikeroute,20%); }
+    [cycleway='track'][zoom >= 14]{ 
+      line-color:lighten(@bikelane,20%); 
+    }
   }
   
   // main road layer
@@ -237,9 +245,10 @@ Map {
     line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
   }
 }
-
-/* Residential, service etc, which disappear on low zooms. */
-#littleroads[zoom >= 11] {
+// Residential, service etc, which disappear on low zooms. 
+#littleroads[zoom >= 11][service != 'parking_aisle'],
+#littleroads[zoom >= 16][service = 'parking_aisle']
+{
   line-width: @littleroad;
   [zoom >= 10] { line-width: @littleroad * @roadzoom10; }
   [zoom = 12] { line-width: @littleroad * @roadzoom12*0.75; }
@@ -257,10 +266,6 @@ Map {
     line-dasharray: 6,1;
     line-color:hsl(30,20%,40%);
   }
-  /*  [highway='residential'] {
-    [zoom <= 12] { line-width:0.3; }
-    [zoom < 11] { line-width:0.2; }
-  }*/
   ::label[zoom >= 14] {
     //text-face-name:'CartoGothic Std Book';
     text-face-name:'DejaVu Sans Condensed';
@@ -299,13 +304,9 @@ Map {
 @track: 0.3;
 #tracks[zoom >= 9]
 {
-/*  ::carpet {
-    line-width:2; line-color:hsla(0,0%,100%,50%);
-    line-smooth:0.6;
-  }
-*/
   line-smooth:0.6;
   line-width:@track;
+  line-color:brown;
   [zoom = 10] { line-width: @track * @roadzoom10; }
   [zoom = 11] { line-width: @track * @roadzoom11; }
   [zoom = 12] { line-width: @track * @roadzoom12; }
@@ -314,7 +315,8 @@ Map {
   [zoom = 15] { line-width: @track * @roadzoom15 * 1.5; }
   [zoom >= 16] { line-width: @track * @roadzoom16 * 1.5; }
   
-  line-color:brown;
+      
+      
   line-dasharray:2,0.5; 
   [zoom >= 12] { line-dasharray:3,2; }
   [zoom >= 14] { line-dasharray:4,2; }
@@ -332,7 +334,28 @@ Map {
     line-dasharray: 1,79;
     line-dash-offset:1;
   }
-  [zoom >= 12] {
+
+    // experimental
+  [zoom >= 14] {
+    line-offset:1.5;
+    line-width: 0.5;
+    line-dasharray:100,0;
+    [zoom = 14] { line-offset: 1; }
+    ::left {
+      line-smooth:0.6;
+      line-width: 0.5;
+      line-color:brown;
+      line-offset:-1.5;
+      [zoom = 14] { line-offset: 1; }
+      //[zoom >= 15] { line-dasharray:5,2; }
+    }
+  }
+
+  
+  
+}
+
+#tracks::label[zoom >= 12] {
     text-face-name:'CartoGothic Std Book';
     text-size:11;
     [zoom = 13] { text-size: 10; }
@@ -340,14 +363,13 @@ Map {
     text-name:'[name]';
     text-placement:line;
     text-allow-overlap:false;//true;
-    text-dy:-6;
+    text-dy:6;
     text-spacing:140;
     text-halo-fill:hsla(0,0%,100%,40%);
     text-halo-radius:1;
     text-fill:darken(brown,10%);
+    text-opacity:0.8;
   }
-
-}
 
 
 
@@ -402,23 +424,10 @@ Map {
     text-halo-fill:hsla(0,0%,100%,40%);
     text-halo-radius:1;
   }
-  /*::bridge1[zoom >= 14][bridge="yes"] {
-    line-color:hsl(60,80%,30%);
-    line-width:1;
-    line-offset:3;
-    
-  }
-  ::bridge2[zoom >= 14][bridge="yes"] {
-    line-color:hsl(60,80%,30%);
-    line-width:1;
-    line-offset:-3;    
-  }*/
-
-
  }
 
 
-/* Actual services */
+// Actual services
 #trains {
   ::carpet[zoom >=10] {
     line-width:5;
@@ -465,7 +474,7 @@ Map {
     text-halo-radius:2;
     text-size:11;
     text-dx: 6;
-    /* Major stations and termini */
+    // Major stations and termini 
     [name='Southern Cross'], 
     [name='Bairnsdale'],
     [name='Albury'],
@@ -491,9 +500,8 @@ Map {
     
   }
 }
+// Old rail lines, interesting to rail buffs and rail trail nerds,
 
-/* Old rail lines, interesting to rail buffs and rail trail nerds,
-but not so generally relevant I guess. */
 #oldrail[zoom >= 10] {
   ::bridge[zoom >= 14][bridge="yes"] {
     carpet/line-color:white;
@@ -579,7 +587,8 @@ but not so generally relevant I guess. */
     line-smooth:0.8;
     line-rasterizer:fast;
   }
-  [zoom >= 13][zoom < 15] { line-width: 1; }
+  [zoom = 13]{ line-width: 1; }
+  [zoom = 14]{ line-width: 1.5; }
   [zoom = 15] { line-width: 1.75; }
   [zoom >= 16] { line-width: 2.5; }
 }
@@ -614,213 +623,6 @@ but not so generally relevant I guess. */
   line-rasterizer:fast;
 }
 
-
-#water { 
-  [zoom >= 9] {
-    line-color:darken(@water,10%);
-    line-smooth:1.0;
-    [zoom <= 10] { line-width:0.5; } 
-  }
-  polygon-smooth:1.0;
-  polygon-fill:@water; 
-}
-
-#water[zoom >=15][size > 100000],
-#water[zoom >=14][size > 1000000],
-#water[zoom >=12][size > 5000000],
-#water[zoom >=10][size > 30000000]{
-    ::label { 
-      text-face-name:'CartoGothic Std Italic';
-      text-name:'[name]';
-      text-size:11;
-      text-wrap-width:20;
-      text-wrap-before:true;
-      text-halo-fill:@water;
-      text-halo-radius:1.5;
-  
-      [zoom<=11] { text-size: 10; }
-      text-fill:hsla(220,80%,20%,50%);
-      text-placement-type:simple;
-      text-placement:interior;
-    }
-}
-
-@green:hsla(100,50%,40%,10%);
-#green {
-  // try to distinuish small parks from big NP boundaries...
-  //[is_park=1]
-  [size < 10000000] 
-    {
-    polygon-fill:@green;
-    polygon-smooth:0.5;
-  
-  }
-  [zoom >=9][is_park=1] { 
-    line-width:0.5;
-    line-color:hsl(100,70%,30%);
-    line-smooth:0.5;
-  }
-  [zoom >= 8][is_park=0] { 
-/*    line-width:0.5;
-    line-color:hsl(100,70%,40%);
-    line-smooth:0.2;*/
-    line-width:0;
-    // ##questionable! dots for national parks?
-//    polygon-pattern-file:url(https://dl.dropboxusercontent.com/u/767553/greendot3.png);
- //   polygon-pattern-opacity:0.1;
-    
-    //polygon-pattern
-/*    polygon-smooth:0.2;
-    polygon-fill:hsla(100,50%,40%,15%);
-    */
-  }
-  [leisure ='pitch'] { line-width: 0; } // gets applied to too much?
-  [zoom >= 13][is_park=0]
-   { 
-    line-width:2;
-    line-color:hsla(100,70%,40%,0.4);
-    line-smooth:0.2;
-    line-dasharray:4,6;
-    // draw a text label around the perimeter of state parks etc.
-    text-name:[name];
-    text-placement:line;
-    text-dy:-4;
-    text-face-name:'CartoGothic Std Book';
-    text-size:10;
-    text-fill:hsla(100,60%,30%, 0.8);
-    //line-offset:4;//##
-    //image-filters:agg-stack-blur(1,1);
-  }
-}
-
-#green[zoom >=15][is_park=1]::parklabel {
-    text-face-name:'CartoGothic Std Italic';
-    text-name:'[name]';
-    text-size:11;
-    text-wrap-width:50;
-    [zoom<=11] { text-size: 10; }
-    text-fill:hsla(100,20%,20%,60%);
-    text-placement-type:simple;
-    text-halo-radius:3;
-    text-halo-fill:@green;//hsla(100,20%,80%,70%); //@green
-}
-
-//#greenlabels[zoom >=16][size > 50000],
-#greenlabels[zoom >=15][size > 100000],
-#greenlabels[zoom >=14][size > 1000000],
-#greenlabels[zoom >=12][size > 5000000],
-#greenlabels[zoom >=10][size > 30000000]{
-    text-face-name:'CartoGothic Std Italic';
-    text-name:'[name]';
-    text-size:11;
-    text-wrap-width:50;
-    [zoom<=11] { text-size: 10; }
-    text-fill:hsla(100,80%,20%,60%);
-    text-placement-type:simple;
-    text-halo-radius:3;
-    text-halo-fill:hsla(100,20%,80%,70%); //@green
-    
-}
-
-#education[zoom >=12] {
-  polygon-fill:hsla(60,60%,85%,50%);
-}
-
-#buildings[zoom >=15] {
-  polygon-fill:hsla(0,0%,20%,10%);
-  polygon-smooth:0.2;
-}
-
-#landuse[leisure='golf_course'][zoom >=12] {
-  polygon-fill:hsla(100,10%,70%,30%);
-}
-
-
-
-#landuse[landuse='industrial'][zoom >=12],
-#landuse[landuse='quarry'][zoom >=12],
-#landuse[power='generator'][zoom >=12]
-{
-  polygon-fill:hsla(320,40%,80%,30%);
-}
-
-#landuse[zoom >= 15] {
-    text-face-name:'CartoGothic Std Italic';
-    text-name:'[name]';
-    text-size:11;
-    text-wrap-width:50;
-    [zoom<=11] { text-size: 10; }
-    text-fill:hsla(100,20%,20%,20%);
-    text-placement-type:simple;
-    //text-halo-radius:3;
-    //text-halo-fill:@green;//hsla(100,20%,80%,70%); //@green
-}
-
-
-#landuse[power='generator'][zoom >=13]::labels{
-    text-face-name:'CartoGothic Std Book';
-    text-name:'[name]';
-    text-size:11;
-    text-wrap-width:50;
-    text-wrap-before:true;
-  
-    text-fill:hsla(0,0%,0%,70%);
-    text-placement-type:simple;
-    text-placement:interior;
-}
-
-
-#landuse[aeroway='aerodrome'][zoom >=12] {
-  polygon-fill:hsla(320,20%,80%,30%);
-  line-color:hsla(320,20%,50%,80%);
-  [zoom>=13] { 
-    text-face-name:'CartoGothic Std Book';
-    text-name:'[name]';
-    text-size:11;
-    text-wrap-width:50;
-  
-    text-fill:hsla(0,0%,0%,70%);
-    text-placement-type:simple;
-    text-placement:interior;
-  }
-}
-
-
-#beach[zoom >= 11] { polygon-fill:hsla(45,70%,70%,0.3); }
-
-#stateboundaries {
-  line-width: 1;
-  line-color: #959;
-  //[zoom >= 9] { line-dasharray:4,8; }
-  [zoom >= 13] { image-filters:agg-stack-blur(2,2); }
-}
-
-/* meh, find a better icon */
-#fords[zoom >= 15] {
-    point-file:url('http://twitgrow.com/wp-content/plugins/WP_Super_Store/images/newsletter/newsletter-warning-icon.png');
-  point-allow-overlap:true;
-  point-transform:scale(0.6,0.6);
-}
-
-#military[zoom >= 9] {
-  polygon-fill:hsla(0,0%,0%,10%);
-  line-width:1;
-  line-color:hsla(0,0%,50%,50%);
-  [zoom>=12] { 
-    text-face-name:'CartoGothic Std Book';
-    text-name:'[name]';
-    text-size:11;
-    text-wrap-width:50;
-  
-    text-fill:hsla(0,0%,0%,70%);
-    text-placement-type:simple;
-    text-placement:interior;
-  }
-}
-// dam walls
-#dam[zoom >= 11] {
-  polygon-fill:hsla(0,0%,50%,70%);
-}
 
 
 // high voltage power lines
@@ -882,4 +684,5 @@ but not so generally relevant I guess. */
     text-placement:line;
   }
 }
+
 

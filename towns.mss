@@ -97,24 +97,7 @@
     [place='locality'] { 
       text-size:10; 
     }
-  }/*
-  ::marker[zoom >8] {
-    [amenities < 5] {  marker-width:2+2*[amenities]; }
-    [amenities >= 5] { marker-width:12; }
-    [amenities < 1] { marker-opacity:0; }
-    marker-line-width:0;
-    marker-line-color:#813;  
-    marker-allow-overlap:true;
-    marker-ignore-placement:true;
-    marker-fill:hsla(330,80%,60%,0.8);
-    [zoom > 8] { marker-line-width:0; }
-    [amenities < 1] { marker-fill-opacity:0; }
-  }*/
-  /*
-  [zoom >= 8] { marker-width: 3;} 
-  [zoom = 7] { marker-width: 3;} 
-  [zoom = 6] { marker-width: 2;} 
-  [zoom <= 5] { marker-width: 1;}*/ 
+  }
 }
 
 #suburbs[zoom >=13] {

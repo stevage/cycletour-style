@@ -62,6 +62,25 @@
       "name": "landpolygons"
     },
     {
+      "geometry": "polygon",
+      "extent": [
+        -180,
+        -85.051,
+        180,
+        83.6664731
+      ],
+      "id": "landpolygon-lowzoom",
+      "class": "",
+      "Datasource": {
+        "file": "/usr/share/mapbox/simplified-land-polygons-complete-3857/simplified_land_polygons.shp"
+      },
+      "layer": null,
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "landpolygon-lowzoom"
+    },
+    {
       "geometry": "raster",
       "extent": [
         110.00000000000003,
@@ -597,32 +616,6 @@
     {
       "geometry": "linestring",
       "extent": [
-        112.69808944147681,
-        -43.93238518362126,
-        158.2064746658378,
-        -9.375632475695024
-      ],
-      "Datasource": {
-        "type": "postgis",
-        "table": "(select name,route,way\nfrom planet_osm_line\nwhere route in ('hiking','foot') and network='nwn') p",
-        "key_field": "",
-        "geometry_field": "",
-        "extent_cache": "auto",
-        "extent": "12545493.93,-5454984.59,17611464.2,-1048379.81",
-        "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
-      },
-      "id": "walkingroutes",
-      "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "walkingroutes"
-    },
-    {
-      "geometry": "linestring",
-      "extent": [
         49.87826534628294,
         -55.94929545595491,
         179.9999999749438,
@@ -646,6 +639,32 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "power"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        112.69808944147681,
+        -43.93238518362126,
+        158.2064746658378,
+        -9.375632475695024
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select name,route,way\nfrom planet_osm_line\nwhere route in ('hiking','foot') and network='nwn') p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "12545493.93,-5454984.59,17611464.2,-1048379.81",
+        "dbname": "gis",
+        "host": "gis.researchmaps.net",
+        "user": "gis"
+      },
+      "id": "walkingroutes",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "walkingroutes"
     },
     {
       "geometry": "linestring",
@@ -683,7 +702,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select *\nfrom planet_osm_line\nwhere highway in ('residential','service','pedestrian','living_street') ) p",
+        "table": "(select *, coalesce(tags::hstore->'service','') as service2 \nfrom planet_osm_line\nwhere highway in ('residential','service','pedestrian','living_street') ) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -906,7 +925,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,surface,name,bicycle,foot,horse,tags::hstore->'mtb',access,highway\nfrom planet_osm_line\nwhere highway in ('footway','path','steps') and not 'yes' in (coalesce(bicycle,tags::hstore->'mtb',''))\n) p",
+        "table": "(select way,surface,name,bicycle,foot,horse,tags::hstore->'mtb',access,highway,bridge\nfrom planet_osm_line\nwhere highway in ('footway','path','steps') and not 'yes' in (coalesce(bicycle,tags::hstore->'mtb',''))\n) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -1417,7 +1436,7 @@
       "name": "fords"
     },
     {
-      "geometry": "point",
+      "geometry": "polygon",
       "extent": [
         49.87826534628294,
         -56.4883809499562,
@@ -1426,7 +1445,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select \"natural\", \nreplace(name,'Mount ','Mt ') as name,\nele,\ntags::hstore->'mountain_pass' as mountain_pass,\nway\nfrom planet_osm_point\nwhere \"natural\" in ('peak','saddle') or (tags::hstore->'mountain_pass') is not null\nunion\nselect \"natural\",name,null,null as mountain_pass,way\nfrom planet_osm_polygon\nwhere place='island'\n) p",
+        "table": "(select \"natural\", \nreplace(name,'Mount ','Mt ') as name,\nele,\ntags::hstore->'mountain_pass' as mountain_pass,waterway,\nway\nfrom planet_osm_point\nwhere \"natural\" in ('peak','saddle') or (tags::hstore->'mountain_pass') is not null or waterway='waterfall'\nunion\nselect \"natural\",name,null,null as mountain_pass,waterway,way\nfrom planet_osm_polygon\nwhere place='island'\n) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",

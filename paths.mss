@@ -1,10 +1,11 @@
+
 @pathzoom10: 1.5;
 @pathzoom11: 2;
 @pathzoom12: 2.5;
 @pathzoom13: 3;
 @pathzoom14: 3.5;
 @pathzoom15: 4;
-@pathzoom16: 5;
+@pathzoom16: 4;
 
 @bikeroute: hsla(20,80%,40%,1.0);
 
@@ -99,10 +100,11 @@
   }
   
 }
+
 @mtbroute: 1.5;
 #mtbroutes[zoom >= 10],
-#mtbroutes[route_name="Mawson Trail"]/*,
-#mtbroutes[route_name="Kidman Trail"]*/
+#mtbroutes[route_name="Mawson Trail"]
+//#mtbroutes[route_name="Kidman Trail"]
 
 {
   line-width:@mtbroute ;
@@ -115,7 +117,8 @@
   line-color:hsla(340,50%,90%,100%);  
   [route_name=~"Bicentennial National Trail.*"],
   [route_name="Mawson Trail"]
-  /*[route_name="Kidman Trail"]*/ {
+  //[route_name="Kidman Trail"]
+  {
     line-color:hsla(50,100%,40%,85%);
     [zoom <= 10] { line-width:3; }
     [zoom = 11] { line-width: @mtbroute * @pathzoom11 *1.5 }
@@ -166,6 +169,22 @@
   [mtb="yes"] { line-dasharray:2,1; }
 }
 @walkingpath: 0.5;
+
+#walkingpaths[zoom >= 14][bridge="yes"]::bridge {
+  line-width:6;
+  line-color:hsla(0,0,1,0.8);
+  ::left { 
+    line-width:1;
+    line-offset:3;
+    line-color:gray;
+  }
+  ::right { 
+    line-width:1;
+    line-offset:-3;
+    line-color:gray;
+  }
+}
+
 #walkingpaths[zoom >= 12] {
   line-dasharray:1,2;
   line-color:hsl(110,90%,20%);
@@ -202,6 +221,7 @@
   
   line-color:hsla(100,80%,40%,80%);
   line-width:3;
+  [zoom >= 12] { line-width: 4; }
   line-dasharray:1,0;
   //line-smooth:0.5;
   //image-filters:agg-stack-blur(2,2);
