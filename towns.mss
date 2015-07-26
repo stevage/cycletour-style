@@ -1,7 +1,7 @@
 //@townlabels: hsl(280,90%,20%);
 @townlabels: hsl(60,70%,10%);
 //@villagelabels: hsl(280,50%,25%); //purple
-@villagelabels: hsl(60,70%,10%);
+@villagelabels: hsl(60,40%,10%);
 //@townblobs: hsla(330,80%,60%,0.8);
 //@townblobs: hsla(260,80%,40%,0.7);
 @townblobs: hsla(260,80%,40%,0.0);

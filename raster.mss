@@ -26,7 +26,7 @@
 //  [zoom<=11][zoom >=10] { raster-opacity: 0.25; } // since no slope shading
 //  raster-scaling:bilinear;
   //raster-scaling:bilinear;
-  raster-scaling:fast;
+  raster-scaling:near;
   [zoom >= 12] { raster-scaling: bilinear; }
   raster-comp-op:multiply;
 }
@@ -41,7 +41,7 @@
   [zoom = 8] { raster-opacity: 0.25; }
   [zoom <= 7] { raster-opacity: 0.3; }
   //raster-scaling:bilinear;
-  raster-scaling:fast;
+  raster-scaling:near;
   raster-colorizer-default-mode: linear;
   raster-colorizer-default-color: hsl(60,50%,80%);//transparent;
   raster-colorizer-stops:
@@ -49,7 +49,8 @@
   stop(392,hsl(110,80%,20%))
   stop(785,hsl(120,70%,20%))
   stop(1100,hsl(100,0%,50%))
-  stop(1370,white);
+  stop(1300,hsl(215,40%,70%))
+  stop(1550,white);
 }
 
 

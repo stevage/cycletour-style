@@ -17,9 +17,9 @@
   "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
   "Stylesheet": [
     "style.mss",
+    "paths.mss",
     "towns.mss",
     "amenities.mss",
-    "paths.mss",
     "raster.mss"
   ],
   "Layer": [
@@ -45,15 +45,15 @@
     {
       "geometry": "polygon",
       "extent": [
-        -180,
-        -85.051,
-        180,
-        83.6664731
+        -0.0016169675114151385,
+        -0.0008084837556767214,
+        0.0016169675114151385,
+        0.0007515887155242199
       ],
       "id": "landpolygons",
       "class": "",
       "Datasource": {
-        "file": "/usr/share/mapbox/land-polygons-split-4326/land_polygons.shp"
+        "file": "/usr/share/mapbox/land-polygons-split-3857/land_polygons.shp"
       },
       "layer": null,
       "srs-name": "autodetect",
@@ -332,7 +332,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,coalesce(leisure,'') as leisure, coalesce(landuse,'') as landuse, coalesce(boundary,'') as boundary,st_area(way) size,\ncase when coalesce(leisure, '') in ('park','recreation','golf_course','pitch') then 1 else 0 end as is_park\n from planet_osm_polygon\nwhere name not like '%Marine%' and (landuse='recreation' \nor leisure in('park','conservation','nature_reserve', 'pitch')\nor boundary in('protected_area', 'national_park', 'state_park'))) c",
+        "table": "(select way,name,coalesce(leisure,'') as leisure, coalesce(landuse,'') as landuse, coalesce(boundary,'') as boundary,st_area(way) size,\ncase when coalesce(leisure, '') in ('park','recreation','golf_course','pitch') then 1 else 0 end as is_park,\n\"natural\"\n from planet_osm_polygon\nwhere coalesce(name,'') not like '%Marine%' and (coalesce(landuse,'')='recreation' \nor coalesce(leisure,'') in('park','conservation','nature_reserve', 'pitch')\nor \"natural\" = 'wetland'\nor boundary in('protected_area', 'national_park', 'state_park'))) c",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -350,7 +350,8 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "green"
+      "name": "green",
+      "geometry": "polygon"
     },
     {
       "geometry": "linestring",
@@ -541,6 +542,60 @@
       ],
       "Datasource": {
         "type": "postgis",
+        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,bridge,\ncase when surface in ('gravel','unpaved','sand','unsealed','dirt') then 'yes' else' no' end unsealed\nfrom planet_osm_line \nwhere highway in ('motorway','trunk','primary','secondary','tertiary')) as roads",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "host": "gis.researchmaps.net",
+        "user": "gis",
+        "password": "gis",
+        "dbname": "gis"
+      },
+      "id": "roadscarpet",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "roadscarpet"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        49.87826534628294,
+        -55.94929545595491,
+        179.9999999749438,
+        31.466431033464257
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,bridge,\ncase when surface in ('gravel','unpaved','sand','unsealed','dirt') then 'yes' else' no' end unsealed\nfrom planet_osm_line \nwhere highway in ('unclassified','road')) p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "host": "gis.researchmaps.net",
+        "user": "gis",
+        "password": "gis",
+        "dbname": "gis"
+      },
+      "id": "minorroadscarpet",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "minorroadscarpet"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        49.87826534628294,
+        -55.94929545595491,
+        179.9999999749438,
+        31.466431033464257
+      ],
+      "Datasource": {
+        "type": "postgis",
         "table": "(select * from planet_osm_line where railway in ('abandoned','disused') and (true or highway is null)) d",
         "key_field": "",
         "geometry_field": "",
@@ -560,32 +615,6 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "oldrail"
-    },
-    {
-      "geometry": "linestring",
-      "extent": [
-        49.87826534628294,
-        -55.94929545595491,
-        179.9999999749438,
-        31.466431033464257
-      ],
-      "Datasource": {
-        "type": "postgis",
-        "table": "(select way,name,route_name\nfrom planet_osm_line\nwhere route='mtb') p",
-        "key_field": "",
-        "geometry_field": "",
-        "extent_cache": "auto",
-        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
-        "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
-      },
-      "id": "mtbroutes",
-      "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "mtbroutes"
     },
     {
       "geometry": "point",
@@ -676,6 +705,32 @@
       ],
       "Datasource": {
         "type": "postgis",
+        "table": "(select way,name,route_name\nfrom planet_osm_line\nwhere route='mtb') p",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "5552423.1,-7548328.43,20037508.34,3693473.4",
+        "dbname": "gis",
+        "host": "gis.researchmaps.net",
+        "user": "gis"
+      },
+      "id": "mtbroutes",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "mtbroutes"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        49.87826534628294,
+        -55.94929545595491,
+        179.9999999749438,
+        31.466431033464257
+      ],
+      "Datasource": {
+        "type": "postgis",
         "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,tags::hstore->'4wd_only' as fourwd\nfrom planet_osm_line \nwhere highway ='track' ) p",
         "key_field": "",
         "geometry_field": "",
@@ -729,7 +784,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,bridge,\ncase when surface in ('gravel','unpaved','sand','unsealed','dirt') then 'yes' else' no' end unsealed\nfrom planet_osm_line \nwhere highway in ('unclassified','road')) p",
+        "table": "(select way,replace(replace(replace(name,'Road','Rd'),'Highway','Hwy'),'Track','Tk') as name,highway,surface,cycleway,access,bicycle,bridge,\ncase when surface in ('gravel','unpaved','sand','unsealed','dirt') then 'yes' else' no' end unsealed, oneway\nfrom planet_osm_line \nwhere highway in ('unclassified','road')) p",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -918,6 +973,32 @@
     {
       "geometry": "linestring",
       "extent": [
+        51.68732284883638,
+        -54.63025216343219,
+        179.76167180966976,
+        15.212837145151616
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "waterways",
+        "key_field": "",
+        "geometry_field": "simplified",
+        "extent_cache": "auto",
+        "extent": "5753806.46,-7290433.77,20010977.77,1713741.13",
+        "dbname": "gis",
+        "host": "gis.researchmaps.net",
+        "user": "gis"
+      },
+      "id": "waterwaylabels",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "waterwaylabels"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
         49.87826534628294,
         -55.94929545595491,
         179.9999999749438,
@@ -952,7 +1033,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,name,surface,highway,bicycle,tags::hstore->'mtb' mtb,\ncase when bridge is not null then 'yes' else '' end as bridge\nfrom planet_osm_line\nwhere highway = 'cycleway' or\nhighway in ('path', 'bridleway','footway') and 'yes' in (bicycle,tags::hstore->'mtb')\n)\np",
+        "table": "(select way,name,surface,highway,bicycle,tags::hstore->'mtb' mtb,\ncase when bridge is not null then 'yes' else '' end as bridge,\ncoalesce(left(\"mtb:scale\", 1),'') as mtb_scale, oneway\nfrom planet_osm_line\nwhere highway = 'cycleway' or\nhighway in ('path', 'bridleway','footway') and 'yes' in (bicycle,tags::hstore->'mtb')\n)\np",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -1112,32 +1193,6 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "places_pointless"
-    },
-    {
-      "geometry": "linestring",
-      "extent": [
-        51.68732284883638,
-        -54.63025216343219,
-        179.76167180966976,
-        15.212837145151616
-      ],
-      "Datasource": {
-        "type": "postgis",
-        "table": "waterways",
-        "key_field": "",
-        "geometry_field": "simplified",
-        "extent_cache": "auto",
-        "extent": "5753806.46,-7290433.77,20010977.77,1713741.13",
-        "dbname": "gis",
-        "host": "gis.researchmaps.net",
-        "user": "gis"
-      },
-      "id": "waterwaylabels",
-      "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "waterwaylabels"
     },
     {
       "geometry": "linestring",

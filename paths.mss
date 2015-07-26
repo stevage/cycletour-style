@@ -101,12 +101,10 @@
   
 }
 
-@mtbroute: 1.5;
-#mtbroutes[zoom >= 10],
-#mtbroutes[route_name="Mawson Trail"]
-//#mtbroutes[route_name="Kidman Trail"]
+// pink outlines on mountain biking routes
+@mtbroute: 1.6;
 
-{
+#mtbroutes[zoom >= 10] {
   line-width:@mtbroute ;
   [zoom = 12] { line-width: @mtbroute * @pathzoom12}
   [zoom = 13] { line-width: @mtbroute * @pathzoom13}
@@ -114,34 +112,42 @@
   [zoom = 15] { line-width: @mtbroute * @pathzoom15}
   [zoom >= 16] { line-width: @mtbroute * @pathzoom16}
   line-smooth:1;
-  line-color:hsla(340,50%,90%,100%);  
-  [route_name=~"Bicentennial National Trail.*"],
-  [route_name="Mawson Trail"]
-  //[route_name="Kidman Trail"]
-  {
-    line-color:hsla(50,100%,40%,85%);
-    [zoom <= 10] { line-width:3; }
-    [zoom = 11] { line-width: @mtbroute * @pathzoom11 *1.5 }
-    [zoom = 12] { line-width: @mtbroute * @pathzoom12 *2}
-    [zoom = 13] { line-width: @mtbroute * @pathzoom13 * 2}
-    [zoom = 14] { line-width: @mtbroute * @pathzoom14 * 2}
-    [zoom = 15] { line-width: @mtbroute * @pathzoom15 * 2}
-    [zoom >= 16] { line-width: @mtbroute * @pathzoom16 * 2}
-    line-dasharray:1,0;
-    //image-filters:agg-stack-blur(2,2);
-  }
+  line-color:hsla(340,60%,90%,100%);  
+}
+
+// dark yellow low zoom outline for long distance mtb routes
+#mtbroutes[zoom >= 9][route_name="Mawson Trail"],
+#mtbroutes[zoom >= 9][route_name=~"Dry Diggings.*"],
+#mtbroutes[zoom >= 9][route_name=~"Wallaby Track.*"],
+#mtbroutes[zoom >= 9][route_name=~"Leanganook Track.*"],
+#mtbroutes[zoom >= 9][route_name=~"Bicentennial National Trail.*"]
+{
+  line-color:hsla(50,100%,40%,85%);
+  [zoom <= 10] { line-width:3; }
+  [zoom = 11] { line-width: @mtbroute * @pathzoom11 *1.5 }
+  [zoom = 12] { line-width: @mtbroute * @pathzoom12 *2}
+  [zoom = 13] { line-width: @mtbroute * @pathzoom13 * 2}
+  [zoom = 14] { line-width: @mtbroute * @pathzoom14 * 2}
+  [zoom = 15] { line-width: @mtbroute * @pathzoom15 * 2}
+  [zoom >= 16] { line-width: @mtbroute * @pathzoom16 * 2}
+  line-dasharray:1,0;
+  //image-filters:agg-stack-blur(2,2);
+  
 }
 #mtbroutelabels[zoom >= 14] {
   text-face-name:'Roboto Condensed Light';
   text-size:10;
   text-name:'[route_name]';
+  [route_name=~"Bicentennial National Trail.*"] {
+    text-name:"'BNT'";
+  }
   [zoom = 15] { text-size: 12;}
   [zoom >= 16] { text-size: 14; }
   text-placement:line;
   text-allow-overlap:true;
   text-spacing:140;
   text-max-char-angle-delta:40;
-  text-fill:hsla(40,80%,30%,100%);
+  text-fill:hsla(40,80%,10%,100%);
   text-halo-fill:hsla(340,50%,95%,70%);
   text-halo-radius:1.5;
 }
@@ -167,7 +173,15 @@
   line-color:@bikeroute;
   line-smooth:0.8;
   [mtb="yes"] { line-dasharray:2,1; }
+  [mtb_scale="0"] { line-dasharray:2,1; }
+  [mtb_scale="1"] { line-dasharray:2,2; }
+  [mtb_scale="2"] { line-dasharray:2,3; }
+  [mtb_scale="3"] { line-dasharray:2,4; }
+  [mtb_scale="4"] { line-dasharray:2,6; }
+  [mtb_scale="5"] { line-dasharray:2,8; }
+  [mtb_scale="6"] { line-dasharray:2,10; }
 }
+
 @walkingpath: 0.5;
 
 #walkingpaths[zoom >= 14][bridge="yes"]::bridge {
@@ -221,8 +235,11 @@
   
   line-color:hsla(100,80%,40%,80%);
   line-width:3;
-  [zoom >= 12] { line-width: 4; }
+  [zoom >= 12] { line-width: 4; line-opacity:0.6;}
+  [zoom >= 13] { line-width: 5; line-opacity:0.5;}
+  [zoom >= 14] { line-width: 6; line-opacity:0.5;}
   line-dasharray:1,0;
+  line-join:round;
   //line-smooth:0.5;
   //image-filters:agg-stack-blur(2,2);
   [zoom >= 14]::label {

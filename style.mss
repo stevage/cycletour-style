@@ -29,7 +29,7 @@ Map {
 }
 
 
-
+ 
 
 @roadsize: 1.0;
 //@minorroad: 0.45;
@@ -50,8 +50,7 @@ Map {
 @carpet:hsla(0,0%,100%,50%);
 @bikelane: hsla(20,80%,40%,1.0);
 
-#roads[zoom >= 9]
- {
+#roadscarpet[zoom >= 9] {
   [bridge="yes"][zoom >= 14]::bridge {
     line-color:@bigroad;
     line-width: @roadsize;
@@ -64,6 +63,7 @@ Map {
   {
     line-width:@roadsize + @carpetgap; 
     line-color:@carpet;
+    //[zoom = 9] { line-color:hsla(100,50%,80%,0.5); }
     [zoom = 10] { line-width: @roadsize * @roadzoom10+@carpetgap; }
     [zoom = 11] { line-width: @roadsize * @roadzoom11+@carpetgap; }
     [zoom = 12] { line-width: @roadsize * @roadzoom12+@carpetgap; }
@@ -78,8 +78,10 @@ Map {
     [cycleway='lane'][zoom >= 14],
     [cycleway='track'][zoom >= 14]{ line-color:lighten(@bikelane,20%); }
   }
-  
-  
+}
+#roads[zoom >= 9]
+ {
+   
   line-color:@bigroad;
   [highway='motorway'],[highway='trunk'] { line-color: black; }
   [highway='primary'] { line-color:hsl(260,20%,30%); }
@@ -146,38 +148,43 @@ Map {
   }
 }
 
-@minorroad_s: 0.8;
+@minorroad_s: 0.9;
 @mcarpetgap:1;
-#minorroads[zoom >= 9] {
-  [bridge="yes"][zoom >= 14]::bridge {
-    line-color:@bigroad;
-    line-width: @roadsize;
-    line-cap:butt;
-    line-smooth:0.3;
-    [zoom >= 15] { line-smooth: 0.5; }
-    [zoom = 14] { line-width: @minorroad_s * @roadzoom14+@bridgegap; }
-    [zoom = 15] { line-width: @minorroad_s * @roadzoom15+@bridgegap; }
-    [zoom >= 16] { line-width: @minorroad_s * @roadzoom16+@bridgegap; }
+// Separate carpet for minor roads so that walking route can be displayed between it
+// and the main road surface. Otherwise the walking route is invisible.
+#minorroadscarpet[bridge="yes"][zoom >= 14]::bridge {
+  line-color:@bigroad;
+  line-width: @roadsize;
+  line-cap:butt;
+  line-smooth:0.3;
+  [zoom >= 15] { line-smooth: 0.5; }
+  [zoom = 14] { line-width: @minorroad_s * @roadzoom14+@bridgegap; }
+  [zoom = 15] { line-width: @minorroad_s * @roadzoom15+@bridgegap; }
+  [zoom >= 16] { line-width: @minorroad_s * @roadzoom16+@bridgegap; }
+}
+  
+#minorroadscarpet[zoom >= 9]::carpet {
+  line-smooth:0.3;
+  [zoom >= 15] { line-smooth: 0.5; }
+  line-width:@minorroad_s + @carpetgap; 
+  line-color:@carpet;
+  [zoom = 9] { line-color:hsla(100,50%,80%,0.5); }
+  [zoom = 10] { line-width: @minorroad_s * @roadzoom10+@mcarpetgap; }
+  [zoom = 11] { line-width: @minorroad_s * @roadzoom11+@mcarpetgap; }
+  [zoom = 12] { line-width: @minorroad_s * @roadzoom12+@mcarpetgap; }
+  [zoom = 13] { line-width: @minorroad_s * @roadzoom13+@mcarpetgap; }
+  [zoom = 14] { line-width: @minorroad_s * @roadzoom14+@mcarpetgap; }
+  [zoom = 15] { line-width: @minorroad_s * @roadzoom15+@mcarpetgap; }
+  [zoom >= 16] { line-width: 0; }
+  
+  // experimental way of showing bike lanes
+  [cycleway='lane'][zoom >= 14],
+  [cycleway='track'][zoom >= 14]{ 
+    line-color:lighten(@bikelane,20%); 
   }
-  ::carpet {
-    line-smooth:0.3;
-    [zoom >= 15] { line-smooth: 0.5; }
-    line-width:@minorroad_s + @carpetgap; 
-    line-color:@carpet;
-    [zoom = 10] { line-width: @minorroad_s * @roadzoom10+@mcarpetgap; }
-    [zoom = 11] { line-width: @minorroad_s * @roadzoom11+@mcarpetgap; }
-    [zoom = 12] { line-width: @minorroad_s * @roadzoom12+@mcarpetgap; }
-    [zoom = 13] { line-width: @minorroad_s * @roadzoom13+@mcarpetgap; }
-    [zoom = 14] { line-width: @minorroad_s * @roadzoom14+@mcarpetgap; }
-    [zoom = 15] { line-width: @minorroad_s * @roadzoom15+@mcarpetgap; }
-    [zoom >= 16] { line-width: 0; }
+}
 
-    // experimental way of showing bike lanes
-    [cycleway='lane'][zoom >= 14],
-    [cycleway='track'][zoom >= 14]{ 
-      line-color:lighten(@bikelane,20%); 
-    }
-  }
+#minorroads[zoom >= 9] {
   
   // main road layer
   line-color:@minorroad;
@@ -224,28 +231,30 @@ Map {
        }
     }
   }
-
-  ::label[zoom >= 10]
-  {
-    text-face-name:'Roboto Condensed Light';
-    text-name:'[name]';
-    text-placement:line;
-    text-allow-overlap:false;//true;
-    text-spacing:150;
-    text-halo-radius: 1; 
-    text-halo-fill: hsla(0,0%,1.0,50%);
-    text-size: 10;
-    text-fill:hsl(0,0%,20%);
-    [zoom <= 11] { text-fill:hsl(0,0%,50%); }
-    [zoom = 12] { text-fill:hsl(0,0%,40%); }
-    [zoom = 13] { text-fill:hsl(0,0%,20%); }
-
-  }
   [access='private'],[access='no'],[bicycle='no'] { 
     line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
   }
 }
+
+#minorroads[zoom >= 10]::label {
+  text-face-name:'Roboto Condensed Light';
+  text-name:'[name]';
+  text-placement:line;
+  text-allow-overlap:false;//true;
+  text-spacing:150;
+  text-halo-radius: 1; 
+  text-halo-fill: hsla(0,0%,1.0,50%);
+  text-size: 10;
+  text-fill:hsl(0,0%,20%);
+  [zoom <= 11] { text-fill:hsl(0,0%,50%); }
+  [zoom = 12] { text-fill:hsl(0,0%,40%); }
+  [zoom = 13] { text-fill:hsl(0,0%,20%); }
+  
+}
+
+
 // Residential, service etc, which disappear on low zooms. 
+#littleroads[zoom >= 10][highway='residential'],
 #littleroads[zoom >= 11][service != 'parking_aisle'],
 #littleroads[zoom >= 16][service = 'parking_aisle']
 {
@@ -291,7 +300,21 @@ Map {
   }
 }
 
-@link: 0.5; 
+#minorroads[zoom >= 14][oneway="yes"]::arrow,
+#littleroads[zoom >= 14][oneway="yes"]::arrow {
+  
+  marker-type:arrow;
+  marker-fill:white;
+  marker-width:6;
+  marker-placement:line;
+}
+
+#littleroads[access='private'],#littleroads[access='no'],#littleroads[bicycle='no'] { 
+  line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
+}
+
+    
+    @link: 0.5; 
 #roadlinks[zoom>=13] {
   [zoom = 13] { line-width: @link * @roadzoom13; }
   [zoom = 14] { line-width: @link * @roadzoom14; }
@@ -335,8 +358,14 @@ Map {
     line-dash-offset:1;
   }
 
-    // experimental
-  [zoom >= 14] {
+  // 
+  [zoom = 14] {
+    line-offset:0.5;
+    line-width: 0.5;
+    line-dasharray:8,2;
+  }
+    // experimental "dual track view"
+  [zoom > 14] {
     line-offset:1.5;
     line-width: 0.5;
     line-dasharray:100,0;
@@ -349,11 +378,13 @@ Map {
       [zoom = 14] { line-offset: 1; }
       //[zoom >= 15] { line-dasharray:5,2; }
     }
-  }
-
-  
-  
+  }  
 }
+
+#tracks[access='private'],#tracks[access='no'],#tracks[bicycle='no'] { 
+  line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
+}
+
 
 #tracks::label[zoom >= 12] {
     text-face-name:'CartoGothic Std Book';
@@ -385,9 +416,13 @@ Map {
     innercarpet/line-width:3;
     
   }
+  ::altdashes {line-width:0;}
+  ::dots {line-width:0;}
   line-width:1;
   line-color:hsl(140,80%,40%);
-  [railway="preserved"][zoom >=8]{ 
+ }
+
+#rail[railway="preserved"][zoom >=8]{ 
     line-width: 0.5; 
     // represent preserved lines similar to passenger services
     // assuming that they all have some kind of regular (if infrequent) service
@@ -400,31 +435,24 @@ Map {
       line-color:hsl(140,80%,20%);
       line-dasharray:4,4;
     }
-    ::label[zoom >= 14] {
-      text-face-name:'CartoGothic Std Book';
-      text-fill:hsl(140,70%,30%);
-      text-size:11;
-      [zoom >= 12] { text-size:12; }
-      text-name:'[name]';
-      text-placement:line;
-      text-allow-overlap:true;
-      text-halo-fill:hsla(0,0%,100%,60%);
-      text-halo-radius:2;
-    }
-
+}
+#rail[zoom >= 14]::label {
+  text-face-name:'CartoGothic Std Italic';
+  text-fill:hsla(140,70%,30%,80%);
+  text-size:11; 
+  text-name:'[name]';
+  text-placement:line;
+  text-allow-overlap:true;
+  text-halo-fill:hsla(0,0%,100%,40%);
+  text-halo-radius:1;
+  
+  [railway="preserved"] {
+    text-face-name:'CartoGothic Std Book';
+    text-fill:hsl(140,70%,30%);
+    text-halo-fill:hsla(0,0%,100%,60%);
   }
-  ::label[zoom >= 14][railway!="preserved"] {
-    text-face-name:'CartoGothic Std Italic';
-    text-fill:hsla(140,70%,30%,80%);
+}
 
-    text-size:11; 
-    text-name:'[name]';
-    text-placement:line;
-    text-allow-overlap:true;
-    text-halo-fill:hsla(0,0%,100%,40%);
-    text-halo-radius:1;
-  }
- }
 
 
 // Actual services
@@ -467,7 +495,7 @@ Map {
     
     text-name: '[name]';
     text-placement-type:simple;
-    text-placements: "E,NE,SE,S,N,W,11,10,9";
+    text-placements: "E,NE,SE,S,N,W,12,11,10,9";
   
     text-fill:hsla(100,40%,40%,100%);
     text-halo-fill:hsla(0,0,100%,60%);

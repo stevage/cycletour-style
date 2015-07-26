@@ -226,38 +226,20 @@
 }
 
 @green:hsla(100,50%,40%,10%);
-#green {
-  // try to distinuish small parks from big NP boundaries...
-  //[is_park=1]
-  [size < 10000000] 
-    {
+#green[is_park=0] {
+  [size < 10000000] {
     polygon-fill:@green;
     polygon-smooth:0.5;
-  
   }
-  [zoom >=9][is_park=1] { 
-    line-width:0.5;
-    line-color:hsl(100,70%,30%);
-    line-smooth:0.5;
-  }
-  [zoom >= 8][is_park=0] { 
+  [zoom >= 8] { 
     line-width:0;
-    // ##questionable! dots for national parks?
-//    polygon-pattern-file:url(https://dl.dropboxusercontent.com/u/767553/greendot3.png);
- //   polygon-pattern-opacity:0.1;
-    
-    //polygon-pattern
-    //    polygon-smooth:0.2;
-    //polygon-fill:hsla(100,50%,40%,15%);
   }
-  [leisure ='pitch'] { line-width: 0; } // gets applied to too much?
-  [zoom >= 13][is_park=0]
-   { 
+  // draw a text label around the perimeter of state parks etc.
+  [zoom >= 13] { 
     line-width:2;
     line-color:hsla(100,70%,40%,0.4);
     line-smooth:0.2;
     line-dasharray:4,6;
-    // draw a text label around the perimeter of state parks etc.
     text-name:[name];
     text-placement:line;
     text-dy:-4;
@@ -269,7 +251,35 @@
   }
 }
 
-#green[zoom >=15][is_park=1][size > 10000][size < 100000]::parklabel {
+#green[is_park=1] {
+  // try to distinuish small parks from big NP boundaries...
+  //[is_park=1]
+  [size < 10000000] {
+    polygon-fill:@green;
+    polygon-smooth:0.5;
+    [zoom >= 12] {
+     polygon-smooth:0.2;
+    }
+  }
+  [zoom >=9] { 
+    line-width:0.5;
+    line-color:hsl(100,70%,30%);
+    line-smooth:0.5;
+  }
+  [zoom >= 12] {
+    line-smooth:0.2;
+  }
+  [leisure ='pitch'] { line-width: 0; } // gets applied to too much?
+
+}
+
+#green[natural='wetland'] {
+  polygon-pattern-file:url('textures/green_cup.png');
+  //polygon-opacity:0.5;
+  polygon-pattern-opacity:0.5;
+}
+
+#green[zoom >=15][is_park=1][size > 10000][size < 100000][leisure != 'pitch']::parklabel {
     text-face-name:'CartoGothic Std Italic';
     text-name:'[name]';
     text-size:11;
