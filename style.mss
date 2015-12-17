@@ -50,7 +50,9 @@ Map {
 @carpet:hsla(0,0%,100%,50%);
 @bikelane: hsla(20,80%,40%,1.0);
 
-#roadscarpet[zoom >= 9] {
+#roads[zoom >= 9][access != 'private'][access != 'no'][bicycle != 'no'],
+#roads[zoom >= 12]
+{
   [bridge="yes"][zoom >= 14]::bridge {
     line-color:@bigroad;
     line-width: @roadsize;
@@ -79,7 +81,8 @@ Map {
     [cycleway='track'][zoom >= 14]{ line-color:lighten(@bikelane,20%); }
   }
 }
-#roads[zoom >= 9]
+#roads[zoom >= 9][access != 'private'][access != 'no'][bicycle != 'no'],
+#roads[zoom >= 12]
  {
    
   line-color:@bigroad;
@@ -184,7 +187,8 @@ Map {
   }
 }
 
-#minorroads[zoom >= 9] {
+#minorroads[zoom >= 9][access != 'private'][access != 'no'][bicycle != 'no'],
+#minorroads[zoom >=12]{
   
   // main road layer
   line-color:@minorroad;
@@ -231,7 +235,9 @@ Map {
        }
     }
   }
-  [access='private'],[access='no'],[bicycle='no'] { 
+  [access='private'],
+  [access='no'],
+  [bicycle='no'] { 
     line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
   }
 }
@@ -309,12 +315,14 @@ Map {
   marker-placement:line;
 }
 
-#littleroads[access='private'],#littleroads[access='no'],#littleroads[bicycle='no'] { 
+#littleroads[zoom >= 14][access='private'],
+#littleroads[zoom >= 14][access='no'],
+#littleroads[zoom >= 14][bicycle='no'] { 
   line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
 }
 
     
-    @link: 0.5; 
+@link: 0.5; 
 #roadlinks[zoom>=13] {
   [zoom = 13] { line-width: @link * @roadzoom13; }
   [zoom = 14] { line-width: @link * @roadzoom14; }
@@ -381,7 +389,9 @@ Map {
   }  
 }
 
-#tracks[access='private'],#tracks[access='no'],#tracks[bicycle='no'] { 
+#tracks[zoom >= 12][access='private'],
+#tracks[zoom >= 12][access='no'],
+#tracks[zoom >= 12][bicycle='no'] { 
   line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
 }
 
