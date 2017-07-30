@@ -213,7 +213,9 @@
     line-dasharray:1,1;   
     line-color:hsl(110,90%,30%); 
   }
-  [zoom >= 14] { line-dasharray: 2,1.5;}
+  [zoom >= 14] { 
+    line-dasharray: 2,1.5;
+  }
   [zoom >= 15] {
       text-face-name:'Roboto Condensed Regular';
       text-size:10;
@@ -227,6 +229,11 @@
       text-halo-radius:1;      
   }    
   [highway="steps"] { line-width: 3; line-dasharray: 1,2;} 
+}
+#walkingpaths[zoom >= 15][surface="concrete"],
+#walkingpaths[zoom >= 15][surface="paved"],
+#walkingpaths[zoom >= 15][surface="asphalt"] {
+  line-dasharray: 4,1.5;
 }
 
 #walkingroutes[zoom >= 9] {

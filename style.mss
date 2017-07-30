@@ -207,32 +207,12 @@ Map {
   [zoom = 15] { 
     line-width: @minorroad_s * @roadzoom15;
     line-cap: butt;
-    ::inside {
-      line-width: @minorroad_s * @roadzoom15 - 2;
-      line-color: lighten(@minorroad,20%);
-      line-smooth:0.45;
-      line-cap:square;
-      [unsealed="yes"] { 
-        line-dasharray: 5,2;
-        line-dash-offset:1;
-      }
-    }
   }
   [zoom >= 16] { 
     line-width: @minorroad_s * @roadzoom16; 
     line-cap:butt;
     [unsealed="yes"] { 
       line-dasharray: 4,3;
-    }
-    ::inside {
-      line-width: @minorroad_s * @roadzoom16 - 2;
-      line-color: lighten(@minorroad, 20%);
-      line-smooth:0.45;
-      line-cap:butt;
-      [unsealed="yes"] { 
-         line-dasharray: 5,2;
-        line-dash-offset:-1;
-       }
     }
   }
   [access='private'],
@@ -241,6 +221,45 @@ Map {
     line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
   }
 }
+
+#minorroads[zoom >= 14][surface="asphalt"]::casingextra,
+#minorroads[zoom >= 14][surface="paved"]::casingextra,
+#minorroads[zoom >= 14][surface="concrete"]::casingextra {
+  line-color: black;
+  line-dasharray: 1,4;
+  /*
+  [zoom = 14] { line-width: @minorroad_s * @roadzoom14; }
+  [zoom = 15] { line-width: @minorroad_s * @roadzoom15; }
+  [zoom >= 16] { line-width: @minorroad_s * @roadzoom16; }
+  */
+  line-width:1;
+
+}
+
+#minorroads[zoom = 15]::inside {
+  line-width: @minorroad_s * @roadzoom15 - 2;
+  line-color: lighten(@minorroad,20%);
+  line-smooth:0.45;
+  line-cap:square;
+  [unsealed="yes"] { 
+    line-dasharray: 5,2;
+    line-dash-offset:1;
+  }
+}
+
+#minorroads[zoom = 16]::inside {
+  line-width: @minorroad_s * @roadzoom16 - 2;
+  line-color: lighten(@minorroad, 20%);
+  line-smooth:0.45;
+  line-cap:butt;
+  [unsealed="yes"] { 
+    line-dasharray: 5,2;
+    line-dash-offset:-1;
+  }
+}
+
+
+
 
 #minorroads[zoom >= 10]::label {
   text-face-name:'Roboto Condensed Light';
@@ -269,7 +288,7 @@ Map {
   [zoom = 12] { line-width: @littleroad * @roadzoom12*0.75; }
   [zoom = 13] { line-width: @littleroad * @roadzoom13*0.75; }
   [zoom = 14] { line-width: @littleroad * @roadzoom14 * 0.75; }
-  [zoom = 15] { line-width: @littleroad * @roadzoom15 * 0.75; }
+  [zoom = 15] { line-width: @littleroad * @roadzoom15; }
   [zoom >= 16] { line-width: @littleroad * @roadzoom16; }
 
   line-smooth:0.3;
@@ -311,7 +330,7 @@ Map {
   
   marker-type:arrow;
   marker-fill:white;
-  marker-width:6;
+  marker-width:8;
   marker-placement:line;
 }
 
@@ -320,6 +339,19 @@ Map {
 #littleroads[zoom >= 14][bicycle='no'] { 
   line-color: hsla(0,0%,100%,75%); // ##todo how to represent these? 
 }
+
+/*#minorroads[zoom >= 14][surface="asphalt"]::sealed,
+#minorroads[zoom >= 14][surface="paved"]::sealed,
+#minorroads[zoom >= 14][surface="concrete"]::sealed,*/
+#littleroads[zoom >= 14][surface="asphalt"]::sealed,
+#littleroads[zoom >= 14][surface="paved"]::sealed,
+#littleroads[zoom >= 14][surface="concrete"]::sealed {
+  line-width: 1;
+  line-color: black;
+  line-dasharray: 1,8;
+  line-smooth:0.45;
+}
+
 
     
 @link: 0.5; 
